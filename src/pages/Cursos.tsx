@@ -9,6 +9,10 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import cardCnh from '@/assets/card-cnh.jpg';
 import cardTraining from '@/assets/card-training.jpg';
+import courseMotoniveladora from '@/assets/course-motoniveladora.jpg';
+import courseCarregadeira from '@/assets/course-carregadeira.jpg';
+import courseTratorEsteiras from '@/assets/course-trator-esteiras.jpg';
+import courseTratorAgricola from '@/assets/course-trator-agricola.jpg';
 
 interface Course {
   title: string;
@@ -37,7 +41,7 @@ const modules: Module[] = [
       {
         title: 'Capacitação para Operadores de Motoniveladoras',
         description: 'Capacitação na operação segura de motoniveladoras conforme NRs do Ministério do Trabalho.',
-        image: cardTraining,
+        image: courseMotoniveladora,
         duration: '20 horas',
         students: '100+',
         features: ['Curso obrigatório', 'Presencial', 'Atestado de participação + Carteirinha válida por 1 ano'],
@@ -45,7 +49,7 @@ const modules: Module[] = [
       {
         title: 'Capacitação para Operadores de Carregadeiras de Rodas',
         description: 'Capacitação para operar pás-carregadeiras convencionais com segurança e eficiência.',
-        image: cardCnh,
+        image: courseCarregadeira,
         duration: '20 horas',
         students: '90+',
         features: ['Curso obrigatório', 'Presencial', 'Atestado de participação + Carteirinha válida por 1 ano'],
@@ -53,7 +57,7 @@ const modules: Module[] = [
       {
         title: 'Capacitação para Operadores de Tratores de Esteiras',
         description: 'Capacitação para supervisionar e implementar planos de içamento de cargas com tratores de esteira.',
-        image: cardTraining,
+        image: courseTratorEsteiras,
         duration: '40 horas',
         students: '70+',
         features: ['Curso obrigatório', 'Presencial', 'Certificado de Supervisor de Rigging'],
@@ -61,7 +65,7 @@ const modules: Module[] = [
       {
         title: 'Treinamento de Operação de Trator Agrícola',
         description: 'Treinamento para operação segura de trator agrícola conforme NR 11, 12 e 31.',
-        image: cardCnh,
+        image: courseTratorAgricola,
         duration: '24 horas',
         students: '80+',
         features: ['Curso obrigatório', 'Presencial', 'Certificado de conclusão'],
