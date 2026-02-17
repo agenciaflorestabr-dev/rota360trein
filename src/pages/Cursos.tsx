@@ -13,6 +13,8 @@ import courseMotoniveladora from '@/assets/course-motoniveladora.jpg';
 import courseCarregadeira from '@/assets/course-carregadeira.jpg';
 import courseTratorEsteiras from '@/assets/course-trator-esteiras.jpg';
 import courseTratorAgricola from '@/assets/course-trator-agricola.jpg';
+import courseRetroescavadeira from '@/assets/course-retroescavadeira.jpg';
+import courseEscavadeira from '@/assets/course-escavadeira.jpg';
 
 interface Course {
   title: string;
@@ -69,6 +71,22 @@ const modules: Module[] = [
         duration: '24 horas',
         students: '80+',
         features: ['Curso obrigatório', 'Presencial', 'Certificado de conclusão'],
+      },
+      {
+        title: 'Capacitação para Operadores de Retroescavadeiras',
+        description: 'Capacitação na operação segura de retroescavadeiras conforme NRs do Ministério do Trabalho.',
+        image: courseRetroescavadeira,
+        duration: '20 horas',
+        students: '85+',
+        features: ['Curso obrigatório', 'Presencial', 'Atestado de participação + Carteirinha válida por 1 ano'],
+      },
+      {
+        title: 'Capacitação para Operadores de Escavadeiras Hidráulicas',
+        description: 'Capacitação na operação segura e eficiente de escavadeiras hidráulicas.',
+        image: courseEscavadeira,
+        duration: '20 horas',
+        students: '75+',
+        features: ['Curso obrigatório', 'Presencial', 'Atestado de participação + Carteirinha válida por 1 ano'],
       },
     ],
   },
