@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap');
+
+@layer base {
+  :root {
+    /* Rota 360 - Institutional Portal Design System */
+    --background: 0 0% 100%;
+    --foreground: 215 25% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 20%;
+
+    /* Primary - Institutional Blue */
+    --primary: 210 85% 35%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 210 85% 50%;
+    --primary-dark: 210 85% 25%;
+
+    /* Secondary - Teal/Green */
+    --secondary: 168 65% 40%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-light: 168 65% 50%;
+
+    /* Accent - Yellow/Orange for CTAs */
+    --accent: 45 95% 55%;
+    --accent-foreground: 215 25% 15%;
+    --accent-orange: 25 90% 55%;
+
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 15% 45%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 210 85% 35%;
+
+    --radius: 0.75rem;
+
+    /* Section backgrounds */
+    --section-light: 210 30% 97%;
+    --section-blue: 210 85% 35%;
+    --section-teal: 168 65% 40%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(210, 85%, 35%) 0%, hsl(210, 85%, 25%) 100%);
+    --gradient-cta: linear-gradient(135deg, hsl(45, 95%, 55%) 0%, hsl(25, 90%, 55%) 100%);
+    --gradient-teal: linear-gradient(135deg, hsl(168, 65%, 40%) 0%, hsl(168, 65%, 30%) 100%);
+
+    /* Shadows */
+    --shadow-card: 0 4px 20px -4px hsl(210 85% 35% / 0.15);
+    --shadow-card-hover: 0 12px 40px -8px hsl(210 85% 35% / 0.25);
+    --shadow-button: 0 4px 14px -2px hsl(210 85% 35% / 0.3);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* WhatsApp green */
+    --whatsapp: 142 70% 45%;
+    --whatsapp-foreground: 0 0% 100%;
+  }
+
+  .dark {
+    --background: 215 25% 10%;
+    --foreground: 210 20% 95%;
+    --card: 215 25% 12%;
+    --card-foreground: 210 20% 95%;
+    --popover: 215 25% 12%;
+    --popover-foreground: 210 20% 95%;
+    --primary: 210 85% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 168 65% 45%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 215 25% 18%;
+    --muted-foreground: 215 15% 60%;
+    --accent: 45 95% 55%;
+    --accent-foreground: 215 25% 15%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 215 25% 20%;
+    --input: 215 25% 20%;
+    --ring: 210 85% 50%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-16 md:py-24 px-4 md:px-8;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .geometric-accent {
+    @apply absolute w-32 h-32 bg-accent/20 rotate-45 -z-10;
+  }
+
+  .geometric-stripe {
+    @apply absolute h-2 bg-gradient-to-r from-primary via-secondary to-accent;
+  }
+}
+
+@layer utilities {
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light;
+  }
+
+  .text-gradient-accent {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent to-accent-orange;
+  }
+
+  .bg-section-light {
+    background-color: hsl(var(--section-light));
+  }
+
+  .bg-section-blue {
+    background: var(--gradient-hero);
+  }
+
+  .bg-section-teal {
+    background: var(--gradient-teal);
+  }
+
+  .bg-gradient-cta {
+    background: var(--gradient-cta);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-card-hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+}
