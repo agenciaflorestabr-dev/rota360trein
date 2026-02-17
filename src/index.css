@@ -7,18 +7,18 @@
 @layer base {
   :root {
     /* Rota 360 - Institutional Portal Design System */
-    --background: 0 0% 100%;
+    --background: 350 30% 97%;
     --foreground: 215 25% 20%;
 
-    --card: 0 0% 100%;
+    --card: 350 30% 99%;
     --card-foreground: 215 25% 20%;
 
-    --popover: 0 0% 100%;
+    --popover: 350 30% 99%;
     --popover-foreground: 215 25% 20%;
 
     /* Primary - Institutional Blue */
     --primary: 210 85% 35%;
-    --primary-foreground: 0 0% 100%;
+    --primary-foreground: 350 30% 99%;
     --primary-light: 210 85% 50%;
     --primary-dark: 210 85% 25%;
 
