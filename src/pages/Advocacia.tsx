@@ -141,6 +141,78 @@ const Advocacia = () => {
           </div>
         </section>
 
+        {/* Lead Lawyer Section */}
+        <section className="section-padding bg-background">
+          <div className="container-custom mx-auto">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              {/* Photo */}
+              <motion.div
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="relative"
+              >
+                <div className="aspect-[3/4] rounded-2xl bg-muted overflow-hidden shadow-card relative">
+                  {/* Placeholder - substituir pela foto real */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-muted-foreground gap-3">
+                    <Scale className="w-16 h-16 opacity-30" />
+                    <span className="text-sm font-medium">Foto do Advogado</span>
+                  </div>
+                  {/* Quando tiver a foto, descomente abaixo e remova o placeholder acima:
+                  <img src="/caminho-da-foto.jpg" alt="Dr. Nome - Advogado" className="w-full h-full object-cover" />
+                  */}
+                </div>
+                {/* Decorative accent */}
+                <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-primary/10 rounded-2xl -z-10" />
+                <div className="absolute -top-4 -left-4 w-24 h-24 border-4 border-accent/20 rounded-2xl -z-10" />
+              </motion.div>
+
+              {/* Info */}
+              <motion.div
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-1 bg-primary" />
+                  <span className="text-primary font-semibold text-sm uppercase tracking-wider">
+                    Advogado Responsável
+                  </span>
+                </div>
+
+                <h2 className="font-heading text-3xl md:text-4xl text-foreground font-bold mb-2">
+                  Dr. Nome do Advogado
+                </h2>
+                <p className="text-primary font-semibold mb-4">OAB/XX 000.000</p>
+
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  Especialista em Direito de Trânsito com mais de 10 anos de experiência 
+                  na defesa de condutores. Atuação em recursos de multas, suspensão e 
+                  cassação de CNH, com alto índice de sucesso.
+                </p>
+
+                <ul className="space-y-3 mb-8">
+                  {['Pós-graduado em Direito de Trânsito', 'Membro da Comissão de Trânsito da OAB', 'Mais de 500 casos resolvidos', 'Atendimento humanizado e próximo'].map((item) => (
+                    <li key={item} className="flex items-center gap-3 text-foreground">
+                      <CheckCircle2 className="w-5 h-5 text-secondary flex-shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Button variant="whatsapp" size="lg" className="gap-2" asChild>
+                  <a href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer">
+                    <Phone className="w-4 h-4" />
+                    Falar com o advogado
+                  </a>
+                </Button>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
         {/* Stats */}
         <section className="py-12 bg-primary text-primary-foreground">
           <div className="container-custom mx-auto">
