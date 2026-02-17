@@ -279,14 +279,130 @@ const Treinamentos = () => {
           </div>
         </section>
 
-        {/* Photo Gallery */}
-        <PhotoGallery 
-          title="Treinamentos em Ação"
-          subtitle="Veja nossos treinamentos e capacitações sendo realizados"
-          photos={[
-            // Adicione as fotos aqui no formato: { src: "url-da-imagem", alt: "descrição" }
-          ]}
-        />
+        {/* Registros de Palestras */}
+        <section className="section-padding bg-section-light">
+          <div className="container-custom mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-center mb-12"
+            >
+              <div className="inline-flex items-center gap-3 mb-4">
+                <div className="w-8 h-1 bg-secondary" />
+                <span className="text-secondary font-semibold text-sm uppercase tracking-wider">
+                  Registros
+                </span>
+                <div className="w-8 h-1 bg-secondary" />
+              </div>
+              <h2 className="font-heading text-3xl md:text-4xl text-foreground font-bold mb-4">
+                Nossas Palestras
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Confira registros das palestras e eventos que já realizamos por todo o país.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+                <motion.div
+                  key={item}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: item * 0.05 }}
+                  className="aspect-square rounded-xl bg-muted border-2 border-dashed border-muted-foreground/20 flex flex-col items-center justify-center gap-2 text-muted-foreground/50"
+                >
+                  <GraduationCap className="w-8 h-8" />
+                  <span className="text-xs font-medium">Foto {item}</span>
+                </motion.div>
+              ))}
+            </div>
+            <p className="text-center text-sm text-muted-foreground mt-6">
+              Envie suas fotos de palestras para preencher esta galeria.
+            </p>
+          </div>
+        </section>
+
+        {/* Histórico de Clientes */}
+        <section className="section-padding bg-background">
+          <div className="container-custom mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-center mb-12"
+            >
+              <div className="inline-flex items-center gap-3 mb-4">
+                <div className="w-8 h-1 bg-primary" />
+                <span className="text-primary font-semibold text-sm uppercase tracking-wider">
+                  Nossos Clientes
+                </span>
+                <div className="w-8 h-1 bg-primary" />
+              </div>
+              <h2 className="font-heading text-3xl md:text-4xl text-foreground font-bold mb-4">
+                Empresas que Confiam em Nós
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Conheça algumas das empresas e equipes que já passaram pelos nossos treinamentos.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 mb-12">
+              {[1, 2, 3, 4, 5, 6].map((item) => (
+                <motion.div
+                  key={item}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: item * 0.08 }}
+                  className="aspect-[3/2] rounded-xl bg-muted border-2 border-dashed border-muted-foreground/20 flex flex-col items-center justify-center gap-2 text-muted-foreground/50 hover:border-primary/30 hover:bg-primary/5 transition-colors"
+                >
+                  <Building2 className="w-8 h-8" />
+                  <span className="text-xs font-medium">Logo {item}</span>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h3 className="font-heading text-2xl text-foreground font-bold mb-6 text-center">
+                Equipes Capacitadas
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[1, 2, 3].map((item) => (
+                  <motion.div
+                    key={item}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: item * 0.1 }}
+                    className="rounded-2xl overflow-hidden shadow-card bg-card"
+                  >
+                    <div className="aspect-video bg-muted border-2 border-dashed border-muted-foreground/20 flex flex-col items-center justify-center gap-2 text-muted-foreground/50">
+                      <Users className="w-10 h-10" />
+                      <span className="text-sm font-medium">Foto da equipe {item}</span>
+                    </div>
+                    <div className="p-4">
+                      <h4 className="font-heading font-semibold text-foreground mb-1">Nome da Empresa {item}</h4>
+                      <p className="text-sm text-muted-foreground">Treinamento realizado • Mês/Ano</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            <p className="text-center text-sm text-muted-foreground mt-8">
+              Envie logos e fotos das equipes para preencher esta seção.
+            </p>
+          </div>
+        </section>
 
         {/* CTA Section */}
         <section className="section-padding bg-gradient-to-r from-primary to-secondary text-primary-foreground">
