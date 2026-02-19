@@ -4,6 +4,7 @@ import { WhatsAppFloat } from '@/components/WhatsAppFloat';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
+import advogadoPhoto from '@/assets/advogado.jpg';
 import { 
   Phone, 
   ArrowRight, 
@@ -154,14 +155,7 @@ const Advocacia = () => {
                 className="relative"
               >
                 <div className="aspect-[3/4] rounded-2xl bg-muted overflow-hidden shadow-card relative">
-                  {/* Placeholder - substituir pela foto real */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-muted-foreground gap-3">
-                    <Scale className="w-16 h-16 opacity-30" />
-                    <span className="text-sm font-medium">Foto do Advogado</span>
-                  </div>
-                  {/* Quando tiver a foto, descomente abaixo e remova o placeholder acima:
-                  <img src="/caminho-da-foto.jpg" alt="Dr. Nome - Advogado" className="w-full h-full object-cover" />
-                  */}
+                  <img src={advogadoPhoto} alt="Dr. Nome - Advogado" className="w-full h-full object-cover" />
                 </div>
                 {/* Decorative accent */}
                 <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-primary/10 rounded-2xl -z-10" />
