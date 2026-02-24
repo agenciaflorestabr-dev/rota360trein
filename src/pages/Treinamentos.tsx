@@ -23,6 +23,11 @@ import training1 from '@/assets/training-1.jpg';
 import training2 from '@/assets/training-2.jpg';
 import training3 from '@/assets/training-3.jpg';
 import training4 from '@/assets/training-4.jpg';
+import training5 from '@/assets/training-5.jpg';
+import training6 from '@/assets/training-6.jpg';
+import training7 from '@/assets/training-7.jpg';
+import training8 from '@/assets/training-8.jpg';
+import training9 from '@/assets/training-9.jpg';
 
 const trainings = [
   {
@@ -292,6 +297,11 @@ const Treinamentos = () => {
             { src: training2, alt: 'Instrutor orientando operador de máquinas pesadas' },
             { src: training3, alt: 'Treinamento prático com operador em escavadeira' },
             { src: training4, alt: 'Equipe de treinamento em campo com escavadeira SANY' },
+            { src: training5, alt: 'Caminhão Comber utilizado em treinamento de transporte de cargas' },
+            { src: training6, alt: 'Treinamento de Brigada de Incêndio NR20 e NR23 na Fazenda' },
+            { src: training7, alt: 'Entrega de certificados de treinamento na fazenda' },
+            { src: training8, alt: 'Equipe capacitada com certificados de conclusão' },
+            { src: training9, alt: 'Turma de treinamento com entrega de certificados' },
           ]}
         />
 
