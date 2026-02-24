@@ -25,6 +25,7 @@ export const InstructorHighlight = () => {
               <img
                 src={instrutoraSarah}
                 alt="Sarah Lisboa - Instrutora credenciada e premiada"
+                loading="lazy"
                 className="w-56 h-56 md:w-64 md:h-64 rounded-2xl object-cover object-top shadow-card"
               />
               <div className="absolute -bottom-3 -right-3 bg-accent text-accent-foreground px-4 py-2 rounded-xl shadow-lg font-heading font-bold text-sm">
