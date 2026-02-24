@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, ArrowRight, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import heroHighway from '@/assets/hero-highway.jpg';
-import heroLesson from '@/assets/hero-lesson.jpg';
+import heroSarahDriving from '@/assets/hero-sarah-driving.jpg';
 
 const slides = [
   {
@@ -16,7 +16,7 @@ const slides = [
   },
   {
     id: 2,
-    image: heroLesson,
+    image: heroSarahDriving,
     title: 'Aprenda a dirigir com quem entende do assunto',
     subtitle: 'Aulas práticas e teóricas com instrutores qualificados e veículos modernos.',
     cta: 'Saiba mais',
