@@ -27,12 +27,18 @@ interface Course {
   slug?: string;
 }
 
+interface SubSection {
+  title: string;
+  courses: Course[];
+}
+
 interface Module {
   id: string;
   title: string;
   icon: React.ReactNode;
   description: string;
-  courses: Course[];
+  courses?: Course[];
+  sections?: SubSection[];
 }
 
 const modules: Module[] = [
@@ -40,133 +46,158 @@ const modules: Module[] = [
     id: 'maquinas-pesadas',
     title: 'Máquinas Pesadas',
     icon: <Cog className="w-5 h-5" />,
-    description: 'Linha Amarela - Operação de Máquinas Pesadas',
-    courses: [
+    description: 'Cursos para operação de máquinas pesadas, incluindo linha amarela, formação avançada, PEMT e içamento de cargas.',
+    sections: [
       {
-        title: 'Capacitação para Operadores de Motoniveladoras',
-        description: 'Capacitação na operação segura de motoniveladoras conforme NRs do Ministério do Trabalho.',
-        image: courseMotoniveladora,
-        duration: '20 horas',
-        students: '100+',
-        features: ['Curso obrigatório', 'Presencial', 'Atestado de participação + Carteirinha válida por 1 ano'],
-        slug: 'motoniveladora',
+        title: 'Linha Amarela - Operação de Máquinas Pesadas',
+        courses: [
+          {
+            title: 'Capacitação para Operadores de Motoniveladoras',
+            description: 'Capacitação na operação segura de motoniveladoras conforme NRs do Ministério do Trabalho.',
+            image: courseMotoniveladora,
+            duration: '20 horas',
+            students: '100+',
+            features: ['Curso obrigatório', 'Presencial', 'Atestado de participação + Carteirinha válida por 1 ano'],
+            slug: 'motoniveladora',
+          },
+          {
+            title: 'Capacitação para Operadores de Carregadeiras de Rodas',
+            description: 'Capacitação para operar pás-carregadeiras convencionais com segurança e eficiência.',
+            image: courseCarregadeira,
+            duration: '20 horas',
+            students: '90+',
+            features: ['Curso obrigatório', 'Presencial', 'Atestado de participação + Carteirinha válida por 1 ano'],
+            slug: 'carregadeira',
+          },
+          {
+            title: 'Capacitação para Operadores de Tratores de Esteiras',
+            description: 'Capacitação para supervisionar e implementar planos de içamento de cargas com tratores de esteira.',
+            image: courseTratorEsteiras,
+            duration: '40 horas',
+            students: '70+',
+            features: ['Curso obrigatório', 'Presencial', 'Certificado de Supervisor de Rigging'],
+            slug: 'trator-esteiras',
+          },
+          {
+            title: 'Treinamento de Operação de Trator Agrícola',
+            description: 'Treinamento para operação segura de trator agrícola conforme NR 11, 12 e 31.',
+            image: courseTratorAgricola,
+            duration: '24 horas',
+            students: '80+',
+            features: ['Curso obrigatório', 'Presencial', 'Certificado de conclusão'],
+            slug: 'trator-agricola',
+          },
+          {
+            title: 'Capacitação para Operadores de Retroescavadeiras',
+            description: 'Capacitação na operação segura de retroescavadeiras conforme NRs do Ministério do Trabalho.',
+            image: courseRetroescavadeira,
+            duration: '20 horas',
+            students: '85+',
+            features: ['Curso obrigatório', 'Presencial', 'Atestado de participação + Carteirinha válida por 1 ano'],
+            slug: 'retroescavadeira',
+          },
+          {
+            title: 'Capacitação para Operadores de Escavadeiras Hidráulicas',
+            description: 'Capacitação na operação segura e eficiente de escavadeiras hidráulicas.',
+            image: courseEscavadeira,
+            duration: '20 horas',
+            students: '75+',
+            features: ['Curso obrigatório', 'Presencial', 'Atestado de participação + Carteirinha válida por 1 ano'],
+            slug: 'escavadeira',
+          },
+        ],
       },
       {
-        title: 'Capacitação para Operadores de Carregadeiras de Rodas',
-        description: 'Capacitação para operar pás-carregadeiras convencionais com segurança e eficiência.',
-        image: courseCarregadeira,
-        duration: '20 horas',
-        students: '90+',
-        features: ['Curso obrigatório', 'Presencial', 'Atestado de participação + Carteirinha válida por 1 ano'],
-        slug: 'carregadeira',
+        title: 'Formação Avançada',
+        courses: [
+          {
+            title: 'Master em Operação de Construção e Mineração',
+            description: 'Formação completa para operação segura e eficiente de equipamentos.',
+            image: cardTraining,
+            duration: '120 horas',
+            students: '50+',
+            features: ['Curso obrigatório', 'Presencial', 'Atestado + Carteirinha com conclusão de curso'],
+          },
+        ],
       },
       {
-        title: 'Capacitação para Operadores de Tratores de Esteiras',
-        description: 'Capacitação para supervisionar e implementar planos de içamento de cargas com tratores de esteira.',
-        image: courseTratorEsteiras,
-        duration: '40 horas',
-        students: '70+',
-        features: ['Curso obrigatório', 'Presencial', 'Certificado de Supervisor de Rigging'],
-        slug: 'trator-esteiras',
+        title: 'Plataformas Elevatórias Móveis de Trabalho (PEMT)',
+        courses: [
+          {
+            title: 'Gestão PEMT - Plataformas Elevatórias Móveis de Trabalho',
+            description: 'Desenvolva conhecimentos técnicos para operação e gestão de plataformas elevatórias.',
+            image: cardTraining,
+            duration: '8 horas',
+            students: '60+',
+            features: ['Curso obrigatório', 'Presencial', 'Atestado de participação'],
+          },
+          {
+            title: 'Formação de Operadores de Plataformas Elevatórias',
+            description: 'Desenvolva conhecimentos técnicos e habilidades práticas para operar plataformas elevatórias.',
+            image: cardTraining,
+            duration: '8 horas',
+            students: '55+',
+            features: ['Curso obrigatório', 'Presencial', 'Atestado + Carteirinha válida por 2 anos'],
+          },
+        ],
       },
       {
-        title: 'Treinamento de Operação de Trator Agrícola',
-        description: 'Treinamento para operação segura de trator agrícola conforme NR 11, 12 e 31.',
-        image: courseTratorAgricola,
-        duration: '24 horas',
-        students: '80+',
-        features: ['Curso obrigatório', 'Presencial', 'Certificado de conclusão'],
-        slug: 'trator-agricola',
+        title: 'Içamento e Movimentação de Carga',
+        courses: [
+          {
+            title: 'Formação de Rigger',
+            description: 'Capacitação para elaborar e supervisionar planos de içamento.',
+            image: cardTraining,
+            duration: '40 horas',
+            students: '45+',
+            features: ['Curso obrigatório', 'Presencial', 'Carteirinha de Rigger válida por 2 anos'],
+          },
+          {
+            title: 'Amarração de Cargas para Transporte',
+            description: 'Instruções essenciais sobre técnicas de amarração e sinalização.',
+            image: cardTraining,
+            duration: '8 horas',
+            students: '40+',
+            features: ['Curso obrigatório', 'Presencial', 'Atestado de participação'],
+          },
+          {
+            title: 'Formação de Operadores de Gruas (Guindastes Torre)',
+            description: 'Capacitação focada nos métodos seguros de operação de gruas.',
+            image: cardTraining,
+            duration: '80 horas',
+            students: '30+',
+            features: ['Curso obrigatório', 'In Company', 'Certificação OPC'],
+          },
+          {
+            title: 'Supervisor de Rigging',
+            description: 'Capacitação para liderar equipes e supervisionar planos de içamento.',
+            image: cardTraining,
+            duration: '32 horas',
+            students: '35+',
+            features: ['Curso obrigatório', 'Presencial', 'Certificação OPC NBR 17089'],
+          },
+          {
+            title: 'Especialização em Movimentação de Carga',
+            description: 'Especialização técnica em movimentação de carga para profissionais.',
+            image: cardTraining,
+            duration: '32 horas',
+            students: '30+',
+            features: ['Curso obrigatório', 'Presencial', 'Certificação OPC NBR 17089'],
+          },
+        ],
       },
       {
-        title: 'Capacitação para Operadores de Retroescavadeiras',
-        description: 'Capacitação na operação segura de retroescavadeiras conforme NRs do Ministério do Trabalho.',
-        image: courseRetroescavadeira,
-        duration: '20 horas',
-        students: '85+',
-        features: ['Curso obrigatório', 'Presencial', 'Atestado de participação + Carteirinha válida por 1 ano'],
-        slug: 'retroescavadeira',
-      },
-      {
-        title: 'Capacitação para Operadores de Escavadeiras Hidráulicas',
-        description: 'Capacitação na operação segura e eficiente de escavadeiras hidráulicas.',
-        image: courseEscavadeira,
-        duration: '20 horas',
-        students: '75+',
-        features: ['Curso obrigatório', 'Presencial', 'Atestado de participação + Carteirinha válida por 1 ano'],
-        slug: 'escavadeira',
-      },
-      {
-        title: 'Master em Operação de Construção e Mineração',
-        description: 'Formação completa para operação segura e eficiente de equipamentos.',
-        image: cardTraining,
-        duration: '120 horas',
-        students: '50+',
-        features: ['Curso obrigatório', 'Presencial', 'Atestado + Carteirinha com conclusão de curso'],
-      },
-      {
-        title: 'Gestão PEMT - Plataformas Elevatórias Móveis de Trabalho',
-        description: 'Desenvolva conhecimentos técnicos para operação e gestão de plataformas elevatórias.',
-        image: cardTraining,
-        duration: '8 horas',
-        students: '60+',
-        features: ['Curso obrigatório', 'Presencial', 'Atestado de participação'],
-      },
-      {
-        title: 'Formação de Operadores de Plataformas Elevatórias',
-        description: 'Desenvolva conhecimentos técnicos e habilidades práticas para operar plataformas elevatórias.',
-        image: cardTraining,
-        duration: '8 horas',
-        students: '55+',
-        features: ['Curso obrigatório', 'Presencial', 'Atestado + Carteirinha válida por 2 anos'],
-      },
-      {
-        title: 'Formação de Rigger',
-        description: 'Capacitação para elaborar e supervisionar planos de içamento.',
-        image: cardTraining,
-        duration: '40 horas',
-        students: '45+',
-        features: ['Curso obrigatório', 'Presencial', 'Carteirinha de Rigger válida por 2 anos'],
-      },
-      {
-        title: 'Amarração de Cargas para Transporte',
-        description: 'Instruções essenciais sobre técnicas de amarração e sinalização.',
-        image: cardTraining,
-        duration: '8 horas',
-        students: '40+',
-        features: ['Curso obrigatório', 'Presencial', 'Atestado de participação'],
-      },
-      {
-        title: 'Formação de Operadores de Gruas (Guindastes Torre)',
-        description: 'Capacitação focada nos métodos seguros de operação de gruas.',
-        image: cardTraining,
-        duration: '80 horas',
-        students: '30+',
-        features: ['Curso obrigatório', 'In Company', 'Certificação OPC'],
-      },
-      {
-        title: 'Supervisor de Rigging',
-        description: 'Capacitação para liderar equipes e supervisionar planos de içamento.',
-        image: cardTraining,
-        duration: '32 horas',
-        students: '35+',
-        features: ['Curso obrigatório', 'Presencial', 'Certificação OPC NBR 17089'],
-      },
-      {
-        title: 'Especialização em Movimentação de Carga',
-        description: 'Especialização técnica em movimentação de carga para profissionais.',
-        image: cardTraining,
-        duration: '32 horas',
-        students: '30+',
-        features: ['Curso obrigatório', 'Presencial', 'Certificação OPC NBR 17089'],
-      },
-      {
-        title: 'Gestão de Frotas',
-        description: 'Visão geral dos parâmetros, critérios e ações importantes para o gerenciamento de frotas.',
-        image: cardTraining,
-        duration: '16 horas',
-        students: '40+',
-        features: ['Curso obrigatório', 'Presencial', 'Certificado Instituto Opus'],
+        title: 'Gestão',
+        courses: [
+          {
+            title: 'Gestão de Frotas',
+            description: 'Visão geral dos parâmetros, critérios e ações importantes para o gerenciamento de frotas.',
+            image: cardTraining,
+            duration: '16 horas',
+            students: '40+',
+            features: ['Curso obrigatório', 'Presencial', 'Certificado Instituto Opus'],
+          },
+        ],
       },
     ],
   },
@@ -462,11 +493,28 @@ const Cursos = () => {
                       <p className="text-muted-foreground">{module.description}</p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                      {module.courses.map((course, index) => (
-                        <CourseCard key={course.title} course={course} index={index} />
-                      ))}
-                    </div>
+                    {module.sections ? (
+                      <div className="space-y-14">
+                        {module.sections.map((section) => (
+                          <div key={section.title}>
+                            <h3 className="font-heading text-xl md:text-2xl font-bold text-foreground mb-6 border-b border-border pb-3">
+                              {section.title}
+                            </h3>
+                            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                              {section.courses.map((course, index) => (
+                                <CourseCard key={course.title} course={course} index={index} />
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {module.courses?.map((course, index) => (
+                          <CourseCard key={course.title} course={course} index={index} />
+                        ))}
+                      </div>
+                    )}
 
                   </motion.div>
                 </TabsContent>
