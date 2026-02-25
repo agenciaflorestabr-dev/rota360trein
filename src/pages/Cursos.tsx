@@ -93,6 +93,7 @@ const modules: Module[] = [
         duration: '20 horas',
         students: '75+',
         features: ['Curso obrigatório', 'Presencial', 'Atestado de participação + Carteirinha válida por 1 ano'],
+        slug: 'escavadeira',
       },
     ],
   },
