@@ -16,6 +16,15 @@ import courseTratorEsteiras from '@/assets/course-trator-esteiras.jpg';
 import courseTratorAgricola from '@/assets/course-trator-agricola.jpg';
 import courseRetroescavadeira from '@/assets/course-retroescavadeira.jpg';
 import courseEscavadeira from '@/assets/course-escavadeira.jpg';
+import courseMasterOperacao from '@/assets/course-master-operacao.jpg';
+import coursePemtGestao from '@/assets/course-pemt-gestao.jpg';
+import coursePemtOperadores from '@/assets/course-pemt-operadores.jpg';
+import courseRigger from '@/assets/course-rigger.jpg';
+import courseAmarracaoCargas from '@/assets/course-amarracao-cargas.jpg';
+import courseGruas from '@/assets/course-gruas.jpg';
+import courseSupervisorRigging from '@/assets/course-supervisor-rigging.jpg';
+import courseMovimentacaoCarga from '@/assets/course-movimentacao-carga.jpg';
+import courseGestaoFrotas from '@/assets/course-gestao-frotas.jpg';
 
 interface Course {
   title: string;
@@ -113,7 +122,7 @@ const modules: Module[] = [
           {
             title: 'Master em Operação de Construção e Mineração',
             description: 'Formação completa para operação segura e eficiente de equipamentos.',
-            image: cardTraining,
+            image: courseMasterOperacao,
             duration: '120 horas',
             students: '50+',
             features: ['Curso obrigatório', 'Presencial', 'Atestado + Carteirinha com conclusão de curso'],
@@ -126,7 +135,7 @@ const modules: Module[] = [
           {
             title: 'Gestão PEMT - Plataformas Elevatórias Móveis de Trabalho',
             description: 'Desenvolva conhecimentos técnicos para operação e gestão de plataformas elevatórias.',
-            image: cardTraining,
+            image: coursePemtGestao,
             duration: '8 horas',
             students: '60+',
             features: ['Curso obrigatório', 'Presencial', 'Atestado de participação'],
@@ -134,7 +143,7 @@ const modules: Module[] = [
           {
             title: 'Formação de Operadores de Plataformas Elevatórias',
             description: 'Desenvolva conhecimentos técnicos e habilidades práticas para operar plataformas elevatórias.',
-            image: cardTraining,
+            image: coursePemtOperadores,
             duration: '8 horas',
             students: '55+',
             features: ['Curso obrigatório', 'Presencial', 'Atestado + Carteirinha válida por 2 anos'],
@@ -147,7 +156,7 @@ const modules: Module[] = [
           {
             title: 'Formação de Rigger',
             description: 'Capacitação para elaborar e supervisionar planos de içamento.',
-            image: cardTraining,
+            image: courseRigger,
             duration: '40 horas',
             students: '45+',
             features: ['Curso obrigatório', 'Presencial', 'Carteirinha de Rigger válida por 2 anos'],
@@ -155,7 +164,7 @@ const modules: Module[] = [
           {
             title: 'Amarração de Cargas para Transporte',
             description: 'Instruções essenciais sobre técnicas de amarração e sinalização.',
-            image: cardTraining,
+            image: courseAmarracaoCargas,
             duration: '8 horas',
             students: '40+',
             features: ['Curso obrigatório', 'Presencial', 'Atestado de participação'],
@@ -163,7 +172,7 @@ const modules: Module[] = [
           {
             title: 'Formação de Operadores de Gruas (Guindastes Torre)',
             description: 'Capacitação focada nos métodos seguros de operação de gruas.',
-            image: cardTraining,
+            image: courseGruas,
             duration: '80 horas',
             students: '30+',
             features: ['Curso obrigatório', 'In Company', 'Certificação OPC'],
@@ -171,7 +180,7 @@ const modules: Module[] = [
           {
             title: 'Supervisor de Rigging',
             description: 'Capacitação para liderar equipes e supervisionar planos de içamento.',
-            image: cardTraining,
+            image: courseSupervisorRigging,
             duration: '32 horas',
             students: '35+',
             features: ['Curso obrigatório', 'Presencial', 'Certificação OPC NBR 17089'],
@@ -179,7 +188,7 @@ const modules: Module[] = [
           {
             title: 'Especialização em Movimentação de Carga',
             description: 'Especialização técnica em movimentação de carga para profissionais.',
-            image: cardTraining,
+            image: courseMovimentacaoCarga,
             duration: '32 horas',
             students: '30+',
             features: ['Curso obrigatório', 'Presencial', 'Certificação OPC NBR 17089'],
@@ -192,7 +201,7 @@ const modules: Module[] = [
           {
             title: 'Gestão de Frotas',
             description: 'Visão geral dos parâmetros, critérios e ações importantes para o gerenciamento de frotas.',
-            image: cardTraining,
+            image: courseGestaoFrotas,
             duration: '16 horas',
             students: '40+',
             features: ['Curso obrigatório', 'Presencial', 'Certificado Instituto Opus'],
