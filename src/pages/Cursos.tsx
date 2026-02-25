@@ -6,6 +6,7 @@ import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Phone, ArrowRight, Clock, Users, CheckCircle, Award, Cog, RefreshCw, Recycle, Flame, Bus, Siren, Smartphone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import cardCnh from '@/assets/card-cnh.jpg';
 import cardTraining from '@/assets/card-training.jpg';
@@ -23,6 +24,7 @@ interface Course {
   duration: string;
   students: string;
   features: string[];
+  slug?: string;
 }
 
 interface Module {
@@ -47,6 +49,7 @@ const modules: Module[] = [
         duration: '20 horas',
         students: '100+',
         features: ['Curso obrigatório', 'Presencial', 'Atestado de participação + Carteirinha válida por 1 ano'],
+        slug: 'motoniveladora',
       },
       {
         title: 'Capacitação para Operadores de Carregadeiras de Rodas',
@@ -285,12 +288,21 @@ const CourseCard = ({ course, index }: { course: Course; index: number }) => {
           ))}
         </div>
         
-        <Button variant="default" className="w-full gap-2 group/btn" asChild>
-          <a href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer">
-            Saiba mais
-            <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
-          </a>
-        </Button>
+        {course.slug ? (
+          <Button variant="default" className="w-full gap-2 group/btn" asChild>
+            <Link to={`/curso/${course.slug}`}>
+              Saiba mais
+              <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+            </Link>
+          </Button>
+        ) : (
+          <Button variant="default" className="w-full gap-2 group/btn" asChild>
+            <a href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer">
+              Saiba mais
+              <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+            </a>
+          </Button>
+        )}
       </div>
     </motion.div>
   );
