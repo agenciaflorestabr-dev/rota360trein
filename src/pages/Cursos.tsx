@@ -84,6 +84,7 @@ const modules: Module[] = [
         duration: '20 horas',
         students: '85+',
         features: ['Curso obrigatório', 'Presencial', 'Atestado de participação + Carteirinha válida por 1 ano'],
+        slug: 'retroescavadeira',
       },
       {
         title: 'Capacitação para Operadores de Escavadeiras Hidráulicas',

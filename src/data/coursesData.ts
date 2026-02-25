@@ -1,6 +1,7 @@
 import courseMotoniveladora from '@/assets/course-motoniveladora.jpg';
 import courseTratorAgricola from '@/assets/course-trator-agricola.jpg';
 import courseTratorEsteiras from '@/assets/course-trator-esteiras.jpg';
+import courseRetroescavadeira from '@/assets/course-retroescavadeira.jpg';
 
 export interface CourseDetail {
   slug: string;
@@ -156,6 +157,44 @@ export const coursesDetailData: Record<string, CourseDetail> = {
       { question: 'Qual o prazo de conclusão do curso?', answer: 'O curso deve ser concluído em até 45 dias após a matrícula. As aulas são agendadas conforme disponibilidade do aluno e do instrutor.' },
       { question: 'Como funciona o acesso às aulas?', answer: 'As aulas teóricas podem ser realizadas online ou presencialmente. As aulas práticas são exclusivamente presenciais, em campo de treinamento autorizado.' },
       { question: 'Como faço para emitir o certificado?', answer: 'Após a conclusão de todas as etapas do curso (teórica e prática), o certificado é emitido automaticamente em até 5 dias úteis.' },
+      { question: 'O suporte está disponível durante todo o curso?', answer: 'Sim! Nosso suporte via WhatsApp está disponível durante todo o período do curso para tirar dúvidas e auxiliar no que for necessário.' },
+    ],
+  },
+  'retroescavadeira': {
+    slug: 'retroescavadeira',
+    title: 'Capacitação para Operadores de Retroescavadeiras',
+    subtitle: 'Capacitar profissionais na operação segura de retroescavadeiras, abordando conceitos técnicos, normas de segurança, manutenção e boas práticas operacionais conforme as Normas Regulamentadoras (NRs) do Ministério do Trabalho.',
+    image: courseRetroescavadeira,
+    badges: ['Curso obrigatório', 'Presencial'],
+    duration: '20 horas',
+    modality: 'Presencial',
+    certification: 'Atestado de participação + Carteirinha válida por 1 ano',
+    validity: '1 ano',
+    targetAudience: 'Operadores de retroescavadeiras e profissionais envolvidos na operação, manutenção, transporte e armazenagem desses equipamentos.',
+    learningTopics: [
+      'Legislação aplicável e regulamentos de referência',
+      'Definição e classificação das retroescavadeiras',
+      'Conjuntos e componentes das retroescavadeiras',
+      'Riscos e medidas preventivas no uso do equipamento',
+      'Procedimentos operacionais e de segurança',
+      'Condução urbana e operação em diferentes terrenos',
+      'Introdução à terraplanagem aplicada',
+      'Inspeção preliminar (Checklist) e manutenção aplicada',
+    ],
+    requirements: [
+      'Idade mínima: 18 anos',
+      'CNH categorias B, C, D ou E',
+      'Ensino fundamental completo',
+    ],
+    modules: [
+      { title: 'Teoria - Legislação e Normas', hours: '8h' },
+      { title: 'Teoria - Equipamentos e Segurança', hours: '6h' },
+      { title: 'Prática - Operação e Técnicas', hours: '6h' },
+    ],
+    faq: [
+      { question: 'Qual o prazo de conclusão do curso?', answer: 'O curso deve ser concluído em até 30 dias após a matrícula. As aulas são agendadas conforme disponibilidade do aluno e do instrutor.' },
+      { question: 'Como funciona o acesso às aulas?', answer: 'As aulas teóricas podem ser realizadas online ou presencialmente. As aulas práticas são exclusivamente presenciais, em campo de treinamento autorizado.' },
+      { question: 'Como faço para emitir o certificado?', answer: 'Após a conclusão de todas as etapas do curso (teórica e prática), o certificado e a carteirinha são emitidos automaticamente em até 5 dias úteis.' },
       { question: 'O suporte está disponível durante todo o curso?', answer: 'Sim! Nosso suporte via WhatsApp está disponível durante todo o período do curso para tirar dúvidas e auxiliar no que for necessário.' },
     ],
   },
