@@ -4,7 +4,7 @@ import { WhatsAppFloat } from '@/components/WhatsAppFloat';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Phone, ArrowRight, Clock, Users, CheckCircle, Award, Cog, RefreshCw, Recycle, Flame, Bus, Siren, Smartphone, Construction, Monitor } from 'lucide-react';
+import { Phone, ArrowRight, Clock, Users, CheckCircle, Award, Cog, RefreshCw, Recycle, Flame, Bus, Siren, Smartphone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -95,94 +95,6 @@ const modules: Module[] = [
         students: '75+',
         features: ['Curso obrigatório', 'Presencial', 'Atestado de participação + Carteirinha válida por 1 ano'],
         slug: 'escavadeira',
-      },
-    ],
-  },
-  {
-    id: 'pemt',
-    title: 'PEMT',
-    icon: <Construction className="w-5 h-5" />,
-    description: 'Plataformas Elevatórias Móveis de Trabalho (PEMT)',
-    courses: [
-      {
-        title: 'Gestão PEMT - Plataformas Elevatórias Móveis de Trabalho',
-        description: 'Desenvolva conhecimentos técnicos para operação e gestão de plataformas elevatórias.',
-        image: cardTraining,
-        duration: '8 horas',
-        students: '50+',
-        features: ['Curso obrigatório', 'Presencial', 'Atestado de participação'],
-      },
-      {
-        title: 'Formação de Operadores de Plataformas Elevatórias',
-        description: 'Desenvolva conhecimentos técnicos e habilidades práticas para operar plataformas elevatórias.',
-        image: cardTraining,
-        duration: '8 horas',
-        students: '60+',
-        features: ['Curso obrigatório', 'Presencial', 'Atestado de participação + Carteirinha válida por 2 anos'],
-      },
-    ],
-  },
-  {
-    id: 'icamento',
-    title: 'Içamento',
-    icon: <Construction className="w-5 h-5" />,
-    description: 'Içamento e Movimentação de Carga',
-    courses: [
-      {
-        title: 'Formação de Rigger',
-        description: 'Capacitação para elaborar e supervisionar planos de içamento.',
-        image: cardTraining,
-        duration: '40 horas',
-        students: '45+',
-        features: ['Curso obrigatório', 'Presencial', 'Atestado de participação + Carteirinha de Rigger válida por 2 anos'],
-      },
-      {
-        title: 'Amarração de Cargas para Transporte',
-        description: 'Instruções essenciais sobre técnicas de amarração e sinalização.',
-        image: cardTraining,
-        duration: '8 horas',
-        students: '55+',
-        features: ['Curso obrigatório', 'Presencial', 'Atestado de participação'],
-      },
-      {
-        title: 'Formação de Operadores de Gruas (Guindastes Torre)',
-        description: 'Capacitação focada nos métodos seguros de operação de gruas.',
-        image: cardTraining,
-        duration: '80 horas',
-        students: '30+',
-        features: ['Curso obrigatório', 'In Company', 'Atestado de operador de guindaste + Certificação OPC'],
-      },
-      {
-        title: 'Supervisor de Rigging',
-        description: 'Capacitação para liderar equipes e supervisionar planos de içamento.',
-        image: cardTraining,
-        duration: '32 horas',
-        students: '35+',
-        features: ['Curso obrigatório', 'Presencial', 'Atestado de Supervisor de Rigging + Certificação OPC NBR 17089'],
-      },
-      {
-        title: 'Especialização em Movimentação de Carga',
-        description: 'Especialização técnica em movimentação de carga para profissionais.',
-        image: cardTraining,
-        duration: '32 horas',
-        students: '25+',
-        features: ['Curso obrigatório', 'Presencial', 'Atestado de Supervisor de Rigging + Certificação OPC NBR 17089'],
-      },
-    ],
-  },
-  {
-    id: 'gestao',
-    title: 'Gestão',
-    icon: <Monitor className="w-5 h-5" />,
-    description: 'Gestão de Frotas e Equipamentos',
-    courses: [
-      {
-        title: 'Gestão de Frotas',
-        description: 'Visão geral dos parâmetros, critérios e ações importantes para o gerenciamento de frotas.',
-        image: cardTraining,
-        duration: '16 horas',
-        students: '40+',
-        features: ['Curso obrigatório', 'Presencial', 'Certificado de participação emitido pelo Instituto Opus'],
       },
     ],
   },
@@ -483,6 +395,17 @@ const Cursos = () => {
                         <CourseCard key={course.title} course={course} index={index} />
                       ))}
                     </div>
+
+                    {module.id === 'maquinas-pesadas' && (
+                      <div className="text-center mt-8">
+                        <Button variant="default" size="lg" className="gap-2" asChild>
+                          <Link to="/maquinas-pesadas">
+                            Ver todos os cursos de Máquinas Pesadas
+                            <ArrowRight className="w-4 h-4" />
+                          </Link>
+                        </Button>
+                      </div>
+                    )}
                   </motion.div>
                 </TabsContent>
               ))}
