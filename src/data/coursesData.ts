@@ -1,5 +1,6 @@
 import courseMotoniveladora from '@/assets/course-motoniveladora.jpg';
 import courseTratorAgricola from '@/assets/course-trator-agricola.jpg';
+import courseTratorEsteiras from '@/assets/course-trator-esteiras.jpg';
 
 export interface CourseDetail {
   slug: string;
@@ -118,6 +119,46 @@ export const coursesDetailData: Record<string, CourseDetail> = {
         question: 'O suporte está disponível durante todo o curso?',
         answer: 'Sim! Nosso suporte via WhatsApp está disponível durante todo o período do curso para tirar dúvidas e auxiliar no que for necessário.',
       },
+    ],
+  },
+  'trator-esteiras': {
+    slug: 'trator-esteiras',
+    title: 'Capacitação para Operadores de Tratores de Esteiras',
+    subtitle: 'Capacitar profissionais para interpretar, supervisionar e implementar planos de içamento de cargas, otimizando recursos, garantindo a segurança operacional e atendendo às normas regulamentadoras.',
+    image: courseTratorEsteiras,
+    badges: ['Curso obrigatório', 'Presencial'],
+    duration: '40 horas',
+    modality: 'Presencial',
+    certification: 'Certificado de Supervisor de Rigging',
+    validity: '2 anos',
+    targetAudience: 'Supervisores de rigging, técnicos de segurança do trabalho (TST), engenheiros e técnicos envolvidos em operações de içamento.',
+    learningTopics: [
+      'Conceitos básicos e avançados de Rigging',
+      'Importância do planejamento no içamento de cargas',
+      'Elaboração e interpretação de planos de rigging',
+      'Dimensionamento de equipamentos e acessórios',
+      'Normas de segurança (NR-12, NR-18 e NR-35)',
+      'Análise de riscos e prevenção de acidentes',
+      'Métodos para otimização de recursos e equipamentos',
+      'Procedimentos de emergência em operações de içamento',
+    ],
+    requirements: [
+      'Idade mínima: 18 anos',
+      'Experiência prévia em operações de içamento',
+      'Ensino médio completo',
+    ],
+    modules: [
+      { title: 'Fundamentos de Rigging', hours: '8h' },
+      { title: 'Planejamento e Planos de Içamento', hours: '8h' },
+      { title: 'Normas de Segurança e Análise de Riscos', hours: '8h' },
+      { title: 'Equipamentos e Dimensionamento', hours: '8h' },
+      { title: 'Prática Supervisionada', hours: '8h' },
+    ],
+    faq: [
+      { question: 'Qual o prazo de conclusão do curso?', answer: 'O curso deve ser concluído em até 45 dias após a matrícula. As aulas são agendadas conforme disponibilidade do aluno e do instrutor.' },
+      { question: 'Como funciona o acesso às aulas?', answer: 'As aulas teóricas podem ser realizadas online ou presencialmente. As aulas práticas são exclusivamente presenciais, em campo de treinamento autorizado.' },
+      { question: 'Como faço para emitir o certificado?', answer: 'Após a conclusão de todas as etapas do curso (teórica e prática), o certificado é emitido automaticamente em até 5 dias úteis.' },
+      { question: 'O suporte está disponível durante todo o curso?', answer: 'Sim! Nosso suporte via WhatsApp está disponível durante todo o período do curso para tirar dúvidas e auxiliar no que for necessário.' },
     ],
   },
 };

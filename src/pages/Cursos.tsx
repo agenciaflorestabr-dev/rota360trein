@@ -66,6 +66,7 @@ const modules: Module[] = [
         duration: '40 horas',
         students: '70+',
         features: ['Curso obrigatório', 'Presencial', 'Certificado de Supervisor de Rigging'],
+        slug: 'trator-esteiras',
       },
       {
         title: 'Treinamento de Operação de Trator Agrícola',
