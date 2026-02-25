@@ -74,6 +74,7 @@ const modules: Module[] = [
         duration: '24 horas',
         students: '80+',
         features: ['Curso obrigatório', 'Presencial', 'Certificado de conclusão'],
+        slug: 'trator-agricola',
       },
       {
         title: 'Capacitação para Operadores de Retroescavadeiras',
