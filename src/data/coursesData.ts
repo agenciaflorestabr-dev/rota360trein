@@ -143,16 +143,14 @@ export const coursesDetailData: Record<string, CourseDetail> = {
       'Procedimentos de emergência em operações de içamento',
     ],
     requirements: [
-      'Idade mínima: 18 anos',
-      'Experiência prévia em operações de içamento',
-      'Ensino médio completo',
+      'Profissionais da área de segurança, engenharia ou operações',
     ],
     modules: [
-      { title: 'Fundamentos de Rigging', hours: '8h' },
-      { title: 'Planejamento e Planos de Içamento', hours: '8h' },
-      { title: 'Normas de Segurança e Análise de Riscos', hours: '8h' },
-      { title: 'Equipamentos e Dimensionamento', hours: '8h' },
-      { title: 'Prática Supervisionada', hours: '8h' },
+      { title: 'Introdução ao Rigging', hours: '8h' },
+      { title: 'Planejamento e Supervisão', hours: '10h' },
+      { title: 'Normas e Regulamentações', hours: '8h' },
+      { title: 'Técnicas Avançadas', hours: '8h' },
+      { title: 'Estudos de Caso e Simulações', hours: '6h' },
     ],
     faq: [
       { question: 'Qual o prazo de conclusão do curso?', answer: 'O curso deve ser concluído em até 45 dias após a matrícula. As aulas são agendadas conforme disponibilidade do aluno e do instrutor.' },
