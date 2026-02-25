@@ -58,6 +58,7 @@ const modules: Module[] = [
         duration: '20 horas',
         students: '90+',
         features: ['Curso obrigatório', 'Presencial', 'Atestado de participação + Carteirinha válida por 1 ano'],
+        slug: 'carregadeira',
       },
       {
         title: 'Capacitação para Operadores de Tratores de Esteiras',
