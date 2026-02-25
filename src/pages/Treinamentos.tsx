@@ -15,7 +15,8 @@ import {
   Shield,
   Target,
   CheckCircle2,
-  Calendar
+  Calendar,
+  Flame
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import cardTraining from '@/assets/card-training.jpg';
@@ -112,6 +113,20 @@ const trainings = [
       'Novas tecnologias',
       'Direção econômica',
       'Meio ambiente',
+    ],
+  },
+  {
+    icon: Flame,
+    title: 'Brigada de Incêndio',
+    description: 'Formação e treinamento de brigada de incêndio conforme NR-23 e NBR 14276.',
+    duration: '8-20 horas',
+    modality: 'Presencial',
+    audience: 'Empresas e funcionários',
+    topics: [
+      'Prevenção e combate a incêndio',
+      'Uso de extintores e hidrantes',
+      'Primeiros socorros',
+      'Plano de evacuação e abandono de área',
     ],
   },
 ];
