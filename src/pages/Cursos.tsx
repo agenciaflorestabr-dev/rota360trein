@@ -172,6 +172,7 @@ const modules: Module[] = [
             duration: '8 horas',
             students: '40+',
             features: ['Curso obrigatório', 'Presencial', 'Atestado de participação'],
+            slug: 'amarracao-cargas',
           },
           {
             title: 'Formação de Operadores de Gruas (Guindastes Torre)',
@@ -180,6 +181,7 @@ const modules: Module[] = [
             duration: '80 horas',
             students: '30+',
             features: ['Curso obrigatório', 'In Company', 'Certificação OPC'],
+            slug: 'gruas',
           },
           {
             title: 'Supervisor de Rigging',
@@ -188,6 +190,7 @@ const modules: Module[] = [
             duration: '32 horas',
             students: '35+',
             features: ['Curso obrigatório', 'Presencial', 'Certificação OPC NBR 17089'],
+            slug: 'supervisor-rigging',
           },
           {
             title: 'Especialização em Movimentação de Carga',
@@ -196,6 +199,7 @@ const modules: Module[] = [
             duration: '32 horas',
             students: '30+',
             features: ['Curso obrigatório', 'Presencial', 'Certificação OPC NBR 17089'],
+            slug: 'movimentacao-carga',
           },
         ],
       },
@@ -209,6 +213,7 @@ const modules: Module[] = [
             duration: '16 horas',
             students: '40+',
             features: ['Curso obrigatório', 'Presencial', 'Certificado Instituto Opus'],
+            slug: 'gestao-frotas',
           },
         ],
       },
