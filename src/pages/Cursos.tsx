@@ -392,6 +392,11 @@ const CourseCard = ({ course, index }: { course: Course; index: number }) => {
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+        {course.title.toLowerCase().includes('atualização') && (
+          <div className="absolute top-3 right-3 bg-primary text-primary-foreground rounded-full p-2 shadow-lg">
+            <RefreshCw className="w-5 h-5" />
+          </div>
+        )}
       </div>
       
       <div className="p-6">
