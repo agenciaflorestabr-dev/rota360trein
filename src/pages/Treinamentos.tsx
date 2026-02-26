@@ -312,7 +312,7 @@ const Treinamentos = () => {
                   </div>
                   
                   <Button variant="default" className="w-full gap-2 group/btn" asChild>
-                    <a href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer">
+                    <a href="https://wa.me/5564994300737" target="_blank" rel="noopener noreferrer">
                       Saber mais
                       <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
                     </a>
