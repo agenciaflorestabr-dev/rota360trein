@@ -30,8 +30,11 @@ const CursoDetalhe = () => {
       <Header />
       <main>
         {/* Hero */}
-        <section className="pt-24 pb-16 bg-gradient-to-br from-primary via-primary-dark to-primary relative overflow-hidden">
-          <div className="absolute inset-0 bg-[url('')] opacity-10" />
+        <section className="pt-24 pb-16 relative overflow-hidden">
+          <div className="absolute inset-0">
+            <img src={course.image} alt="" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-primary/85" />
+          </div>
           <div className="container-custom mx-auto px-4 relative">
             {/* Breadcrumb */}
             <nav className="flex items-center gap-2 text-sm text-primary-foreground/70 mb-8">
