@@ -10,6 +10,14 @@ import { Link } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import cardCnh from '@/assets/card-cnh.jpg';
 import cardTraining from '@/assets/card-training.jpg';
+import courseTransporteColetivo from '@/assets/course-transporte-coletivo.jpg';
+import courseTransporteCarga from '@/assets/course-transporte-carga.jpg';
+import courseReciclagem from '@/assets/course-reciclagem.jpg';
+import courseMopp from '@/assets/course-mopp.jpg';
+import courseEscolar from '@/assets/course-escolar.jpg';
+import courseEmergencia from '@/assets/course-emergencia.jpg';
+import courseAppMotorista from '@/assets/course-app-motorista.jpg';
+import courseAppEntregador from '@/assets/course-app-entregador.jpg';
 import courseMotoniveladora from '@/assets/course-motoniveladora.jpg';
 import courseCarregadeira from '@/assets/course-carregadeira.jpg';
 import courseTratorEsteiras from '@/assets/course-trator-esteiras.jpg';
@@ -228,7 +236,7 @@ const modules: Module[] = [
       {
         title: 'Atualização para Transporte Coletivo',
         description: 'Curso obrigatório de atualização para condutores de transporte coletivo.',
-        image: cardCnh,
+        image: courseTransporteColetivo,
         duration: '16 horas',
         students: '200+',
         features: ['Legislação atualizada', 'Direção defensiva', 'Certificado válido'],
@@ -236,7 +244,7 @@ const modules: Module[] = [
       {
         title: 'Atualização para Transporte de Carga',
         description: 'Atualização para motoristas de transporte de cargas.',
-        image: cardTraining,
+        image: courseTransporteCarga,
         duration: '16 horas',
         students: '180+',
         features: ['Normas de trânsito', 'Segurança no transporte', 'Certificação CONTRAN'],
@@ -252,7 +260,7 @@ const modules: Module[] = [
       {
         title: 'Reciclagem para Infratores',
         description: 'Curso obrigatório para condutores com CNH suspensa por pontuação.',
-        image: cardCnh,
+        image: courseReciclagem,
         duration: '30 horas',
         students: '300+',
         features: ['Curso teórico', 'Certificação', 'Suporte jurídico'],
@@ -260,7 +268,7 @@ const modules: Module[] = [
       {
         title: 'Reciclagem por Infração Gravíssima',
         description: 'Reciclagem para condutores que cometeram infrações gravíssimas.',
-        image: cardTraining,
+        image: courseReciclagem,
         duration: '30 horas',
         students: '100+',
         features: ['Acompanhamento completo', 'Material didático', 'Flexibilidade de horários'],
@@ -276,7 +284,7 @@ const modules: Module[] = [
       {
         title: 'MOPP - Formação',
         description: 'Curso de formação para transporte de produtos perigosos.',
-        image: cardCnh,
+        image: courseMopp,
         duration: '50 horas',
         students: '120+',
         features: ['Certificação MOPP', 'Validade de 5 anos', 'Aulas teóricas e práticas'],
@@ -284,7 +292,7 @@ const modules: Module[] = [
       {
         title: 'MOPP - Atualização',
         description: 'Renovação da certificação MOPP para condutores.',
-        image: cardTraining,
+        image: courseMopp,
         duration: '16 horas',
         students: '200+',
         features: ['Renovação rápida', 'Legislação atualizada', 'Certificado válido'],
@@ -300,7 +308,7 @@ const modules: Module[] = [
       {
         title: 'Transporte Escolar - Formação',
         description: 'Curso completo para condutores de veículos escolares.',
-        image: cardTraining,
+        image: courseEscolar,
         duration: '50 horas',
         students: '90+',
         features: ['Certificação escolar', 'Legislação específica', 'Primeiros socorros'],
@@ -308,7 +316,7 @@ const modules: Module[] = [
       {
         title: 'Transporte Escolar - Atualização',
         description: 'Atualização obrigatória para renovação da certificação.',
-        image: cardCnh,
+        image: courseEscolar,
         duration: '16 horas',
         students: '150+',
         features: ['Renovação de certificado', 'Direção defensiva', 'Relacionamento com alunos'],
@@ -324,7 +332,7 @@ const modules: Module[] = [
       {
         title: 'Condutor de Ambulância',
         description: 'Formação para condutores de veículos de emergência médica.',
-        image: cardCnh,
+        image: courseEmergencia,
         duration: '50 horas',
         students: '60+',
         features: ['Direção de urgência', 'Primeiros socorros', 'Certificação válida'],
@@ -332,7 +340,7 @@ const modules: Module[] = [
       {
         title: 'Condutor de Veículos de Emergência',
         description: 'Capacitação completa para condução de veículos de emergência.',
-        image: cardTraining,
+        image: courseEmergencia,
         duration: '50 horas',
         students: '40+',
         features: ['Técnicas especiais', 'Legislação de trânsito', 'Aulas práticas'],
@@ -348,7 +356,7 @@ const modules: Module[] = [
       {
         title: 'Motorista de Aplicativo',
         description: 'Curso preparatório para trabalhar com Uber, 99 e similares.',
-        image: cardTraining,
+        image: courseAppMotorista,
         duration: '20 horas',
         students: '400+',
         features: ['Atendimento ao cliente', 'Direção defensiva', 'Regras dos apps'],
@@ -356,7 +364,7 @@ const modules: Module[] = [
       {
         title: 'Entregador de Aplicativo',
         description: 'Capacitação para entregadores de delivery por aplicativo.',
-        image: cardCnh,
+        image: courseAppEntregador,
         duration: '16 horas',
         students: '250+',
         features: ['Segurança no trânsito', 'Gestão de tempo', 'Boas práticas'],
