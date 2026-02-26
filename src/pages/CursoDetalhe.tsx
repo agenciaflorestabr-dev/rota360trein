@@ -7,6 +7,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { motion } from 'framer-motion';
 import { Clock, Monitor, Award, CalendarCheck, CheckCircle, ChevronRight, BookOpen, Phone } from 'lucide-react';
 import { coursesDetailData } from '@/data/coursesData';
+import { EnrollmentForm } from '@/components/EnrollmentForm';
+import { CourseSidebar } from '@/components/CourseSidebar';
 
 const CursoDetalhe = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -84,7 +86,7 @@ const CursoDetalhe = () => {
                   {[
                     { icon: Clock, label: 'Carga horária', value: course.duration },
                     { icon: Monitor, label: 'Modalidade', value: course.modality },
-                    { icon: Award, label: 'Certificação', value: course.certification },
+                    { icon: Award, label: 'Certificado', value: course.certification },
                     { icon: CalendarCheck, label: 'Validade', value: course.validity },
                   ].map((item) => (
                     <div key={item.label} className="bg-background rounded-xl p-4 shadow-card text-center">
@@ -166,39 +168,7 @@ const CursoDetalhe = () => {
               </div>
 
               {/* Sidebar */}
-              <div className="lg:sticky lg:top-24 h-fit">
-                <div className="bg-background rounded-2xl shadow-card p-6 space-y-4">
-                  <h3 className="font-heading font-bold text-lg text-foreground">{course.title}</h3>
-                  <p className="text-sm text-muted-foreground">{course.modality} • {course.duration}</p>
-                  
-                  <div className="border-t border-border pt-4">
-                    <p className="font-heading font-bold text-foreground mb-1">Consulte valores</p>
-                    <p className="text-xs text-muted-foreground">Entre em contato para condições especiais</p>
-                  </div>
-
-                  <div className="space-y-2 text-sm">
-                    <div className="flex items-center gap-2 text-secondary">
-                      <CheckCircle className="w-4 h-4" />
-                      <span>Acesso imediato após pagamento</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-secondary">
-                      <CheckCircle className="w-4 h-4" />
-                      <span>Certificado digital incluso</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-secondary">
-                      <CheckCircle className="w-4 h-4" />
-                      <span>Suporte pelo WhatsApp</span>
-                    </div>
-                  </div>
-
-                  <Button variant="whatsapp" size="xl" className="w-full gap-2" asChild>
-                    <a href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer">
-                      <Phone className="w-5 h-5" />
-                      Falar com consultor
-                    </a>
-                  </Button>
-                </div>
-              </div>
+              <CourseSidebar course={course} />
             </div>
           </div>
         </section>
@@ -213,15 +183,13 @@ const CursoDetalhe = () => {
             >
               <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Matricule-se agora</h2>
               <p className="text-lg opacity-90 mb-8 max-w-2xl mx-auto">
-                Entre em contato pelo WhatsApp para garantir sua vaga e receber condições especiais.
+                Preencha seus dados para prosseguir com a matrícula
               </p>
-              <Button variant="secondary" size="xl" className="gap-2" asChild>
-                <a href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer">
-                  <Phone className="w-5 h-5" />
-                  Garantir minha vaga
-                </a>
-              </Button>
             </motion.div>
+          </div>
+          
+          <div className="container-custom mx-auto max-w-xl">
+            <EnrollmentForm courseTitle={course.title} />
           </div>
         </section>
       </main>
