@@ -18,6 +18,7 @@ import courseTransporteColetivo from '@/assets/course-transporte-coletivo.jpg';
 import courseEmergencia from '@/assets/course-emergencia.jpg';
 import courseEscolar from '@/assets/course-escolar.jpg';
 import courseTransporteCarga from '@/assets/course-transporte-carga.jpg';
+import courseTaxista from '@/assets/course-taxista.jpg';
 import courseReciclagem from '@/assets/course-reciclagem.jpg';
 import courseAppMotorista from '@/assets/course-app-motorista.jpg';
 import courseAppEntregador from '@/assets/course-app-entregador.jpg';
@@ -1136,7 +1137,7 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     slug: 'taxista',
     title: 'Curso para Taxista',
     subtitle: 'Curso especial para motoristas que desejam trabalhar como taxistas. Aprenda técnicas de atendimento, direção defensiva, mecânica básica e regulamentação da profissão.',
-    image: courseAppMotorista,
+    image: courseTaxista,
     badges: ['100% EAD'],
     duration: '28 horas',
     modality: '100% EAD',
