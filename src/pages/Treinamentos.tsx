@@ -29,12 +29,20 @@ import training6 from '@/assets/training-6.jpg';
 import training7 from '@/assets/training-7.jpg';
 import training8 from '@/assets/training-8.jpg';
 import training9 from '@/assets/training-9.jpg';
+import trainingDirecaoDefensiva from '@/assets/training-direcao-defensiva.jpg';
+import trainingEmpresarial from '@/assets/training-empresarial.jpg';
+import trainingPalestras from '@/assets/training-palestras.jpg';
+import trainingTransporteCargas from '@/assets/training-transporte-cargas.jpg';
+import trainingTransportePassageiros from '@/assets/training-transporte-passageiros.jpg';
+import trainingReciclagemCondutores from '@/assets/training-reciclagem-condutores.jpg';
+import trainingBrigadaIncendio from '@/assets/training-brigada-incendio.jpg';
 
 const trainings = [
   {
     icon: Truck,
     title: 'Direção Defensiva',
     description: 'Capacitação completa em técnicas de direção defensiva para motoristas profissionais.',
+    image: trainingDirecaoDefensiva,
     duration: '8 horas',
     modality: 'Presencial ou EAD',
     audience: 'Motoristas profissionais',
@@ -49,6 +57,7 @@ const trainings = [
     icon: Building2,
     title: 'Treinamento Empresarial',
     description: 'Programas personalizados de capacitação para frotas corporativas.',
+    image: trainingEmpresarial,
     duration: 'Personalizado',
     modality: 'In Company',
     audience: 'Empresas e frotas',
@@ -63,6 +72,7 @@ const trainings = [
     icon: GraduationCap,
     title: 'Palestras Educativas',
     description: 'Palestras sobre segurança no trânsito para escolas, empresas e eventos.',
+    image: trainingPalestras,
     duration: '1-2 horas',
     modality: 'Presencial',
     audience: 'Escolas e empresas',
@@ -77,6 +87,7 @@ const trainings = [
     icon: Shield,
     title: 'Transporte de Cargas',
     description: 'Treinamento especializado para motoristas de transporte de cargas.',
+    image: trainingTransporteCargas,
     duration: '16 horas',
     modality: 'Presencial',
     audience: 'Transportadores',
@@ -91,6 +102,7 @@ const trainings = [
     icon: Users,
     title: 'Transporte de Passageiros',
     description: 'Capacitação para condutores de transporte coletivo de passageiros.',
+    image: trainingTransportePassageiros,
     duration: '16 horas',
     modality: 'Presencial',
     audience: 'Motoristas de ônibus',
@@ -105,6 +117,7 @@ const trainings = [
     icon: Target,
     title: 'Reciclagem para Condutores',
     description: 'Atualização e reciclagem para motoristas que precisam renovar conhecimentos.',
+    image: trainingReciclagemCondutores,
     duration: '30 horas',
     modality: 'EAD ou Presencial',
     audience: 'Condutores em geral',
@@ -119,6 +132,7 @@ const trainings = [
     icon: Flame,
     title: 'Brigada de Incêndio',
     description: 'Formação e treinamento de brigada de incêndio conforme NR-23 e NBR 14276.',
+    image: trainingBrigadaIncendio,
     duration: '8-20 horas',
     modality: 'Presencial',
     audience: 'Empresas e funcionários',
@@ -260,11 +274,17 @@ const Treinamentos = () => {
                   initial={{ opacity: 0, y: 40 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-background rounded-2xl p-6 shadow-card hover:shadow-card-hover transition-all duration-300 group"
+                  className="bg-background rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 group"
                 >
-                  <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center mb-4 group-hover:bg-secondary group-hover:scale-110 transition-all duration-300">
-                    <training.icon className="w-7 h-7 text-secondary group-hover:text-secondary-foreground transition-colors" />
+                  <div className="relative h-44 overflow-hidden">
+                    <img src={training.image} alt={training.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                    <div className="absolute top-3 left-3 w-10 h-10 rounded-lg bg-secondary/90 flex items-center justify-center">
+                      <training.icon className="w-5 h-5 text-secondary-foreground" />
+                    </div>
                   </div>
+                  
+                  <div className="p-6">
                   
                   <h3 className="font-heading font-bold text-xl text-foreground mb-2">
                     {training.title}
@@ -297,6 +317,7 @@ const Treinamentos = () => {
                       <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
                     </a>
                   </Button>
+                  </div>
                 </motion.div>
               ))}
             </div>
