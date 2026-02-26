@@ -248,41 +248,52 @@ const Advocacia = () => {
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
               {services.map((service, index) => (
                 <motion.div
                   key={service.title}
                   initial={{ opacity: 0, y: 40 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-background rounded-2xl p-6 shadow-card hover:shadow-card-hover transition-all duration-300 group"
+                  className="group relative bg-card rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-2"
                 >
-                  <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
-                    <service.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-colors" />
+                  {/* Top accent gradient */}
+                  <div className="h-1.5 bg-gradient-to-r from-primary to-primary-light group-hover:from-secondary group-hover:to-primary transition-all duration-500" />
+                  
+                  <div className="p-7">
+                    {/* Icon */}
+                    <div className="w-14 h-14 rounded-2xl bg-primary/8 border border-primary/15 flex items-center justify-center mb-5 group-hover:bg-primary group-hover:border-primary group-hover:scale-110 transition-all duration-400">
+                      <service.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
+                    </div>
+                    
+                    <h3 className="font-heading font-bold text-xl text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm mb-5 leading-relaxed">
+                      {service.description}
+                    </p>
+                    
+                    {/* Details checklist */}
+                    <div className="space-y-2.5 mb-6">
+                      {service.details.map((detail) => (
+                        <div key={detail} className="flex items-center gap-2.5 text-sm text-muted-foreground">
+                          <div className="w-5 h-5 rounded-full bg-secondary/15 flex items-center justify-center flex-shrink-0">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-secondary" />
+                          </div>
+                          <span>{detail}</span>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    {/* CTA Button */}
+                    <Button variant="outline" className="w-full gap-2 group/btn border-primary/20 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300" asChild>
+                      <a href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer">
+                        <Phone className="w-4 h-4" />
+                        Consultar
+                        <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                      </a>
+                    </Button>
                   </div>
-                  
-                  <h3 className="font-heading font-bold text-xl text-foreground mb-2">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    {service.description}
-                  </p>
-                  
-                  <div className="space-y-2 mb-6">
-                    {service.details.map((detail) => (
-                      <div key={detail} className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <CheckCircle2 className="w-4 h-4 text-accent flex-shrink-0" />
-                        <span>{detail}</span>
-                      </div>
-                    ))}
-                  </div>
-                  
-                  <Button variant="outline" className="w-full gap-2 group/btn" asChild>
-                    <a href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer">
-                      Consultar
-                      <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
-                    </a>
-                  </Button>
                 </motion.div>
               ))}
             </div>
