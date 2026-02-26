@@ -133,7 +133,7 @@ const Advocacia = () => {
               </p>
               
               <Button variant="whatsapp" size="xl" className="gap-2" asChild>
-                <a href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/5564994300737" target="_blank" rel="noopener noreferrer">
                   <Phone className="w-5 h-5" />
                   Analisar meu caso
                 </a>
@@ -197,7 +197,7 @@ const Advocacia = () => {
                 </ul>
 
                 <Button variant="whatsapp" size="lg" className="gap-2" asChild>
-                  <a href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/5564994300737" target="_blank" rel="noopener noreferrer">
                     <Phone className="w-4 h-4" />
                     Falar com o advogado
                   </a>
@@ -287,7 +287,7 @@ const Advocacia = () => {
                     
                     {/* CTA Button */}
                     <Button variant="outline" className="w-full gap-2 group/btn border-primary/20 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300" asChild>
-                      <a href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer">
+                      <a href="https://wa.me/5564994300737" target="_blank" rel="noopener noreferrer">
                         <Phone className="w-4 h-4" />
                         Consultar
                         <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />

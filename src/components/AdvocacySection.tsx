@@ -124,7 +124,7 @@ export const AdvocacySection = () => {
             className="gap-2 group"
             asChild
           >
-            <a href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/5564994300737" target="_blank" rel="noopener noreferrer">
               <Phone className="w-5 h-5" />
               Analisar meu caso no WhatsApp
               <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />

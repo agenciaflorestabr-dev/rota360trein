@@ -127,11 +127,11 @@ export const Footer = () => {
               </li>
               <li>
                 <a
-                  href="tel:+5500000000000"
+                  href="tel:+5564994300737"
                   className="flex items-center gap-3 text-primary-foreground/70 hover:text-accent transition-colors text-sm"
                 >
                   <Phone className="w-5 h-5 text-accent" />
-                  (00) 0000-0000
+                  (64) 9943-0737
                 </a>
               </li>
               <li>
@@ -147,7 +147,7 @@ export const Footer = () => {
 
             {/* WhatsApp CTA */}
             <motion.a
-              href="https://wa.me/5500000000000"
+              href="https://wa.me/5564994300737"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.02 }}
