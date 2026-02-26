@@ -19,6 +19,8 @@ import courseEmergencia from '@/assets/course-emergencia.jpg';
 import courseEscolar from '@/assets/course-escolar.jpg';
 import courseTransporteCarga from '@/assets/course-transporte-carga.jpg';
 import courseReciclagem from '@/assets/course-reciclagem.jpg';
+import courseAppMotorista from '@/assets/course-app-motorista.jpg';
+import courseAppEntregador from '@/assets/course-app-entregador.jpg';
 
 export interface CourseDetail {
   slug: string;
@@ -1090,6 +1092,80 @@ export const coursesDetailData: Record<string, CourseDetail> = {
       { question: 'Qual o prazo para conclusão do curso?', answer: 'O curso pode ser concluído em até 15 dias após a matrícula.' },
       { question: 'Como funciona o acesso às aulas?', answer: 'As aulas são 100% online, acessíveis 24 horas por dia.' },
       { question: 'Como faço para emitir o certificado?', answer: 'O certificado digital é emitido automaticamente e enviado ao DETRAN.' },
+      { question: 'O suporte está disponível durante todo o curso?', answer: 'Sim! Suporte via WhatsApp disponível durante todo o curso.' },
+    ],
+  },
+  'motorista-aplicativo': {
+    slug: 'motorista-aplicativo',
+    title: 'Curso para Motorista de Aplicativos',
+    subtitle: 'Curso especial para motoristas que desejam trabalhar com aplicativos de transporte como Uber, 99, entre outros. Aprenda técnicas de atendimento, direção defensiva e mecânica básica.',
+    image: courseAppMotorista,
+    badges: ['100% EAD'],
+    duration: '28 horas',
+    modality: '100% EAD',
+    certification: 'Certificado digital',
+    validity: 'Permanente',
+    price: 147,
+    installments: 6,
+    targetAudience: 'Motoristas que desejam atuar como motoristas de aplicativos de transporte.',
+    learningTopics: [
+      'Relações humanas e atendimento ao passageiro',
+      'Direção defensiva urbana',
+      'Primeiros socorros básicos',
+      'Mecânica e elétrica básica veicular',
+      'Técnicas de comunicação e resolução de conflitos',
+    ],
+    requirements: [
+      'CNH categoria B ou superior',
+      'Veículo dentro dos padrões dos aplicativos',
+    ],
+    modules: [
+      { title: 'Relações Humanas', hours: '14h' },
+      { title: 'Direção Defensiva', hours: '8h' },
+      { title: 'Primeiros Socorros', hours: '2h' },
+      { title: 'Mecânica e Elétrica Básica', hours: '4h' },
+    ],
+    faq: [
+      { question: 'Qual o prazo para conclusão do curso?', answer: 'O curso pode ser concluído no seu próprio ritmo, com prazo máximo de 30 dias.' },
+      { question: 'Como funciona o acesso às aulas?', answer: 'As aulas são 100% online, acessíveis pela plataforma EAD 24 horas por dia.' },
+      { question: 'Como faço para emitir o certificado?', answer: 'Após conclusão e aprovação, o certificado digital é emitido automaticamente.' },
+      { question: 'O suporte está disponível durante todo o curso?', answer: 'Sim! Suporte via WhatsApp disponível durante todo o curso.' },
+    ],
+  },
+  'taxista': {
+    slug: 'taxista',
+    title: 'Curso para Taxista',
+    subtitle: 'Curso especial para motoristas que desejam trabalhar como taxistas. Aprenda técnicas de atendimento, direção defensiva, mecânica básica e regulamentação da profissão.',
+    image: courseAppMotorista,
+    badges: ['100% EAD'],
+    duration: '28 horas',
+    modality: '100% EAD',
+    certification: 'Certificado digital',
+    validity: 'Permanente',
+    price: 147,
+    installments: 6,
+    targetAudience: 'Motoristas que desejam atuar como taxistas profissionais.',
+    learningTopics: [
+      'Relações humanas e atendimento ao passageiro',
+      'Direção defensiva urbana',
+      'Primeiros socorros básicos',
+      'Mecânica e elétrica básica veicular',
+      'Regulamentação da profissão de taxista',
+    ],
+    requirements: [
+      'CNH categoria B ou superior',
+      'Registro junto ao órgão municipal competente',
+    ],
+    modules: [
+      { title: 'Relações Humanas', hours: '14h' },
+      { title: 'Direção Defensiva', hours: '8h' },
+      { title: 'Primeiros Socorros', hours: '2h' },
+      { title: 'Mecânica e Elétrica Básica', hours: '4h' },
+    ],
+    faq: [
+      { question: 'Qual o prazo para conclusão do curso?', answer: 'O curso pode ser concluído no seu próprio ritmo, com prazo máximo de 30 dias.' },
+      { question: 'Como funciona o acesso às aulas?', answer: 'As aulas são 100% online, acessíveis pela plataforma EAD 24 horas por dia.' },
+      { question: 'Como faço para emitir o certificado?', answer: 'Após conclusão e aprovação, o certificado digital é emitido automaticamente.' },
       { question: 'O suporte está disponível durante todo o curso?', answer: 'Sim! Suporte via WhatsApp disponível durante todo o curso.' },
     ],
   },
