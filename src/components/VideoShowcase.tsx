@@ -9,7 +9,7 @@ interface Video {
 const videos: Video[] = [
   {
     id: '1',
-    title: 'Palestra de Segurança no Trânsito',
+    title: 'Palestra de Direção defensiva',
     youtubeId: 'hLkw1fvwtek',
   },
 ];
