@@ -155,7 +155,7 @@ const Advocacia = () => {
                 className="relative"
               >
                 <div className="aspect-[3/4] rounded-2xl bg-muted overflow-hidden shadow-card relative">
-                  <img src={advogadoPhoto} alt="Dr. Nome - Advogado" className="w-full h-full object-cover" />
+                  <img src={advogadoPhoto} alt="Dr. Luiz Francisco Zogheib Fernandes - Advogado" className="w-full h-full object-cover" />
                 </div>
                 {/* Decorative accent */}
                 <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-primary/10 rounded-2xl -z-10" />
@@ -177,9 +177,9 @@ const Advocacia = () => {
                 </div>
 
                 <h2 className="font-heading text-3xl md:text-4xl text-foreground font-bold mb-2">
-                  Dr. Nome do Advogado
+                  Dr. Luiz Francisco Zogheib Fernandes
                 </h2>
-                <p className="text-primary font-semibold mb-4">OAB/XX 000.000</p>
+                <p className="text-primary font-semibold mb-4">OAB/SP 171.131</p>
 
                 <p className="text-muted-foreground leading-relaxed mb-6">
                   Especialista em Direito de Trânsito com mais de 10 anos de experiência 
