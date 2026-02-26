@@ -126,6 +126,7 @@ const modules: Module[] = [
             duration: '120 horas',
             students: '50+',
             features: ['Curso obrigatório', 'Presencial', 'Atestado + Carteirinha com conclusão de curso'],
+            slug: 'master-operacao',
           },
         ],
       },
@@ -139,6 +140,7 @@ const modules: Module[] = [
             duration: '8 horas',
             students: '60+',
             features: ['Curso obrigatório', 'Presencial', 'Atestado de participação'],
+            slug: 'pemt-gestao',
           },
           {
             title: 'Formação de Operadores de Plataformas Elevatórias',
@@ -147,6 +149,7 @@ const modules: Module[] = [
             duration: '8 horas',
             students: '55+',
             features: ['Curso obrigatório', 'Presencial', 'Atestado + Carteirinha válida por 2 anos'],
+            slug: 'pemt-operadores',
           },
         ],
       },
@@ -160,6 +163,7 @@ const modules: Module[] = [
             duration: '40 horas',
             students: '45+',
             features: ['Curso obrigatório', 'Presencial', 'Carteirinha de Rigger válida por 2 anos'],
+            slug: 'rigger',
           },
           {
             title: 'Amarração de Cargas para Transporte',
