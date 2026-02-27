@@ -10,6 +10,7 @@ import {
   ArrowRight 
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import highlightBg from '@/assets/highlight-bg.jpg';
 
 const features = [
   { icon: FileText, label: 'Mudanças' },
@@ -25,8 +26,9 @@ export const HighlightSection = () => {
 
   return (
     <section className="relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-secondary via-secondary to-secondary-light" />
+      {/* Background Image */}
+      <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${highlightBg})` }} />
+      <div className="absolute inset-0 bg-primary/60" />
       
       {/* Geometric patterns */}
       <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-accent via-primary to-secondary" />
