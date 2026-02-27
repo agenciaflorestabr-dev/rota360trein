@@ -9,6 +9,8 @@ import { QrCode, Wifi, RefreshCw, CheckCircle2, XCircle } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 
+const INSTANCE_KEY = 'evolution_instance_name';
+
 const Configuracoes = () => {
   const [instanceName, setInstanceName] = useState('');
   const [qrCodeBase64, setQrCodeBase64] = useState<string | null>(null);
@@ -27,16 +29,57 @@ const Configuracoes = () => {
     return data;
   };
 
-  // Check saved instance on load
-  useEffect(() => {
-    const saved = localStorage.getItem('evolution_instance');
-    if (saved) {
-      setInstanceName(saved);
-      setConnectedInstance(saved);
-      checkInstanceStatus(saved);
+  // Save instance name to database
+  const saveInstanceToDb = async (name: string) => {
+    // Also keep localStorage for backward compat (EnrollmentForm uses it)
+    localStorage.setItem('evolution_instance', name);
+    
+    const { data: existing } = await supabase
+      .from('site_content')
+      .select('id')
+      .eq('section_key', INSTANCE_KEY)
+      .maybeSingle();
+
+    if (existing) {
+      await supabase.from('site_content').update({ value: name }).eq('section_key', INSTANCE_KEY);
     } else {
-      setIsCheckingStatus(false);
+      await supabase.from('site_content').insert({ section_key: INSTANCE_KEY, content_type: 'text', value: name });
     }
+  };
+
+  const removeInstanceFromDb = async () => {
+    localStorage.removeItem('evolution_instance');
+    await supabase.from('site_content').delete().eq('section_key', INSTANCE_KEY);
+  };
+
+  // Load saved instance from database
+  useEffect(() => {
+    const loadSaved = async () => {
+      const { data } = await supabase
+        .from('site_content')
+        .select('value')
+        .eq('section_key', INSTANCE_KEY)
+        .maybeSingle();
+
+      if (data?.value) {
+        setInstanceName(data.value);
+        setConnectedInstance(data.value);
+        localStorage.setItem('evolution_instance', data.value);
+        checkInstanceStatus(data.value);
+      } else {
+        // Migrate from localStorage if exists
+        const local = localStorage.getItem('evolution_instance');
+        if (local) {
+          setInstanceName(local);
+          setConnectedInstance(local);
+          await saveInstanceToDb(local);
+          checkInstanceStatus(local);
+        } else {
+          setIsCheckingStatus(false);
+        }
+      }
+    };
+    loadSaved();
     return () => {
       if (statusInterval.current) clearInterval(statusInterval.current);
     };
@@ -52,23 +95,22 @@ const Configuracoes = () => {
         setInstanceStatus('connected');
         setConnectedInstance(instName);
         setConnectedPhone(phone);
-        localStorage.setItem('evolution_instance', instName);
+        await saveInstanceToDb(instName);
       } else if (state === 'connecting' || state === 'close') {
-        // Instance exists but not fully connected
         setInstanceStatus('connecting');
         setConnectedInstance(instName);
         setConnectedPhone(null);
-        localStorage.setItem('evolution_instance', instName);
+        await saveInstanceToDb(instName);
       } else {
         setInstanceStatus('disconnected');
         setConnectedInstance(null);
         setConnectedPhone(null);
-        localStorage.removeItem('evolution_instance');
+        await removeInstanceFromDb();
       }
     } catch {
       setInstanceStatus('disconnected');
       setConnectedInstance(null);
-      localStorage.removeItem('evolution_instance');
+      await removeInstanceFromDb();
     } finally {
       setIsCheckingStatus(false);
     }
@@ -118,7 +160,7 @@ const Configuracoes = () => {
           setConnectedInstance(instName);
           setConnectedPhone(phone);
           setQrCodeBase64(null);
-          localStorage.setItem('evolution_instance', instName);
+          await saveInstanceToDb(instName);
           if (statusInterval.current) clearInterval(statusInterval.current);
           toast({ title: '✅ WhatsApp conectado com sucesso!' });
         }
@@ -137,7 +179,7 @@ const Configuracoes = () => {
     setConnectedInstance(null);
     setConnectedPhone(null);
     setQrCodeBase64(null);
-    localStorage.removeItem('evolution_instance');
+    await removeInstanceFromDb();
     toast({ title: 'Instância desconectada' });
   };
 
