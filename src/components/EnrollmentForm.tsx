@@ -46,7 +46,7 @@ export const EnrollmentForm = ({ courseTitle }: EnrollmentFormProps) => {
         const message = `Olá, ${formData.name}, vimos que você tem interesse no curso ${courseTitle}. Seja muito bem-vindo à Rota 360 Treinamentos! Em breve, entraremos em contato para mais informações.`;
         try {
           await supabase.functions.invoke('evolution-api', {
-            body: { action: 'send', instanceName, number: phone, text: message },
+            body: { action: 'send', instanceName, number: phone, text: message, recipientName: formData.name },
           });
         } catch (err) {
           console.error('Erro ao enviar WhatsApp:', err);
