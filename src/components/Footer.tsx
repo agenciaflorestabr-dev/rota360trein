@@ -26,7 +26,7 @@ const institutionalLinks = [
 
 const socialLinks = [
   { icon: Facebook, href: '#', label: 'Facebook' },
-  { icon: Instagram, href: '#', label: 'Instagram' },
+  { icon: Instagram, href: 'https://www.instagram.com/rota360treinamentos/', label: 'Instagram' },
   { icon: Youtube, href: '#', label: 'YouTube' },
   { icon: Linkedin, href: '#', label: 'LinkedIn' },
 ];
