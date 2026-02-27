@@ -1,9 +1,7 @@
 import { motion } from 'framer-motion';
 import { 
-  Facebook, 
   Instagram, 
-  Youtube, 
-  Linkedin,
+
   Phone,
   Mail,
   MapPin
@@ -25,10 +23,7 @@ const institutionalLinks = [
 ];
 
 const socialLinks = [
-  { icon: Facebook, href: '#', label: 'Facebook' },
   { icon: Instagram, href: 'https://www.instagram.com/rota360treinamentos/', label: 'Instagram' },
-  { icon: Youtube, href: '#', label: 'YouTube' },
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
 ];
 
 export const Footer = () => {
