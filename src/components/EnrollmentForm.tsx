@@ -5,6 +5,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { toast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 interface EnrollmentFormProps {
   courseTitle: string;
@@ -12,14 +13,32 @@ interface EnrollmentFormProps {
 
 export const EnrollmentForm = ({ courseTitle }: EnrollmentFormProps) => {
   const [agreed, setAgreed] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', whatsapp: '', city: '', state: '', cnh_category: '' });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!agreed) {
       toast({ title: 'Atenção', description: 'Você precisa concordar com os termos de uso e política de privacidade.', variant: 'destructive' });
       return;
     }
-    toast({ title: 'Dados enviados!', description: 'Você será redirecionado para a página de pagamento.' });
+    setIsSubmitting(true);
+    const { error } = await supabase.from('form_submissions').insert({
+      name: formData.name,
+      email: formData.email,
+      whatsapp: formData.whatsapp,
+      city: formData.city || null,
+      state: formData.state || null,
+      cnh_category: formData.cnh_category || null,
+      course_title: courseTitle,
+    });
+    setIsSubmitting(false);
+    if (error) {
+      toast({ title: 'Erro ao enviar', description: error.message, variant: 'destructive' });
+    } else {
+      toast({ title: 'Dados enviados!', description: 'Você será redirecionado para a página de pagamento.' });
+      setFormData({ name: '', email: '', whatsapp: '', city: '', state: '', cnh_category: '' });
+    }
   };
 
   return (
@@ -31,33 +50,33 @@ export const EnrollmentForm = ({ courseTitle }: EnrollmentFormProps) => {
 
       <div>
         <Label htmlFor="name">Nome completo *</Label>
-        <Input id="name" placeholder="Digite seu nome completo" required />
+        <Input id="name" placeholder="Digite seu nome completo" value={formData.name} onChange={e => setFormData(p => ({ ...p, name: e.target.value }))} required />
       </div>
 
       <div>
         <Label htmlFor="email">E-mail *</Label>
-        <Input id="email" type="email" placeholder="seu@email.com" required />
+        <Input id="email" type="email" placeholder="seu@email.com" value={formData.email} onChange={e => setFormData(p => ({ ...p, email: e.target.value }))} required />
       </div>
 
       <div>
         <Label htmlFor="whatsapp">WhatsApp *</Label>
-        <Input id="whatsapp" placeholder="(11) 99999-9999" required />
+        <Input id="whatsapp" placeholder="(11) 99999-9999" value={formData.whatsapp} onChange={e => setFormData(p => ({ ...p, whatsapp: e.target.value }))} required />
       </div>
 
       <div className="grid grid-cols-2 gap-4">
         <div>
           <Label htmlFor="city">Cidade</Label>
-          <Input id="city" placeholder="Sua cidade" />
+          <Input id="city" placeholder="Sua cidade" value={formData.city} onChange={e => setFormData(p => ({ ...p, city: e.target.value }))} />
         </div>
         <div>
           <Label htmlFor="state">Estado</Label>
-          <Input id="state" placeholder="UF" maxLength={2} />
+          <Input id="state" placeholder="UF" maxLength={2} value={formData.state} onChange={e => setFormData(p => ({ ...p, state: e.target.value }))} />
         </div>
       </div>
 
       <div>
         <Label>Categoria da CNH</Label>
-        <Select>
+        <Select value={formData.cnh_category} onValueChange={v => setFormData(p => ({ ...p, cnh_category: v }))}>
           <SelectTrigger>
             <SelectValue placeholder="Selecione a categoria" />
           </SelectTrigger>
@@ -79,8 +98,8 @@ export const EnrollmentForm = ({ courseTitle }: EnrollmentFormProps) => {
         </Label>
       </div>
 
-      <Button type="submit" variant="whatsapp" size="xl" className="w-full">
-        Prosseguir para pagamento
+      <Button type="submit" variant="whatsapp" size="xl" className="w-full" disabled={isSubmitting}>
+        {isSubmitting ? 'Enviando...' : 'Prosseguir para pagamento'}
       </Button>
 
       <p className="text-xs text-center text-muted-foreground">
