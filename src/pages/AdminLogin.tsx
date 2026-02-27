@@ -5,26 +5,39 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Lock, Mail, Eye, EyeOff } from 'lucide-react';
+import { Lock, Mail, Eye, EyeOff, User } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { signIn } = useAuth();
+  const [isRegister, setIsRegister] = useState(false);
+  const { signIn, signUp } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    const { error } = await signIn(email, password);
-    setIsLoading(false);
-    if (error) {
-      toast({ title: 'Erro ao entrar', description: error.message, variant: 'destructive' });
+    if (isRegister) {
+      const { error } = await signUp(email, password, name);
+      setIsLoading(false);
+      if (error) {
+        toast({ title: 'Erro ao registrar', description: error.message, variant: 'destructive' });
+      } else {
+        toast({ title: 'Conta criada!', description: 'Faça login para acessar o painel.' });
+        setIsRegister(false);
+      }
     } else {
-      navigate('/admin');
+      const { error } = await signIn(email, password);
+      setIsLoading(false);
+      if (error) {
+        toast({ title: 'Erro ao entrar', description: error.message, variant: 'destructive' });
+      } else {
+        navigate('/admin');
+      }
     }
   };
 
@@ -41,11 +54,20 @@ const AdminLogin = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">Entrar</CardTitle>
-            <CardDescription>Acesse com suas credenciais de administrador</CardDescription>
+            <CardTitle className="text-lg">{isRegister ? 'Criar Conta' : 'Entrar'}</CardTitle>
+            <CardDescription>{isRegister ? 'Crie sua conta de administrador' : 'Acesse com suas credenciais'}</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
+              {isRegister && (
+                <div>
+                  <Label htmlFor="name">Nome</Label>
+                  <div className="relative">
+                    <User className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
+                    <Input id="name" placeholder="Seu nome" value={name} onChange={e => setName(e.target.value)} className="pl-10" required />
+                  </div>
+                </div>
+              )}
               <div>
                 <Label htmlFor="email">E-mail</Label>
                 <div className="relative">
@@ -64,8 +86,11 @@ const AdminLogin = () => {
                 </div>
               </div>
               <Button type="submit" className="w-full" size="lg" disabled={isLoading}>
-                {isLoading ? 'Entrando...' : 'Entrar'}
+                {isLoading ? 'Aguarde...' : isRegister ? 'Criar Conta' : 'Entrar'}
               </Button>
+              <button type="button" className="w-full text-sm text-muted-foreground hover:text-foreground text-center" onClick={() => setIsRegister(!isRegister)}>
+                {isRegister ? 'Já tem conta? Entrar' : 'Criar uma conta'}
+              </button>
             </form>
           </CardContent>
         </Card>
