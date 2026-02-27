@@ -39,7 +39,15 @@ export const EnrollmentForm = ({ courseTitle }: EnrollmentFormProps) => {
       toast({ title: 'Dados enviados!', description: 'Em breve entraremos em contato com você.' });
 
       // Send WhatsApp message via Evolution API
-      const instanceName = localStorage.getItem('evolution_instance');
+      let instanceName = localStorage.getItem('evolution_instance');
+      if (!instanceName) {
+        const { data: dbInstance } = await supabase
+          .from('site_content')
+          .select('value')
+          .eq('section_key', 'evolution_instance_name')
+          .maybeSingle();
+        instanceName = dbInstance?.value || null;
+      }
       if (instanceName) {
         const rawPhone = formData.whatsapp.replace(/\D/g, '');
         const phone = rawPhone.startsWith('55') ? rawPhone : `55${rawPhone}`;
