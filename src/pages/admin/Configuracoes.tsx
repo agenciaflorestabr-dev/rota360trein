@@ -53,6 +53,12 @@ const Configuracoes = () => {
         setConnectedInstance(instName);
         setConnectedPhone(phone);
         localStorage.setItem('evolution_instance', instName);
+      } else if (state === 'connecting' || state === 'close') {
+        // Instance exists but not fully connected
+        setInstanceStatus('connecting');
+        setConnectedInstance(instName);
+        setConnectedPhone(null);
+        localStorage.setItem('evolution_instance', instName);
       } else {
         setInstanceStatus('disconnected');
         setConnectedInstance(null);
@@ -135,6 +141,26 @@ const Configuracoes = () => {
     toast({ title: 'Instância desconectada' });
   };
 
+  const reconnectInstance = async (instName: string) => {
+    setIsCreating(true);
+    setQrCodeBase64(null);
+    try {
+      const connectData = await callEvolutionApi('connect', instName);
+      const qr = connectData?.base64 || connectData?.qrcode?.base64 || connectData?.code;
+      if (qr) {
+        setQrCodeBase64(qr.startsWith('data:') ? qr : `data:image/png;base64,${qr}`);
+        toast({ title: 'QR Code gerado!', description: 'Escaneie com seu WhatsApp para conectar.' });
+        startStatusPolling(instName);
+      } else {
+        toast({ title: 'Não foi possível gerar o QR Code', variant: 'destructive' });
+      }
+    } catch (error: any) {
+      toast({ title: 'Erro', description: error.message, variant: 'destructive' });
+    } finally {
+      setIsCreating(false);
+    }
+  };
+
   return (
     <div className="p-6 space-y-4">
       <div>
@@ -188,6 +214,44 @@ const Configuracoes = () => {
                   </Button>
                   <Button variant="destructive" size="sm" onClick={disconnect} className="gap-2">
                     <XCircle className="w-4 h-4" /> Desconectar
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          ) : instanceStatus === 'connecting' && connectedInstance ? (
+            <Card className="border-yellow-500/30 bg-yellow-500/5">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-yellow-600">
+                  <Wifi className="w-5 h-5" />
+                  Instância Encontrada — Aguardando Conexão
+                </CardTitle>
+                <CardDescription>A instância <strong>{connectedInstance}</strong> existe mas ainda não está conectada ao WhatsApp</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="bg-background rounded-lg p-4 border">
+                  <p className="text-xs text-muted-foreground mb-1">Instância</p>
+                  <p className="font-medium text-foreground">{connectedInstance}</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Badge variant="outline" className="border-yellow-500 text-yellow-600">
+                    <RefreshCw className="w-3 h-3 mr-1" /> Aguardando leitura do QR Code
+                  </Badge>
+                </div>
+                {qrCodeBase64 && (
+                  <div className="flex flex-col items-center gap-2 py-2">
+                    <img src={qrCodeBase64} alt="QR Code WhatsApp" className="w-64 h-64 rounded-lg border border-border" />
+                  </div>
+                )}
+                <div className="flex gap-2 pt-2">
+                  <Button size="sm" onClick={() => reconnectInstance(connectedInstance)} disabled={isCreating} className="gap-2">
+                    {isCreating ? <RefreshCw className="w-4 h-4 animate-spin" /> : <QrCode className="w-4 h-4" />}
+                    {isCreating ? 'Gerando...' : 'Gerar novo QR Code'}
+                  </Button>
+                  <Button variant="outline" size="sm" onClick={() => checkInstanceStatus(connectedInstance)} className="gap-2">
+                    <RefreshCw className="w-4 h-4" /> Verificar status
+                  </Button>
+                  <Button variant="destructive" size="sm" onClick={disconnect} className="gap-2">
+                    <XCircle className="w-4 h-4" /> Remover
                   </Button>
                 </div>
               </CardContent>
