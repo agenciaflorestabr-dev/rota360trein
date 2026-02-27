@@ -36,7 +36,7 @@ export const EnrollmentForm = ({ courseTitle }: EnrollmentFormProps) => {
     if (error) {
       toast({ title: 'Erro ao enviar', description: error.message, variant: 'destructive' });
     } else {
-      toast({ title: 'Dados enviados!', description: 'Você será redirecionado para a página de pagamento.' });
+      toast({ title: 'Dados enviados!', description: 'Em breve entraremos em contato com você.' });
       setFormData({ name: '', email: '', whatsapp: '', city: '', state: '', cnh_category: '' });
     }
   };
@@ -99,11 +99,11 @@ export const EnrollmentForm = ({ courseTitle }: EnrollmentFormProps) => {
       </div>
 
       <Button type="submit" variant="whatsapp" size="xl" className="w-full" disabled={isSubmitting}>
-        {isSubmitting ? 'Enviando...' : 'Prosseguir para pagamento'}
+        {isSubmitting ? 'Enviando...' : 'Entrar em contato'}
       </Button>
 
       <p className="text-xs text-center text-muted-foreground">
-        Ao clicar em "Prosseguir", você será redirecionado para a página segura de pagamento.
+        Ao clicar em "Entrar em contato", nossa equipe retornará em breve.
       </p>
     </form>
   );
