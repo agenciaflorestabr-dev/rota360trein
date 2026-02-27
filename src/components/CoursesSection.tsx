@@ -3,7 +3,7 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import cardCnh from '@/assets/card-cnh.jpg';
+import cardCnh from '@/assets/card-cnh-brasil.jpg';
 import cardTraining from '@/assets/card-training.jpg';
 import heroLesson from '@/assets/hero-lesson.jpg';
 import heroHighway from '@/assets/hero-highway.jpg';
