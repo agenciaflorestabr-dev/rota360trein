@@ -29,7 +29,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         .eq('role', 'admin')
         .maybeSingle();
       setIsAdmin(!!data);
-      setIsAdmin(!!data);
     } catch (err) {
       console.error('checkAdmin error:', err);
       setIsAdmin(false);
