@@ -3,13 +3,20 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "@/hooks/useAuth";
 import Index from "./pages/Index";
 import Cursos from "./pages/Cursos";
 import Advocacia from "./pages/Advocacia";
 import Treinamentos from "./pages/Treinamentos";
 import Empresa from "./pages/Empresa";
 import CursoDetalhe from "./pages/CursoDetalhe";
-
+import AdminLogin from "./pages/AdminLogin";
+import AdminLayout from "./components/AdminLayout";
+import Dashboard from "./pages/admin/Dashboard";
+import Cadastros from "./pages/admin/Cadastros";
+import Mensagens from "./pages/admin/Mensagens";
+import Conteudo from "./pages/admin/Conteudo";
+import Configuracoes from "./pages/admin/Configuracoes";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -17,21 +24,33 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/cursos" element={<Cursos />} />
-          <Route path="/advocacia" element={<Advocacia />} />
-          <Route path="/treinamentos" element={<Treinamentos />} />
-          <Route path="/empresa" element={<Empresa />} />
-          <Route path="/curso/:slug" element={<CursoDetalhe />} />
-          
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <AuthProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/cursos" element={<Cursos />} />
+            <Route path="/advocacia" element={<Advocacia />} />
+            <Route path="/treinamentos" element={<Treinamentos />} />
+            <Route path="/empresa" element={<Empresa />} />
+            <Route path="/curso/:slug" element={<CursoDetalhe />} />
+            
+            {/* Admin routes */}
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<Dashboard />} />
+              <Route path="cadastros" element={<Cadastros />} />
+              <Route path="mensagens" element={<Mensagens />} />
+              <Route path="conteudo" element={<Conteudo />} />
+              <Route path="config" element={<Configuracoes />} />
+            </Route>
+
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
