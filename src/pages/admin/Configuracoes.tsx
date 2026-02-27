@@ -14,6 +14,9 @@ const Configuracoes = () => {
   const [qrCodeBase64, setQrCodeBase64] = useState<string | null>(null);
   const [isCreating, setIsCreating] = useState(false);
   const [instanceStatus, setInstanceStatus] = useState<'disconnected' | 'connecting' | 'connected'>('disconnected');
+  const [connectedInstance, setConnectedInstance] = useState<string | null>(null);
+  const [connectedPhone, setConnectedPhone] = useState<string | null>(null);
+  const [isCheckingStatus, setIsCheckingStatus] = useState(true);
   const statusInterval = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const callEvolutionApi = async (action: string, instName: string) => {
@@ -22,6 +25,47 @@ const Configuracoes = () => {
     });
     if (error) throw new Error(error.message);
     return data;
+  };
+
+  // Check saved instance on load
+  useEffect(() => {
+    const saved = localStorage.getItem('evolution_instance');
+    if (saved) {
+      setInstanceName(saved);
+      setConnectedInstance(saved);
+      checkInstanceStatus(saved);
+    } else {
+      setIsCheckingStatus(false);
+    }
+    return () => {
+      if (statusInterval.current) clearInterval(statusInterval.current);
+    };
+  }, []);
+
+  const checkInstanceStatus = async (instName: string) => {
+    setIsCheckingStatus(true);
+    try {
+      const statusData = await callEvolutionApi('status', instName);
+      const state = statusData?.instance?.state || statusData?.state;
+      const phone = statusData?.instance?.owner || statusData?.owner || null;
+      if (state === 'open' || state === 'connected') {
+        setInstanceStatus('connected');
+        setConnectedInstance(instName);
+        setConnectedPhone(phone);
+        localStorage.setItem('evolution_instance', instName);
+      } else {
+        setInstanceStatus('disconnected');
+        setConnectedInstance(null);
+        setConnectedPhone(null);
+        localStorage.removeItem('evolution_instance');
+      }
+    } catch {
+      setInstanceStatus('disconnected');
+      setConnectedInstance(null);
+      localStorage.removeItem('evolution_instance');
+    } finally {
+      setIsCheckingStatus(false);
+    }
   };
 
   const createAndConnect = async () => {
@@ -35,15 +79,11 @@ const Configuracoes = () => {
     setInstanceStatus('connecting');
 
     try {
-      // 1. Create instance
       await callEvolutionApi('create', instanceName);
-
-      // 2. Get QR code
       const connectData = await callEvolutionApi('connect', instanceName);
 
       const qr = connectData?.base64 || connectData?.qrcode?.base64 || connectData?.code;
       if (qr) {
-        // If it's already a data URI, use it; otherwise prefix it
         setQrCodeBase64(qr.startsWith('data:') ? qr : `data:image/png;base64,${qr}`);
         toast({ title: 'QR Code gerado!', description: 'Escaneie com seu WhatsApp para conectar.' });
         startStatusPolling(instanceName);
@@ -66,8 +106,13 @@ const Configuracoes = () => {
       try {
         const statusData = await callEvolutionApi('status', instName);
         const state = statusData?.instance?.state || statusData?.state;
+        const phone = statusData?.instance?.owner || statusData?.owner || null;
         if (state === 'open' || state === 'connected') {
           setInstanceStatus('connected');
+          setConnectedInstance(instName);
+          setConnectedPhone(phone);
+          setQrCodeBase64(null);
+          localStorage.setItem('evolution_instance', instName);
           if (statusInterval.current) clearInterval(statusInterval.current);
           toast({ title: '✅ WhatsApp conectado com sucesso!' });
         }
@@ -77,11 +122,18 @@ const Configuracoes = () => {
     }, 5000);
   };
 
-  useEffect(() => {
-    return () => {
-      if (statusInterval.current) clearInterval(statusInterval.current);
-    };
-  }, []);
+  const disconnect = async () => {
+    if (!connectedInstance) return;
+    try {
+      await callEvolutionApi('disconnect', connectedInstance);
+    } catch { /* ignore */ }
+    setInstanceStatus('disconnected');
+    setConnectedInstance(null);
+    setConnectedPhone(null);
+    setQrCodeBase64(null);
+    localStorage.removeItem('evolution_instance');
+    toast({ title: 'Instância desconectada' });
+  };
 
   return (
     <div className="p-6 space-y-4">
@@ -97,69 +149,97 @@ const Configuracoes = () => {
         </TabsList>
 
         <TabsContent value="evolution" className="space-y-4">
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Wifi className="w-5 h-5 text-primary" />
-                Conectar WhatsApp
-              </CardTitle>
-              <CardDescription>
-                Digite o nome da instância e clique para gerar o QR Code de conexão
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div>
-                <Label>Nome da Instância</Label>
-                <Input
-                  value={instanceName}
-                  onChange={e => setInstanceName(e.target.value)}
-                  placeholder="ex: rota360-principal"
-                  disabled={isCreating}
-                />
-              </div>
-              <Button onClick={createAndConnect} disabled={isCreating} className="gap-2">
-                {isCreating ? <RefreshCw className="w-4 h-4 animate-spin" /> : <QrCode className="w-4 h-4" />}
-                {isCreating ? 'Gerando QR Code...' : 'Gerar QR Code'}
-              </Button>
-            </CardContent>
-          </Card>
-
-          {(qrCodeBase64 || instanceStatus !== 'disconnected') && (
+          {isCheckingStatus ? (
             <Card>
+              <CardContent className="p-8 flex items-center justify-center gap-2 text-muted-foreground">
+                <RefreshCw className="w-4 h-4 animate-spin" /> Verificando conexão...
+              </CardContent>
+            </Card>
+          ) : instanceStatus === 'connected' && connectedInstance ? (
+            <Card className="border-green-500/30 bg-green-500/5">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <QrCode className="w-5 h-5 text-primary" />
-                  QR Code da Instância
+                <CardTitle className="flex items-center gap-2 text-green-600">
+                  <CheckCircle2 className="w-5 h-5" />
+                  WhatsApp Conectado
                 </CardTitle>
-                <CardDescription>Escaneie o QR code com seu WhatsApp para conectar</CardDescription>
+                <CardDescription>Sua instância está ativa e pronta para enviar mensagens</CardDescription>
               </CardHeader>
-              <CardContent className="flex flex-col items-center gap-4">
-                {instanceStatus === 'connected' ? (
-                  <div className="w-64 h-64 bg-muted rounded-lg flex flex-col items-center justify-center gap-3">
-                    <CheckCircle2 className="w-16 h-16 text-green-500" />
-                    <p className="text-sm font-medium text-foreground">Conectado!</p>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="bg-background rounded-lg p-4 border">
+                    <p className="text-xs text-muted-foreground mb-1">Instância</p>
+                    <p className="font-medium text-foreground">{connectedInstance}</p>
                   </div>
-                ) : qrCodeBase64 ? (
-                  <img src={qrCodeBase64} alt="QR Code WhatsApp" className="w-64 h-64 rounded-lg border border-border" />
-                ) : (
-                  <div className="w-64 h-64 bg-muted rounded-lg flex items-center justify-center">
-                    <RefreshCw className="w-8 h-8 animate-spin text-muted-foreground" />
-                  </div>
-                )}
+                  {connectedPhone && (
+                    <div className="bg-background rounded-lg p-4 border">
+                      <p className="text-xs text-muted-foreground mb-1">Número conectado</p>
+                      <p className="font-medium text-foreground">{connectedPhone}</p>
+                    </div>
+                  )}
+                </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm">Status:</span>
-                  <Badge
-                    variant={instanceStatus === 'connected' ? 'default' : 'outline'}
-                    className={instanceStatus === 'connected' ? 'bg-green-500' : ''}
-                  >
-                    {instanceStatus === 'connected' && <CheckCircle2 className="w-3 h-3 mr-1" />}
-                    {instanceStatus === 'connecting' && <RefreshCw className="w-3 h-3 mr-1 animate-spin" />}
-                    {instanceStatus === 'disconnected' && <XCircle className="w-3 h-3 mr-1" />}
-                    {instanceStatus === 'connected' ? 'Conectado' : instanceStatus === 'connecting' ? 'Aguardando leitura...' : 'Desconectado'}
+                  <Badge className="bg-green-500 text-white">
+                    <CheckCircle2 className="w-3 h-3 mr-1" /> Conectado
                   </Badge>
+                </div>
+                <div className="flex gap-2 pt-2">
+                  <Button variant="outline" size="sm" onClick={() => checkInstanceStatus(connectedInstance)} className="gap-2">
+                    <RefreshCw className="w-4 h-4" /> Verificar status
+                  </Button>
+                  <Button variant="destructive" size="sm" onClick={disconnect} className="gap-2">
+                    <XCircle className="w-4 h-4" /> Desconectar
+                  </Button>
                 </div>
               </CardContent>
             </Card>
+          ) : (
+            <>
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Wifi className="w-5 h-5 text-primary" />
+                    Conectar WhatsApp
+                  </CardTitle>
+                  <CardDescription>
+                    Digite o nome da instância e clique para gerar o QR Code de conexão
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <Label>Nome da Instância</Label>
+                    <Input
+                      value={instanceName}
+                      onChange={e => setInstanceName(e.target.value)}
+                      placeholder="ex: rota360-principal"
+                      disabled={isCreating}
+                    />
+                  </div>
+                  <Button onClick={createAndConnect} disabled={isCreating} className="gap-2">
+                    {isCreating ? <RefreshCw className="w-4 h-4 animate-spin" /> : <QrCode className="w-4 h-4" />}
+                    {isCreating ? 'Gerando QR Code...' : 'Gerar QR Code'}
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {qrCodeBase64 && instanceStatus === 'connecting' && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <QrCode className="w-5 h-5 text-primary" />
+                      QR Code da Instância
+                    </CardTitle>
+                    <CardDescription>Escaneie o QR code com seu WhatsApp para conectar</CardDescription>
+                  </CardHeader>
+                  <CardContent className="flex flex-col items-center gap-4">
+                    <img src={qrCodeBase64} alt="QR Code WhatsApp" className="w-64 h-64 rounded-lg border border-border" />
+                    <Badge variant="outline">
+                      <RefreshCw className="w-3 h-3 mr-1 animate-spin" />
+                      Aguardando leitura...
+                    </Badge>
+                  </CardContent>
+                </Card>
+              )}
+            </>
           )}
         </TabsContent>
 
