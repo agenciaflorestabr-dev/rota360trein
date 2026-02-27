@@ -37,6 +37,22 @@ export const EnrollmentForm = ({ courseTitle }: EnrollmentFormProps) => {
       toast({ title: 'Erro ao enviar', description: error.message, variant: 'destructive' });
     } else {
       toast({ title: 'Dados enviados!', description: 'Em breve entraremos em contato com você.' });
+
+      // Send WhatsApp message via Evolution API
+      const instanceName = localStorage.getItem('evolution_instance');
+      if (instanceName) {
+        const rawPhone = formData.whatsapp.replace(/\D/g, '');
+        const phone = rawPhone.startsWith('55') ? rawPhone : `55${rawPhone}`;
+        const message = `Olá, ${formData.name}, vimos que você tem interesse no curso ${courseTitle}. Seja muito bem-vindo à Rota 360 Treinamentos! Em breve, entraremos em contato para mais informações.`;
+        try {
+          await supabase.functions.invoke('evolution-api', {
+            body: { action: 'send', instanceName, number: phone, text: message },
+          });
+        } catch (err) {
+          console.error('Erro ao enviar WhatsApp:', err);
+        }
+      }
+
       setFormData({ name: '', email: '', whatsapp: '', city: '', state: '', cnh_category: '' });
     }
   };

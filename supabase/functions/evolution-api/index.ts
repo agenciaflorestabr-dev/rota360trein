@@ -24,7 +24,7 @@ serve(async (req) => {
   const baseUrl = EVOLUTION_API_URL.replace(/\/+$/, '');
 
   try {
-    const { action, instanceName } = await req.json();
+    const { action, instanceName, number, text } = await req.json();
 
     if (!instanceName) {
       return new Response(JSON.stringify({ error: 'Nome da instância é obrigatório' }), {
@@ -116,7 +116,25 @@ serve(async (req) => {
       });
     }
 
-    return new Response(JSON.stringify({ error: 'Ação inválida. Use: create, connect, status, disconnect' }), {
+    if (action === 'send') {
+      const sendRes = await fetch(`${baseUrl}/message/sendText/${instanceName}`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ number, text }),
+      });
+      const sendData = await sendRes.json();
+      if (!sendRes.ok) {
+        return new Response(JSON.stringify({ error: 'Erro ao enviar mensagem', details: sendData }), {
+          status: sendRes.status,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+      return new Response(JSON.stringify(sendData), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    return new Response(JSON.stringify({ error: 'Ação inválida. Use: create, connect, status, disconnect, send' }), {
       status: 400,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
