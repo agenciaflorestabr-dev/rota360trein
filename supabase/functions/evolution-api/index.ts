@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -24,7 +25,7 @@ serve(async (req) => {
   const baseUrl = EVOLUTION_API_URL.replace(/\/+$/, '');
 
   try {
-    const { action, instanceName, number, text } = await req.json();
+    const { action, instanceName, number, text, recipientName } = await req.json();
 
     if (!instanceName) {
       return new Response(JSON.stringify({ error: 'Nome da instância é obrigatório' }), {
@@ -123,7 +124,25 @@ serve(async (req) => {
         body: JSON.stringify({ number, text }),
       });
       const sendData = await sendRes.json();
-      if (!sendRes.ok) {
+      const sendOk = sendRes.ok;
+
+      // Log message in the messages table
+      try {
+        const sbUrl = Deno.env.get('SUPABASE_URL')!;
+        const sbKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+        const sb = createClient(sbUrl, sbKey);
+        await sb.from('messages').insert({
+          recipient_name: recipientName || null,
+          recipient_phone: number,
+          message_content: text,
+          status: sendOk ? 'sent' : 'failed',
+          sent_at: sendOk ? new Date().toISOString() : null,
+        });
+      } catch (logErr) {
+        console.error('Failed to log message:', logErr);
+      }
+
+      if (!sendOk) {
         return new Response(JSON.stringify({ error: 'Erro ao enviar mensagem', details: sendData }), {
           status: sendRes.status,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
