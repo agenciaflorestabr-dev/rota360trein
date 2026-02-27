@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
@@ -15,8 +15,15 @@ const AdminLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isRegister, setIsRegister] = useState(false);
-  const { signIn, signUp } = useAuth();
+  const { signIn, signUp, user, isAdmin, loading } = useAuth();
   const navigate = useNavigate();
+
+  // Redirect when user is authenticated and is admin
+  useEffect(() => {
+    if (!loading && user && isAdmin) {
+      navigate('/admin');
+    }
+  }, [user, isAdmin, loading, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,12 +39,11 @@ const AdminLogin = () => {
       }
     } else {
       const { error } = await signIn(email, password);
-      setIsLoading(false);
       if (error) {
+        setIsLoading(false);
         toast({ title: 'Erro ao entrar', description: error.message, variant: 'destructive' });
-      } else {
-        navigate('/admin');
       }
+      // Don't setIsLoading(false) on success — the useEffect redirect will handle it
     }
   };
 
