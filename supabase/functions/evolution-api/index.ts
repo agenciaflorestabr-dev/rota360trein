@@ -105,7 +105,18 @@ serve(async (req) => {
       });
     }
 
-    return new Response(JSON.stringify({ error: 'Ação inválida. Use: create, connect, status' }), {
+    if (action === 'disconnect') {
+      const disconnectRes = await fetch(`${baseUrl}/instance/logout/${instanceName}`, {
+        method: 'DELETE',
+        headers,
+      });
+      const disconnectData = await disconnectRes.json();
+      return new Response(JSON.stringify(disconnectData), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    return new Response(JSON.stringify({ error: 'Ação inválida. Use: create, connect, status, disconnect' }), {
       status: 400,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
