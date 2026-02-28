@@ -104,7 +104,7 @@ export const EnrollmentForm = ({ courseTitle }: EnrollmentFormProps) => {
           <SelectTrigger>
             <SelectValue placeholder="Selecione a categoria" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent position="item-aligned" className="z-[9999] bg-popover">
             <SelectItem value="A">A</SelectItem>
             <SelectItem value="B">B</SelectItem>
             <SelectItem value="C">C</SelectItem>
