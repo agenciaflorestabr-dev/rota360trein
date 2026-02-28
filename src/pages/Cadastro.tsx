@@ -54,7 +54,33 @@ const Cadastro = () => {
     }
     setIsSubmitting(true);
 
-    // Send WhatsApp message via Evolution API
+    // 1. Save to database (admin panel)
+    const { error } = await supabase.from('form_submissions').insert({
+      name: formData.name,
+      email: formData.email,
+      whatsapp: formData.phone,
+      phone: formData.phone,
+      cpf: formData.cpf,
+      cnh_register: formData.cnh_register,
+      cnh_category: formData.cnh_category || null,
+      city: formData.city || null,
+      state: formData.state || null,
+      street: formData.street || null,
+      number: formData.number || null,
+      neighborhood: formData.neighborhood || null,
+      cep: formData.cep || null,
+      birth_date: formData.birth_date || null,
+      course_title: 'Cadastro Completo',
+      status: 'pending',
+    });
+
+    if (error) {
+      toast({ title: 'Erro ao salvar', description: error.message, variant: 'destructive' });
+      setIsSubmitting(false);
+      return;
+    }
+
+    // 2. Send WhatsApp confirmation to the person
     let instanceName = localStorage.getItem('evolution_instance');
     if (!instanceName) {
       const { data: dbInstance } = await supabase
@@ -68,44 +94,28 @@ const Cadastro = () => {
     if (instanceName) {
       const rawPhone = formData.phone.replace(/\D/g, '');
       const phone = rawPhone.startsWith('55') ? rawPhone : `55${rawPhone}`;
-      const address = `${formData.street}, ${formData.number} - ${formData.neighborhood}, ${formData.city}/${formData.state} - CEP: ${formData.cep}`;
-      const message = `📋 *Novo Cadastro de Interessado*\n\n` +
-        `👤 *Nome:* ${formData.name}\n` +
-        `📧 *E-mail:* ${formData.email}\n` +
-        `📱 *Telefone:* ${formData.phone}\n` +
-        `🪪 *CPF:* ${formData.cpf}\n` +
-        `🚗 *Registro CNH:* ${formData.cnh_register}\n` +
-        `📄 *Categoria CNH:* ${formData.cnh_category}\n` +
-        `🎂 *Data de Nascimento:* ${formData.birth_date}\n` +
-        `📍 *Endereço:* ${address}`;
+      const message = `✅ *Cadastro Efetuado com Sucesso!*\n\n` +
+        `Olá, ${formData.name}! Seu cadastro na Rota 360 Treinamentos foi realizado com sucesso.\n\n` +
+        `Em breve nossa equipe entrará em contato com as próximas orientações sobre o seu curso.\n\n` +
+        `Obrigado pela confiança! 🚀`;
 
       try {
-        // Send to the business WhatsApp number
         await supabase.functions.invoke('evolution-api', {
-          body: {
-            action: 'send',
-            instanceName,
-            number: '556499430737',
-            text: message,
-            recipientName: 'Rota 360',
-          },
+          body: { action: 'send', instanceName, number: phone, text: message, recipientName: formData.name },
         });
-        toast({ title: 'Cadastro enviado com sucesso!', description: 'Seus dados foram enviados. Em breve entraremos em contato.' });
-        setFormData({
-          name: '', email: '', phone: '', cpf: '',
-          cnh_register: '', cnh_category: '', birth_date: '',
-          street: '', number: '', neighborhood: '',
-          city: '', state: '', cep: '',
-        });
-        setAgreed(false);
       } catch (err) {
         console.error('Erro ao enviar WhatsApp:', err);
-        toast({ title: 'Erro', description: 'Não foi possível enviar os dados. Tente novamente.', variant: 'destructive' });
       }
-    } else {
-      toast({ title: 'Erro de configuração', description: 'Instância do WhatsApp não configurada.', variant: 'destructive' });
     }
 
+    toast({ title: 'Cadastro efetuado!', description: 'Você receberá uma confirmação no WhatsApp.' });
+    setFormData({
+      name: '', email: '', phone: '', cpf: '',
+      cnh_register: '', cnh_category: '', birth_date: '',
+      street: '', number: '', neighborhood: '',
+      city: '', state: '', cep: '',
+    });
+    setAgreed(false);
     setIsSubmitting(false);
   };
 
@@ -124,13 +134,13 @@ const Cadastro = () => {
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-4">
                 <UserPlus className="w-5 h-5" />
-                <span className="font-semibold text-sm">Cadastro de Interessados</span>
+                <span className="font-semibold text-sm">Cadastro do Aluno</span>
               </div>
               <h1 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-3">
                 Faça seu cadastro
               </h1>
               <p className="text-muted-foreground">
-                Preencha os dados abaixo e nossa equipe entrará em contato com você.
+                Preencha os dados abaixo para efetuar seu cadastro no curso.
               </p>
             </div>
 
@@ -245,7 +255,7 @@ const Cadastro = () => {
               </Button>
 
               <p className="text-xs text-center text-muted-foreground">
-                Seus dados serão enviados com segurança para nossa equipe via WhatsApp.
+                Ao enviar, seu cadastro será registrado e você receberá uma confirmação via WhatsApp.
               </p>
             </form>
           </motion.div>
