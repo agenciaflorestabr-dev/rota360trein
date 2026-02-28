@@ -43,6 +43,7 @@ const Cadastros = () => {
     const { data, error } = await supabase
       .from('form_submissions')
       .select('*')
+      .eq('course_title', 'Cadastro Completo')
       .order('created_at', { ascending: false });
     if (!error && data) setSubmissions(data as Submission[]);
     setLoading(false);
@@ -63,8 +64,8 @@ const Cadastros = () => {
   };
 
   const exportCsv = () => {
-    const headers = ['Nome', 'Email', 'Telefone', 'CPF', 'CNH Registro', 'CNH Cat.', 'Nascimento', 'Rua', 'Nº', 'Bairro', 'Cidade', 'UF', 'CEP', 'Curso', 'Status', 'Data'];
-    const rows = filtered.map(s => [s.name, s.email, s.phone ?? s.whatsapp, s.cpf ?? '', s.cnh_register ?? '', s.cnh_category ?? '', s.birth_date ?? '', s.street ?? '', s.number ?? '', s.neighborhood ?? '', s.city ?? '', s.state ?? '', s.cep ?? '', s.course_title, s.status, format(new Date(s.created_at), 'dd/MM/yyyy')]);
+    const headers = ['Nome', 'Email', 'Telefone', 'CPF', 'CNH Registro', 'CNH Cat.', 'Nascimento', 'Rua', 'Nº', 'Bairro', 'Cidade', 'UF', 'CEP', 'Status', 'Data'];
+    const rows = filtered.map(s => [s.name, s.email, s.phone ?? s.whatsapp, s.cpf ?? '', s.cnh_register ?? '', s.cnh_category ?? '', s.birth_date ?? '', s.street ?? '', s.number ?? '', s.neighborhood ?? '', s.city ?? '', s.state ?? '', s.cep ?? '', s.status, format(new Date(s.created_at), 'dd/MM/yyyy')]);
     const csv = [headers, ...rows].map(r => r.join(',')).join('\n');
     const blob = new Blob([csv], { type: 'text/csv' });
     const url = URL.createObjectURL(blob);
@@ -75,16 +76,31 @@ const Cadastros = () => {
   const filtered = submissions.filter(s =>
     s.name.toLowerCase().includes(search.toLowerCase()) ||
     s.email.toLowerCase().includes(search.toLowerCase()) ||
-    s.course_title.toLowerCase().includes(search.toLowerCase()) ||
     (s.cpf ?? '').includes(search)
   );
+
+  const statusLabel = (s: string) => {
+    switch (s) {
+      case 'pending': return 'Aguardando';
+      case 'approved': return 'Aprovado';
+      default: return s;
+    }
+  };
+
+  const statusColor = (s: string) => {
+    switch (s) {
+      case 'pending': return 'bg-accent/20 text-accent-foreground';
+      case 'approved': return 'bg-primary/20 text-primary';
+      default: return '';
+    }
+  };
 
   return (
     <div className="p-6 space-y-4">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-heading font-bold text-foreground">Cadastros</h1>
-          <p className="text-muted-foreground text-sm">{submissions.length} registros</p>
+          <p className="text-muted-foreground text-sm">{submissions.length} alunos cadastrados</p>
         </div>
         <Button variant="outline" size="sm" onClick={exportCsv} className="gap-2">
           <Download className="w-4 h-4" /> Exportar CSV
@@ -93,7 +109,7 @@ const Cadastros = () => {
 
       <div className="relative">
         <Search className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
-        <Input placeholder="Buscar por nome, email, curso ou CPF..." value={search} onChange={e => setSearch(e.target.value)} className="pl-10" />
+        <Input placeholder="Buscar por nome, email ou CPF..." value={search} onChange={e => setSearch(e.target.value)} className="pl-10" />
       </div>
 
       <Card>
@@ -108,7 +124,7 @@ const Cadastros = () => {
                 <TableRow>
                   <TableHead>Nome</TableHead>
                   <TableHead>Contato</TableHead>
-                  <TableHead>Curso</TableHead>
+                  <TableHead>CNH</TableHead>
                   <TableHead>Status</TableHead>
                   <TableHead>Data</TableHead>
                   <TableHead className="w-[100px]" />
@@ -128,19 +144,17 @@ const Cadastros = () => {
                       <p className="text-xs text-muted-foreground">{s.phone ?? s.whatsapp}</p>
                     </TableCell>
                     <TableCell>
-                      <p className="text-sm">{s.course_title}</p>
-                      {s.cnh_category && <Badge variant="outline" className="text-xs mt-1">CNH {s.cnh_category}</Badge>}
+                      <p className="text-sm">{s.cnh_register ?? '—'}</p>
+                      {s.cnh_category && <Badge variant="outline" className="text-xs mt-1">Cat. {s.cnh_category}</Badge>}
                     </TableCell>
                     <TableCell>
                       <Select value={s.status} onValueChange={v => updateStatus(s.id, v)}>
-                        <SelectTrigger className="h-8 w-[130px]">
-                          <SelectValue />
+                        <SelectTrigger className={`h-8 w-[140px] ${statusColor(s.status)}`}>
+                          <SelectValue>{statusLabel(s.status)}</SelectValue>
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="pending">Pendente</SelectItem>
-                          <SelectItem value="contacted">Contactado</SelectItem>
-                          <SelectItem value="enrolled">Matriculado</SelectItem>
-                          <SelectItem value="cancelled">Cancelado</SelectItem>
+                          <SelectItem value="pending">Aguardando</SelectItem>
+                          <SelectItem value="approved">Aprovado</SelectItem>
                         </SelectContent>
                       </Select>
                     </TableCell>
@@ -191,8 +205,8 @@ const Cadastros = () => {
                 </div>
               )}
               <div>
-                <span className="text-muted-foreground">Curso/Tipo:</span>
-                <p className="font-medium">{selected.course_title}</p>
+                <span className="text-muted-foreground">Status:</span>
+                <p className="font-medium">{statusLabel(selected.status)}</p>
               </div>
               <div>
                 <span className="text-muted-foreground">Data:</span>

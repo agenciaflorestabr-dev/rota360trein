@@ -15,6 +15,7 @@ import AdminLogin from "./pages/AdminLogin";
 import AdminLayout from "./components/AdminLayout";
 import Dashboard from "./pages/admin/Dashboard";
 import Cadastros from "./pages/admin/Cadastros";
+import Leads from "./pages/admin/Leads";
 import Mensagens from "./pages/admin/Mensagens";
 import Conteudo from "./pages/admin/Conteudo";
 import Configuracoes from "./pages/admin/Configuracoes";
@@ -42,6 +43,7 @@ const App = () => (
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<Dashboard />} />
+              <Route path="leads" element={<Leads />} />
               <Route path="cadastros" element={<Cadastros />} />
               <Route path="mensagens" element={<Mensagens />} />
               <Route path="conteudo" element={<Conteudo />} />
