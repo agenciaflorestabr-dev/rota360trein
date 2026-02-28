@@ -9,6 +9,7 @@ import Cursos from "./pages/Cursos";
 import Advocacia from "./pages/Advocacia";
 import Treinamentos from "./pages/Treinamentos";
 import Empresa from "./pages/Empresa";
+import Cadastro from "./pages/Cadastro";
 import CursoDetalhe from "./pages/CursoDetalhe";
 import AdminLogin from "./pages/AdminLogin";
 import AdminLayout from "./components/AdminLayout";
@@ -35,6 +36,7 @@ const App = () => (
             <Route path="/treinamentos" element={<Treinamentos />} />
             <Route path="/empresa" element={<Empresa />} />
             <Route path="/curso/:slug" element={<CursoDetalhe />} />
+            <Route path="/cadastro" element={<Cadastro />} />
             
             {/* Admin routes */}
             <Route path="/admin/login" element={<AdminLogin />} />
