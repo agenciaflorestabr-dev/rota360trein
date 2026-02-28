@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { toast } from '@/hooks/use-toast';
@@ -14,7 +13,7 @@ interface EnrollmentFormProps {
 export const EnrollmentForm = ({ courseTitle }: EnrollmentFormProps) => {
   const [agreed, setAgreed] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', whatsapp: '', city: '', state: '', cnh_category: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', whatsapp: '', city: '', state: '' });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,7 +28,7 @@ export const EnrollmentForm = ({ courseTitle }: EnrollmentFormProps) => {
       whatsapp: formData.whatsapp,
       city: formData.city || null,
       state: formData.state || null,
-      cnh_category: formData.cnh_category || null,
+      cnh_category: null,
       course_title: courseTitle,
     });
     setIsSubmitting(false);
@@ -61,7 +60,7 @@ export const EnrollmentForm = ({ courseTitle }: EnrollmentFormProps) => {
         }
       }
 
-      setFormData({ name: '', email: '', whatsapp: '', city: '', state: '', cnh_category: '' });
+      setFormData({ name: '', email: '', whatsapp: '', city: '', state: '' });
     }
   };
 
@@ -98,22 +97,8 @@ export const EnrollmentForm = ({ courseTitle }: EnrollmentFormProps) => {
         </div>
       </div>
 
-      <div>
-        <Label>Categoria da CNH</Label>
-        <Select value={formData.cnh_category} onValueChange={v => setFormData(p => ({ ...p, cnh_category: v }))}>
-          <SelectTrigger>
-            <SelectValue placeholder="Selecione a categoria" />
-          </SelectTrigger>
-          <SelectContent position="item-aligned" className="z-[9999] bg-popover">
-            <SelectItem value="A">A</SelectItem>
-            <SelectItem value="B">B</SelectItem>
-            <SelectItem value="C">C</SelectItem>
-            <SelectItem value="D">D</SelectItem>
-            <SelectItem value="E">E</SelectItem>
-            <SelectItem value="AB">AB</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
+
+
 
       <div className="flex items-start gap-2">
         <Checkbox id="terms" checked={agreed} onCheckedChange={(v) => setAgreed(v === true)} />
