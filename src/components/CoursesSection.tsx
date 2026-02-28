@@ -3,6 +3,7 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 import cardCnh from '@/assets/card-cnh-brasil.jpg';
 import cardTraining from '@/assets/card-training.jpg';
 import heroLesson from '@/assets/hero-lesson.jpg';
@@ -15,18 +16,21 @@ const courses = [
     image: heroLesson,
     badge: 'Popular',
     badgeColor: 'bg-accent text-accent-foreground',
+    link: '/cursos',
   },
   {
     title: 'Adição de Categoria',
     description: 'Amplie suas possibilidades adicionando novas categorias à sua CNH.',
     image: heroHighway,
     badge: null,
+    link: '/cursos',
   },
   {
     title: 'Aulas de Direção',
     description: 'Aulas práticas personalizadas para quem precisa de mais confiança.',
     image: cardTraining,
     badge: null,
+    link: '/cursos',
   },
   {
     title: 'Renovação / Atualização',
@@ -34,6 +38,7 @@ const courses = [
     image: cardCnh,
     badge: 'Rápido',
     badgeColor: 'bg-secondary text-secondary-foreground',
+    link: '/curso/atualizacao-renovacao-cnh',
   },
 ];
 
@@ -108,9 +113,12 @@ export const CoursesSection = () => {
                   variant="outline"
                   size="sm"
                   className="w-full gap-2 group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all"
+                  asChild
                 >
-                  Saiba mais
-                  <ArrowRight className="w-4 h-4" />
+                  <Link to={course.link}>
+                    Saiba mais
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
                 </Button>
               </div>
             </motion.div>
