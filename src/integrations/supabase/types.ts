@@ -16,39 +16,63 @@ export type Database = {
     Tables: {
       form_submissions: {
         Row: {
+          birth_date: string | null
+          cep: string | null
           city: string | null
           cnh_category: string | null
+          cnh_register: string | null
           course_title: string
+          cpf: string | null
           created_at: string
           email: string
           id: string
           name: string
+          neighborhood: string | null
+          number: string | null
+          phone: string | null
           state: string | null
           status: string
+          street: string | null
           whatsapp: string
         }
         Insert: {
+          birth_date?: string | null
+          cep?: string | null
           city?: string | null
           cnh_category?: string | null
+          cnh_register?: string | null
           course_title: string
+          cpf?: string | null
           created_at?: string
           email: string
           id?: string
           name: string
+          neighborhood?: string | null
+          number?: string | null
+          phone?: string | null
           state?: string | null
           status?: string
+          street?: string | null
           whatsapp: string
         }
         Update: {
+          birth_date?: string | null
+          cep?: string | null
           city?: string | null
           cnh_category?: string | null
+          cnh_register?: string | null
           course_title?: string
+          cpf?: string | null
           created_at?: string
           email?: string
           id?: string
           name?: string
+          neighborhood?: string | null
+          number?: string | null
+          phone?: string | null
           state?: string | null
           status?: string
+          street?: string | null
           whatsapp?: string
         }
         Relationships: []
