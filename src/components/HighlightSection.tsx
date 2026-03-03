@@ -96,7 +96,7 @@ export const HighlightSection = () => {
               className="gap-2 group animate-pulse-soft"
               asChild
             >
-              <a href="https://wa.me/5564994300737" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/556696067881" target="_blank" rel="noopener noreferrer">
                 Receber orientação agora
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </a>

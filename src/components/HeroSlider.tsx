@@ -117,7 +117,7 @@ export const HeroSlider = () => {
                   className="gap-2"
                   asChild
                 >
-                  <a href="https://wa.me/5564994300737" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/556696067881" target="_blank" rel="noopener noreferrer">
                     <Phone className="w-5 h-5" />
                     Falar no WhatsApp
                   </a>

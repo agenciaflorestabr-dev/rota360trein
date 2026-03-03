@@ -192,7 +192,7 @@ const Treinamentos = () => {
                 
                 <div className="flex flex-wrap gap-4">
                   <Button variant="whatsapp" size="xl" className="gap-2" asChild>
-                    <a href="https://wa.me/5564994300737" target="_blank" rel="noopener noreferrer">
+                    <a href="https://wa.me/556696067881" target="_blank" rel="noopener noreferrer">
                       <Phone className="w-5 h-5" />
                       Solicitar orçamento
                     </a>
@@ -312,7 +312,7 @@ const Treinamentos = () => {
                   </div>
                   
                   <Button variant="default" className="w-full gap-2 group/btn" asChild>
-                    <a href="https://wa.me/5564994300737" target="_blank" rel="noopener noreferrer">
+                    <a href="https://wa.me/556696067881" target="_blank" rel="noopener noreferrer">
                       Saber mais
                       <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
                     </a>
@@ -359,7 +359,7 @@ const Treinamentos = () => {
                 da sua frota. Entre em contato para um orçamento sem compromisso.
               </p>
               <Button variant="secondary" size="xl" className="gap-2" asChild>
-                <a href="https://wa.me/5564994300737" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/556696067881" target="_blank" rel="noopener noreferrer">
                   <Phone className="w-5 h-5" />
                   Solicitar proposta
                   <ArrowRight className="w-5 h-5" />

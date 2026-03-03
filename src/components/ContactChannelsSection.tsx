@@ -15,7 +15,7 @@ const channels = [
     title: 'WhatsApp',
     description: 'Atendimento rápido e prático pelo celular',
     action: 'Chamar agora',
-    href: 'https://wa.me/5564994300737',
+    href: 'https://wa.me/556696067881',
     highlight: true,
   },
   {
