@@ -277,14 +277,7 @@ const Empresa = () => {
           </div>
         </section>
 
-        {/* Photo Gallery */}
-        <PhotoGallery 
-          title="Nossa Estrutura"
-          subtitle="Conheça nossos espaços, equipe e treinamentos em ação"
-          photos={[
-            // Adicione as fotos aqui no formato: { src: "url-da-imagem", alt: "descrição" }
-          ]}
-        />
+
 
         {/* Location CTA */}
         <section className="section-padding bg-section-light">
