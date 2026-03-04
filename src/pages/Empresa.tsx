@@ -305,7 +305,7 @@ const Empresa = () => {
                   </a>
                 </Button>
                 <Button variant="outline" size="xl" className="gap-2" asChild>
-                  <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer">
+                  <a href="https://maps.app.goo.gl/m5VrUvxt3PX74W9J6" target="_blank" rel="noopener noreferrer">
                     <MapPin className="w-5 h-5" />
                     Ver no mapa
                     <ArrowRight className="w-5 h-5" />
