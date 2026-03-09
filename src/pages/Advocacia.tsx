@@ -128,8 +128,8 @@ const Advocacia = () => {
                 Defesa Jurídica em Trânsito
               </h1>
               <p className="text-lg text-muted-foreground mb-8">
-                Advogados especializados em direito de trânsito para defender 
-                seus direitos em qualquer situação. Multas, suspensão, cassação e mais.
+                Especialistas em evitar a suspensão ou cassação da carteira de motorista 
+                por excesso de pontos e anular multas ilegais.
               </p>
               
               <Button variant="whatsapp" size="xl" className="gap-2" asChild>
