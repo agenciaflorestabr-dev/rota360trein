@@ -456,7 +456,7 @@ const CourseCard = ({ course, index }: { course: Course; index: number }) => {
           </Button>
         ) : (
           <Button variant="default" className="w-full gap-2 group/btn" asChild>
-            <a href="https://wa.me/556696067881" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/5518996067947" target="_blank" rel="noopener noreferrer">
               Saiba mais
               <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
             </a>
