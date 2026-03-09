@@ -188,14 +188,6 @@ const Advocacia = () => {
                   focada em proteger o seu direito de dirigir.
                 </p>
 
-                <ul className="space-y-3 mb-8">
-                  {['Especialista em suspensão e cassação de CNH', 'Anulação de multas ilegais', 'Defesa por excesso de pontos', 'Atendimento humanizado e próximo'].map((item) => (
-                    <li key={item} className="flex items-center gap-3 text-foreground">
-                      <CheckCircle2 className="w-5 h-5 text-secondary flex-shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
 
                 <Button variant="whatsapp" size="lg" className="gap-2" asChild>
                   <a href="https://wa.me/556696067881" target="_blank" rel="noopener noreferrer">
