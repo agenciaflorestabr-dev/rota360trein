@@ -128,8 +128,8 @@ const Advocacia = () => {
                 Defesa Jurídica em Trânsito
               </h1>
               <p className="text-lg text-muted-foreground mb-8">
-                Advogados especializados em direito de trânsito para defender 
-                seus direitos em qualquer situação. Multas, suspensão, cassação e mais.
+                Especialistas em evitar a suspensão ou cassação da carteira de motorista 
+                por excesso de pontos e anular multas ilegais.
               </p>
               
               <Button variant="whatsapp" size="xl" className="gap-2" asChild>
@@ -179,16 +179,17 @@ const Advocacia = () => {
                 <h2 className="font-heading text-3xl md:text-4xl text-foreground font-bold mb-2">
                   Dr. Luiz Francisco Zogheib Fernandes
                 </h2>
-                <p className="text-primary font-semibold mb-4">OAB/SP 171.131</p>
+                <p className="text-primary font-semibold mb-1">OAB/SP 171.131</p>
+                <p className="text-muted-foreground font-medium mb-4">Sócio — Zogheib Fernandes Advogados</p>
 
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  Especialista em Direito de Trânsito com mais de 10 anos de experiência 
-                  na defesa de condutores. Atuação em recursos de multas, suspensão e 
-                  cassação de CNH, com alto índice de sucesso.
+                  Somos especialistas em evitar a suspensão ou cassação da carteira de motorista 
+                  por excesso de pontos e anular multas ilegais. Conte com uma equipe jurídica 
+                  focada em proteger o seu direito de dirigir.
                 </p>
 
                 <ul className="space-y-3 mb-8">
-                  {['Pós-graduado em Direito de Trânsito', 'Membro da Comissão de Trânsito da OAB', 'Mais de 500 casos resolvidos', 'Atendimento humanizado e próximo'].map((item) => (
+                  {['Especialista em suspensão e cassação de CNH', 'Anulação de multas ilegais', 'Defesa por excesso de pontos', 'Atendimento humanizado e próximo'].map((item) => (
                     <li key={item} className="flex items-center gap-3 text-foreground">
                       <CheckCircle2 className="w-5 h-5 text-secondary flex-shrink-0" />
                       <span>{item}</span>
