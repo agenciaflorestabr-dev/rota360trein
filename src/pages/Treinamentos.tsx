@@ -329,10 +329,10 @@ const Treinamentos = () => {
           title="Treinamentos Realizados"
           subtitle="Confira registros dos treinamentos e capacitações que já realizamos em campo."
           photos={[
-            { src: training1, alt: 'Treinamento de operação de escavadeira hidráulica' },
-            { src: training2, alt: 'Instrutor orientando operador de máquinas pesadas' },
-            { src: training3, alt: 'Treinamento prático com operador em escavadeira' },
-            { src: training4, alt: 'Equipe de treinamento em campo com escavadeira SANY' },
+            { src: training1, alt: 'Treinamento de operação de escavadeira hidráulica', overlay: 'Treinamento de Máquinas Pesadas' },
+            { src: training2, alt: 'Instrutor orientando operador de máquinas pesadas', overlay: 'Treinamento de Máquinas Pesadas' },
+            { src: training3, alt: 'Treinamento prático com operador em escavadeira', overlay: 'Treinamento de Máquinas Pesadas' },
+            { src: training4, alt: 'Equipe de treinamento em campo com escavadeira SANY', overlay: 'Treinamento de Máquinas Pesadas' },
             { src: training5, alt: 'Caminhão Comber utilizado em treinamento de transporte de cargas' },
             { src: training6, alt: 'Treinamento de Brigada de Incêndio NR20 e NR23 na Fazenda', overlay: 'Treinamento Empresa MFries • NR20 e NR23 • Brigada de Incêndio' },
             { src: training7, alt: 'Entrega de certificados de treinamento na fazenda', overlay: 'Treinamento Empresa MFries • NR20 e NR23 • Brigada de Incêndio' },
