@@ -591,7 +591,7 @@ const Cursos = () => {
                 Entre em contato conosco e descubra o melhor curso para suas necessidades.
               </p>
               <Button variant="secondary" size="xl" className="gap-2" asChild>
-                <a href="https://wa.me/556696067881" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/5518996067947" target="_blank" rel="noopener noreferrer">
                   <Phone className="w-5 h-5" />
                   Matricule-se agora
                 </a>

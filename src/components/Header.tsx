@@ -89,7 +89,7 @@ export const Header = () => {
                   {item.label}
                 </Link>)}
               <Button variant="whatsapp" size="lg" className="mt-4 gap-2" asChild>
-                <a href="https://wa.me/556696067881" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/5518996067947" target="_blank" rel="noopener noreferrer">
                   <Phone className="w-4 h-4" />
                   <span>Falar no WhatsApp</span>
                 </a>
