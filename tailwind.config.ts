@@ -127,6 +127,7 @@ export default {
         "pulse-soft": "pulse-soft 2s ease-in-out infinite",
         "float": "float 3s ease-in-out infinite",
         "slide-stripe": "slide-stripe 3s ease-in-out infinite",
+        "scroll-partners": "scroll-partners 25s linear infinite",
       },
     },
   },

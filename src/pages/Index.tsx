@@ -10,6 +10,7 @@ import { TrainingSection } from '@/components/TrainingSection';
 import { HowItWorksSection } from '@/components/HowItWorksSection';
 import { ContactChannelsSection } from '@/components/ContactChannelsSection';
 import { VideoShowcase } from '@/components/VideoShowcase';
+import { PartnersSection } from '@/components/PartnersSection';
 import { Footer } from '@/components/Footer';
 import { WhatsAppFloat } from '@/components/WhatsAppFloat';
 
@@ -27,6 +28,7 @@ const Index = () => {
         <AdvocacySection />
         <TrainingSection />
         <VideoShowcase />
+        <PartnersSection />
         <HowItWorksSection />
         <ContactChannelsSection />
       </main>
