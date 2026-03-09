@@ -58,7 +58,7 @@ export const Header = () => {
           {/* WhatsApp CTA */}
           <div className="hidden md:flex items-center gap-4">
             <Button variant="whatsapp" size="lg" className="gap-2" asChild>
-              <a href="https://wa.me/556696067881" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/5518996067947" target="_blank" rel="noopener noreferrer">
                 <Phone className="w-4 h-4" />
                 <span>WhatsApp</span>
               </a>
