@@ -334,10 +334,10 @@ const Treinamentos = () => {
             { src: training3, alt: 'Treinamento prático com operador em escavadeira' },
             { src: training4, alt: 'Equipe de treinamento em campo com escavadeira SANY' },
             { src: training5, alt: 'Caminhão Comber utilizado em treinamento de transporte de cargas' },
-            { src: training6, alt: 'Treinamento de Brigada de Incêndio NR20 e NR23 na Fazenda' },
-            { src: training7, alt: 'Entrega de certificados de treinamento na fazenda' },
-            { src: training8, alt: 'Equipe capacitada com certificados de conclusão' },
-            { src: training9, alt: 'Turma de treinamento com entrega de certificados' },
+            { src: training6, alt: 'Treinamento de Brigada de Incêndio NR20 e NR23 na Fazenda', overlay: 'Treinamento Empresa MFries • NR20 e NR23 • Brigada de Incêndio' },
+            { src: training7, alt: 'Entrega de certificados de treinamento na fazenda', overlay: 'Treinamento Empresa MFries • NR20 e NR23 • Brigada de Incêndio' },
+            { src: training8, alt: 'Equipe capacitada com certificados de conclusão', overlay: 'Treinamento Empresa MFries • NR20 e NR23 • Brigada de Incêndio' },
+            { src: training9, alt: 'Turma de treinamento com entrega de certificados', overlay: 'Treinamento Empresa MFries • NR20 e NR23 • Brigada de Incêndio' },
           ]}
         />
 
