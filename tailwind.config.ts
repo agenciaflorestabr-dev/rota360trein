@@ -112,6 +112,10 @@ export default {
           "0%": { transform: "translateX(-100%)" },
           "100%": { transform: "translateX(100%)" },
         },
+        "scroll-partners": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -123,6 +127,7 @@ export default {
         "pulse-soft": "pulse-soft 2s ease-in-out infinite",
         "float": "float 3s ease-in-out infinite",
         "slide-stripe": "slide-stripe 3s ease-in-out infinite",
+        "scroll-partners": "scroll-partners 25s linear infinite",
       },
     },
   },
