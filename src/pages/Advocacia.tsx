@@ -312,7 +312,7 @@ const Advocacia = () => {
                 gratuita do seu caso. Quanto antes agirmos, maiores as chances de sucesso.
               </p>
               <Button variant="whatsapp" size="xl" className="gap-2" asChild>
-                <a href="https://wa.me/556696067881" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/5518996067947" target="_blank" rel="noopener noreferrer">
                   <Phone className="w-5 h-5" />
                   Análise gratuita agora
                   <ArrowRight className="w-5 h-5" />
