@@ -89,7 +89,7 @@ export const AdvocacySection = () => {
                   <service.icon className="w-5 h-5 md:w-6 md:h-6 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
                 </div>
 
-                <h3 className="font-heading font-bold text-lg text-foreground mb-2.5 group-hover:text-primary transition-colors duration-300">
+                <h3 className="font-heading font-bold text-sm md:text-lg text-foreground mb-1.5 md:mb-2.5 group-hover:text-primary transition-colors duration-300">
                   {service.title}
                 </h3>
 
