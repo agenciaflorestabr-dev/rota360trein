@@ -73,7 +73,7 @@ export const ContactChannelsSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
           {channels.map((channel, index) => (
             <motion.a
               key={channel.title}
