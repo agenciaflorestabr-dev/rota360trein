@@ -71,7 +71,7 @@ export const AdvocacySection = () => {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5 mb-8 md:mb-12">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
