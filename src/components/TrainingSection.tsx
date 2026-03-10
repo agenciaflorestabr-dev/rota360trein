@@ -89,7 +89,7 @@ export const TrainingSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 max-w-4xl mx-auto">
           {trainings.map((training, index) => {
             const colors = colorMap[training.color as keyof typeof colorMap];
             return (
