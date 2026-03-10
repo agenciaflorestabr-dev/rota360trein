@@ -68,9 +68,9 @@ export const HowItWorksSection = () => {
               className="relative text-center"
             >
               {/* Number badge */}
-              <div className="inline-flex items-center justify-center w-32 h-32 rounded-full bg-primary-foreground/10 mb-6 relative">
-                <div className="w-24 h-24 rounded-full bg-primary-foreground/10 flex items-center justify-center">
-                  <step.icon className="w-10 h-10 text-accent" />
+              <div className="inline-flex items-center justify-center w-24 h-24 md:w-32 md:h-32 rounded-full bg-primary-foreground/10 mb-4 md:mb-6 relative">
+                <div className="w-18 h-18 md:w-24 md:h-24 rounded-full bg-primary-foreground/10 flex items-center justify-center">
+                  <step.icon className="w-8 h-8 md:w-10 md:h-10 text-accent" />
                 </div>
                 <span className="absolute -top-2 -right-2 w-10 h-10 rounded-full bg-accent flex items-center justify-center font-heading font-bold text-accent-foreground">
                   {step.number}
