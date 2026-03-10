@@ -34,6 +34,9 @@ import courseSupervisorRigging from '@/assets/course-supervisor-rigging.jpg';
 import courseMovimentacaoCarga from '@/assets/course-movimentacao-carga.jpg';
 import courseGestaoFrotas from '@/assets/course-gestao-frotas.jpg';
 import courseDirecaoDefensiva from '@/assets/course-direcao-defensiva.jpg';
+import courseDirecaoIncompany from '@/assets/course-direcao-incompany.jpg';
+import courseDirecaoOffroad from '@/assets/course-direcao-offroad.jpg';
+import courseDirecaoOnroad from '@/assets/course-direcao-onroad.jpg';
 
 interface Course {
   title: string;
@@ -69,7 +72,7 @@ const modules: Module[] = [
       {
         title: 'Direção Defensiva - In Company',
         description: 'Treinamento de direção defensiva realizado diretamente na sua empresa, adaptado à realidade da sua frota.',
-        image: courseDirecaoDefensiva,
+        image: courseDirecaoIncompany,
         duration: '8 horas',
         students: '500+',
         features: ['Treinamento na empresa', 'Conteúdo personalizado', 'Certificado incluso'],
@@ -77,7 +80,7 @@ const modules: Module[] = [
       {
         title: 'Direção Defensiva - Off Road',
         description: 'Técnicas avançadas de condução segura em terrenos irregulares e condições adversas.',
-        image: courseDirecaoDefensiva,
+        image: courseDirecaoOffroad,
         duration: '8 horas',
         students: '300+',
         features: ['Prática em terreno irregular', 'Técnicas de controle', 'Certificado incluso'],
@@ -85,7 +88,7 @@ const modules: Module[] = [
       {
         title: 'Direção Defensiva - On Road',
         description: 'Direção defensiva em vias públicas com foco em prevenção de acidentes e condução segura.',
-        image: courseDirecaoDefensiva,
+        image: courseDirecaoOnroad,
         duration: '8 horas',
         students: '400+',
         features: ['Prática em vias públicas', 'Prevenção de acidentes', 'Certificado incluso'],
