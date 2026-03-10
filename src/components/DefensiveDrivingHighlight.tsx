@@ -51,7 +51,7 @@ export const DefensiveDrivingHighlight = () => {
               <span className="text-accent">Defensiva</span>
             </h2>
 
-            <p className="text-primary-foreground/80 text-lg mb-6 max-w-lg">
+            <p className="text-primary-foreground/80 text-base md:text-lg mb-5 md:mb-6 max-w-lg">
               O curso mais completo de direção defensiva da região. Aprenda técnicas avançadas 
               de segurança no trânsito com nossos instrutores especializados.
             </p>
