@@ -83,7 +83,7 @@ export const ContactChannelsSection = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`group relative p-6 rounded-xl transition-all duration-300 hover:-translate-y-2 ${
+              className={`group relative p-4 md:p-6 rounded-xl transition-all duration-300 hover:-translate-y-2 ${
                 channel.highlight
                   ? 'bg-whatsapp text-whatsapp-foreground shadow-lg'
                   : 'bg-background shadow-card hover:shadow-card-hover'
