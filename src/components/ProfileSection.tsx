@@ -103,9 +103,9 @@ export const ProfileSection = () => {
                 className={`group p-4 md:p-6 rounded-xl bg-background shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1 cursor-pointer`}
               >
                 <div
-                  className={`w-14 h-14 rounded-xl ${colors.bg} flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110`}
+                  className={`w-11 h-11 md:w-14 md:h-14 rounded-xl ${colors.bg} flex items-center justify-center mb-3 md:mb-4 transition-all duration-300 group-hover:scale-110`}
                 >
-                  <profile.icon className={`w-7 h-7 ${colors.icon}`} />
+                  <profile.icon className={`w-5 h-5 md:w-7 md:h-7 ${colors.icon}`} />
                 </div>
 
                 <h3 className="font-heading font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
