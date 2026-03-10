@@ -54,7 +54,7 @@ export const HighlightSection = () => {
               Nova CNH Brasil: você está preparado?
             </h2>
 
-            <p className="text-lg text-secondary-foreground/80 mb-10 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-secondary-foreground/80 mb-6 md:mb-10 max-w-2xl mx-auto">
               Fique por dentro de todas as mudanças na legislação de trânsito. 
               Nossos especialistas estão prontos para orientá-lo.
             </p>
