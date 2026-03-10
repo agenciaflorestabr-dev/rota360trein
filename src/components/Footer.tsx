@@ -35,7 +35,7 @@ export const Footer = () => {
       <div className="absolute bottom-20 left-10 w-24 h-24 bg-primary-foreground/5 rounded-full" />
 
       <div className="container-custom mx-auto px-4 py-16 relative">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10 mb-12">
           {/* Brand */}
           <div>
             <div className="mb-6">

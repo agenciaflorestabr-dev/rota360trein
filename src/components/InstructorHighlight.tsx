@@ -52,7 +52,7 @@ export const InstructorHighlight = () => {
               Sarah Lisboa
             </h2>
 
-            <p className="text-lg text-muted-foreground mb-8 max-w-2xl leading-relaxed">
+            <p className="text-base md:text-lg text-muted-foreground mb-6 md:mb-8 max-w-2xl leading-relaxed">
               Instrutora credenciada e <strong className="text-foreground">2x eleita a melhor instrutora</strong> pelo 
               prêmio <strong className="text-foreground">ACEAIA</strong> — reconhecimento concedido por voto popular, 
               que comprova a confiança e a satisfação dos nossos alunos.

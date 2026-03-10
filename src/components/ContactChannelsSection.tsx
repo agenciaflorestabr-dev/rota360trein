@@ -105,7 +105,7 @@ export const ContactChannelsSection = () => {
                 {channel.title}
               </h3>
 
-              <p className={`text-sm mb-4 ${
+              <p className={`text-xs md:text-sm mb-2 md:mb-4 hidden sm:block ${
                 channel.highlight ? 'text-white/80' : 'text-muted-foreground'
               }`}>
                 {channel.description}

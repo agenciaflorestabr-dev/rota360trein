@@ -41,7 +41,7 @@ export const WelcomeSection = () => {
               <span className="text-primary">Rota 360 Treinamentos </span>
             </h2>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+            <p className="text-base md:text-lg text-muted-foreground mb-5 md:mb-6 leading-relaxed">
               Somos mais do que uma auto escola. Oferecemos soluções completas para sua 
               CNH: desde a primeira habilitação até a advocacia especializada em trânsito. 
               Conte com uma equipe preparada para resolver qualquer desafio.

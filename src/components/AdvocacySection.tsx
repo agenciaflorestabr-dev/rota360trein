@@ -104,7 +104,7 @@ export const AdvocacySection = () => {
                 </div>
 
                 {/* Hover arrow */}
-                <div className="mt-4 flex items-center gap-1 text-sm font-medium text-primary opacity-0 group-hover:opacity-100 translate-x-[-8px] group-hover:translate-x-0 transition-all duration-300">
+                <div className="mt-2 md:mt-4 flex items-center gap-1 text-xs md:text-sm font-medium text-primary opacity-0 group-hover:opacity-100 translate-x-[-8px] group-hover:translate-x-0 transition-all duration-300 hidden sm:flex">
                   Saiba mais <ChevronRight className="w-4 h-4" />
                 </div>
               </div>

@@ -55,7 +55,7 @@ export const HowItWorksSection = () => {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 relative">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 relative">
           {/* Connection line */}
           <div className="hidden md:block absolute top-16 left-1/6 right-1/6 h-0.5 bg-primary-foreground/20" />
 

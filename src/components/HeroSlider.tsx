@@ -99,7 +99,7 @@ export const HeroSlider = () => {
               </p>
 
               {/* CTAs */}
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <Button
                   variant="accent"
                   size="xl"

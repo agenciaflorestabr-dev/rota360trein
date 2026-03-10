@@ -98,7 +98,7 @@ export const TrainingSection = () => {
                 initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`group flex gap-4 p-6 rounded-xl bg-background shadow-card hover:shadow-card-hover transition-all duration-300 border-l-4 ${colors.border}`}
+                className={`group flex gap-3 md:gap-4 p-4 md:p-6 rounded-xl bg-background shadow-card hover:shadow-card-hover transition-all duration-300 border-l-4 ${colors.border}`}
               >
                 <div className={`w-14 h-14 rounded-xl ${colors.bg} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
                   <training.icon className={`w-7 h-7 ${colors.icon}`} />

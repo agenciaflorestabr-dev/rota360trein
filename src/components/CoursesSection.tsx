@@ -102,11 +102,11 @@ export const CoursesSection = () => {
               </div>
 
               {/* Content */}
-              <div className="p-5">
-                <h3 className="font-heading font-semibold text-lg text-foreground mb-2 group-hover:text-primary transition-colors">
+              <div className="p-3 md:p-5">
+                <h3 className="font-heading font-semibold text-sm md:text-lg text-foreground mb-1 md:mb-2 group-hover:text-primary transition-colors">
                   {course.title}
                 </h3>
-                <p className="text-sm text-muted-foreground mb-4">
+                <p className="text-xs md:text-sm text-muted-foreground mb-2 md:mb-4 hidden sm:block">
                   {course.description}
                 </p>
                 <Button
