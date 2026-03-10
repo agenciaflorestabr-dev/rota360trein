@@ -89,7 +89,7 @@ export const ContactChannelsSection = () => {
                   : 'bg-background shadow-card hover:shadow-card-hover'
               }`}
             >
-              <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110 ${
+              <div className={`w-10 h-10 md:w-14 md:h-14 rounded-xl flex items-center justify-center mb-3 md:mb-4 transition-transform group-hover:scale-110 ${
                 channel.highlight
                   ? 'bg-white/20'
                   : 'bg-primary/10'
