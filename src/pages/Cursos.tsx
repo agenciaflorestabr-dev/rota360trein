@@ -80,7 +80,7 @@ const modules: Module[] = [
       {
         title: 'Direção Defensiva - Off Road',
         description: 'Técnicas avançadas de condução segura em terrenos irregulares e condições adversas.',
-        image: courseDirecaoDefensiva,
+        image: courseDirecaoOffroad,
         duration: '8 horas',
         students: '300+',
         features: ['Prática em terreno irregular', 'Técnicas de controle', 'Certificado incluso'],
