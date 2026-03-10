@@ -89,7 +89,7 @@ export const HeroSlider = () => {
               </div>
 
               {/* Title */}
-              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl text-primary-foreground font-bold leading-tight mb-6">
+              <h1 className="font-heading text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-primary-foreground font-bold leading-tight mb-4 md:mb-6">
                 {slides[currentSlide].title}
               </h1>
 
