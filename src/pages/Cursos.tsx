@@ -72,7 +72,7 @@ const modules: Module[] = [
       {
         title: 'Direção Defensiva - In Company',
         description: 'Treinamento de direção defensiva realizado diretamente na sua empresa, adaptado à realidade da sua frota.',
-        image: courseDirecaoDefensiva,
+        image: courseDirecaoIncompany,
         duration: '8 horas',
         students: '500+',
         features: ['Treinamento na empresa', 'Conteúdo personalizado', 'Certificado incluso'],
