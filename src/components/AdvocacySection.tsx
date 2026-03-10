@@ -83,7 +83,7 @@ export const AdvocacySection = () => {
               {/* Top accent bar */}
               <div className="h-1.5 bg-gradient-to-r from-primary to-primary-light group-hover:from-secondary group-hover:to-primary transition-all duration-500" />
               
-              <div className="p-6">
+              <div className="p-4 md:p-6">
                 {/* Icon with refined style */}
                 <div className="w-14 h-14 rounded-2xl bg-primary/8 border border-primary/15 flex items-center justify-center mb-5 group-hover:bg-primary group-hover:border-primary group-hover:scale-110 transition-all duration-400">
                   <service.icon className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
