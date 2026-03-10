@@ -100,7 +100,7 @@ export const ProfileSection = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`group p-6 rounded-xl bg-background shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1 cursor-pointer`}
+                className={`group p-4 md:p-6 rounded-xl bg-background shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1 cursor-pointer`}
               >
                 <div
                   className={`w-14 h-14 rounded-xl ${colors.bg} flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110`}
