@@ -85,8 +85,8 @@ export const AdvocacySection = () => {
               
               <div className="p-4 md:p-6">
                 {/* Icon with refined style */}
-                <div className="w-14 h-14 rounded-2xl bg-primary/8 border border-primary/15 flex items-center justify-center mb-5 group-hover:bg-primary group-hover:border-primary group-hover:scale-110 transition-all duration-400">
-                  <service.icon className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
+                <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-primary/8 border border-primary/15 flex items-center justify-center mb-3 md:mb-5 group-hover:bg-primary group-hover:border-primary group-hover:scale-110 transition-all duration-400">
+                  <service.icon className="w-5 h-5 md:w-6 md:h-6 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
                 </div>
 
                 <h3 className="font-heading font-bold text-lg text-foreground mb-2.5 group-hover:text-primary transition-colors duration-300">
