@@ -4,6 +4,7 @@ import { InstructorHighlight } from '@/components/InstructorHighlight';
 import { WelcomeSection } from '@/components/WelcomeSection';
 import { ProfileSection } from '@/components/ProfileSection';
 import { CoursesSection } from '@/components/CoursesSection';
+import { DefensiveDrivingHighlight } from '@/components/DefensiveDrivingHighlight';
 import { HighlightSection } from '@/components/HighlightSection';
 import { AdvocacySection } from '@/components/AdvocacySection';
 import { TrainingSection } from '@/components/TrainingSection';
