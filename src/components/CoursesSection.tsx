@@ -86,7 +86,7 @@ export const CoursesSection = () => {
               className="group bg-background rounded-xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-2"
             >
               {/* Image */}
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-32 md:h-48 overflow-hidden">
                 <img
                   src={course.image}
                   alt={course.title}
