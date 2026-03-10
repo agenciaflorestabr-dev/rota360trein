@@ -10,7 +10,7 @@ const videos: Video[] = [
   {
     id: '1',
     title: 'Palestra de Direção defensiva',
-    youtubeId: 'hLkw1fvwtek',
+    youtubeId: '3SBmENQ1OXI',
   },
 ];
 
