@@ -26,8 +26,8 @@ const Index = () => {
         <ProfileSection />
         <CoursesSection />
         <DefensiveDrivingHighlight />
-        <HighlightSection />
         <AdvocacySection />
+        <HighlightSection />
         <TrainingSection />
         <VideoShowcase />
         <PartnersSection />
