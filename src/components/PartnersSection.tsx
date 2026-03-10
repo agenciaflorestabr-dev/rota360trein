@@ -50,7 +50,7 @@ export const PartnersSection = () => {
           {allPartners.map((partner, index) => (
             <div
               key={`${partner.name}-${index}`}
-              className="flex-shrink-0 w-36 h-36 rounded-2xl bg-card shadow-card flex items-center justify-center p-4 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 hover:shadow-card-hover hover:scale-105 transition-all duration-500"
+              className="flex-shrink-0 w-28 h-28 md:w-36 md:h-36 rounded-2xl bg-card shadow-card flex items-center justify-center p-3 md:p-4 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 hover:shadow-card-hover hover:scale-105 transition-all duration-500"
             >
               <img
                 src={partner.logo}
