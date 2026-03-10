@@ -108,7 +108,7 @@ export const ProfileSection = () => {
                   <profile.icon className={`w-5 h-5 md:w-7 md:h-7 ${colors.icon}`} />
                 </div>
 
-                <h3 className="font-heading font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                <h3 className="font-heading font-semibold text-sm md:text-base text-foreground mb-1 md:mb-2 group-hover:text-primary transition-colors">
                   {profile.title}
                 </h3>
 
