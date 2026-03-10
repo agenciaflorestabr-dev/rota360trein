@@ -90,7 +90,7 @@ export const ProfileSection = () => {
           </h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-3 md:gap-6">
           {profiles.map((profile, index) => {
             const colors = colorClasses[profile.color as keyof typeof colorClasses];
             return (
@@ -100,19 +100,19 @@ export const ProfileSection = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`group p-6 rounded-xl bg-background shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1 cursor-pointer`}
+                className={`group p-4 md:p-6 rounded-xl bg-background shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1 cursor-pointer`}
               >
                 <div
-                  className={`w-14 h-14 rounded-xl ${colors.bg} flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110`}
+                  className={`w-11 h-11 md:w-14 md:h-14 rounded-xl ${colors.bg} flex items-center justify-center mb-3 md:mb-4 transition-all duration-300 group-hover:scale-110`}
                 >
-                  <profile.icon className={`w-7 h-7 ${colors.icon}`} />
+                  <profile.icon className={`w-5 h-5 md:w-7 md:h-7 ${colors.icon}`} />
                 </div>
 
-                <h3 className="font-heading font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                <h3 className="font-heading font-semibold text-sm md:text-base text-foreground mb-1 md:mb-2 group-hover:text-primary transition-colors">
                   {profile.title}
                 </h3>
 
-                <p className="text-sm text-muted-foreground mb-4">
+                <p className="text-xs md:text-sm text-muted-foreground mb-2 md:mb-4 hidden sm:block">
                   {profile.description}
                 </p>
 

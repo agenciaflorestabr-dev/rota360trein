@@ -36,12 +36,12 @@ export const WelcomeSection = () => {
               </span>
             </div>
 
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-foreground font-bold mb-6">
+            <h2 className="font-heading text-2xl md:text-4xl lg:text-5xl text-foreground font-bold mb-4 md:mb-6">
               Você chegou à{' '}
               <span className="text-primary">Rota 360 Treinamentos </span>
             </h2>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+            <p className="text-base md:text-lg text-muted-foreground mb-5 md:mb-6 leading-relaxed">
               Somos mais do que uma auto escola. Oferecemos soluções completas para sua 
               CNH: desde a primeira habilitação até a advocacia especializada em trânsito. 
               Conte com uma equipe preparada para resolver qualquer desafio.

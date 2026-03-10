@@ -73,7 +73,7 @@ export const ContactChannelsSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
           {channels.map((channel, index) => (
             <motion.a
               key={channel.title}
@@ -83,29 +83,29 @@ export const ContactChannelsSection = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`group relative p-6 rounded-xl transition-all duration-300 hover:-translate-y-2 ${
+              className={`group relative p-4 md:p-6 rounded-xl transition-all duration-300 hover:-translate-y-2 ${
                 channel.highlight
                   ? 'bg-whatsapp text-whatsapp-foreground shadow-lg'
                   : 'bg-background shadow-card hover:shadow-card-hover'
               }`}
             >
-              <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110 ${
+              <div className={`w-10 h-10 md:w-14 md:h-14 rounded-xl flex items-center justify-center mb-3 md:mb-4 transition-transform group-hover:scale-110 ${
                 channel.highlight
                   ? 'bg-white/20'
                   : 'bg-primary/10'
               }`}>
-                <channel.icon className={`w-7 h-7 ${
+                <channel.icon className={`w-5 h-5 md:w-7 md:h-7 ${
                   channel.highlight ? 'text-white' : 'text-primary'
                 }`} />
               </div>
 
-              <h3 className={`font-heading font-semibold text-lg mb-2 ${
+              <h3 className={`font-heading font-semibold text-sm md:text-lg mb-1 md:mb-2 ${
                 channel.highlight ? 'text-white' : 'text-foreground'
               }`}>
                 {channel.title}
               </h3>
 
-              <p className={`text-sm mb-4 ${
+              <p className={`text-xs md:text-sm mb-2 md:mb-4 hidden sm:block ${
                 channel.highlight ? 'text-white/80' : 'text-muted-foreground'
               }`}>
                 {channel.description}

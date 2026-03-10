@@ -46,11 +46,11 @@ export const PartnersSection = () => {
         <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10" />
         <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10" />
 
-        <div className="flex animate-scroll-partners gap-12 w-max">
+        <div className="flex animate-scroll-partners gap-6 md:gap-12 w-max">
           {allPartners.map((partner, index) => (
             <div
               key={`${partner.name}-${index}`}
-              className="flex-shrink-0 w-36 h-36 rounded-2xl bg-card shadow-card flex items-center justify-center p-4 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 hover:shadow-card-hover hover:scale-105 transition-all duration-500"
+              className="flex-shrink-0 w-28 h-28 md:w-36 md:h-36 rounded-2xl bg-card shadow-card flex items-center justify-center p-3 md:p-4 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 hover:shadow-card-hover hover:scale-105 transition-all duration-500"
             >
               <img
                 src={partner.logo}

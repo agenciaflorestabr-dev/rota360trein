@@ -50,11 +50,11 @@ export const HighlightSection = () => {
               </span>
             </div>
 
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-secondary-foreground font-bold mb-6">
+            <h2 className="font-heading text-2xl md:text-4xl lg:text-5xl text-secondary-foreground font-bold mb-4 md:mb-6">
               Nova CNH Brasil: você está preparado?
             </h2>
 
-            <p className="text-lg text-secondary-foreground/80 mb-10 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-secondary-foreground/80 mb-6 md:mb-10 max-w-2xl mx-auto">
               Fique por dentro de todas as mudanças na legislação de trânsito. 
               Nossos especialistas estão prontos para orientá-lo.
             </p>
@@ -75,8 +75,8 @@ export const HighlightSection = () => {
                 transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                 className="flex flex-col items-center gap-2"
               >
-                <div className="w-14 h-14 rounded-xl bg-secondary-foreground/10 flex items-center justify-center">
-                  <feature.icon className="w-6 h-6 text-secondary-foreground" />
+                <div className="w-11 h-11 md:w-14 md:h-14 rounded-xl bg-secondary-foreground/10 flex items-center justify-center">
+                  <feature.icon className="w-5 h-5 md:w-6 md:h-6 text-secondary-foreground" />
                 </div>
                 <span className="text-sm text-secondary-foreground/80 font-medium">
                   {feature.label}

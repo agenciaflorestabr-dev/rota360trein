@@ -31,7 +31,7 @@ export const DefensiveDrivingHighlight = () => {
       <div className="absolute top-10 right-10 w-40 h-40 border-2 border-primary-foreground/10 rotate-12 rounded-3xl" />
       <div className="absolute bottom-10 left-10 w-24 h-24 bg-accent/20 rounded-full blur-2xl" />
 
-      <div ref={ref} className="container-custom mx-auto relative z-10 py-20 md:py-28">
+      <div ref={ref} className="container-custom mx-auto px-4 relative z-10 py-12 md:py-28">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left - Content */}
           <motion.div
@@ -46,17 +46,17 @@ export const DefensiveDrivingHighlight = () => {
               </span>
             </div>
 
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl text-primary-foreground font-bold mb-6 leading-tight">
+            <h2 className="font-heading text-3xl md:text-5xl lg:text-6xl text-primary-foreground font-bold mb-4 md:mb-6 leading-tight">
               Direção<br />
               <span className="text-accent">Defensiva</span>
             </h2>
 
-            <p className="text-primary-foreground/80 text-lg mb-6 max-w-lg">
+            <p className="text-primary-foreground/80 text-base md:text-lg mb-5 md:mb-6 max-w-lg">
               O curso mais completo de direção defensiva da região. Aprenda técnicas avançadas 
               de segurança no trânsito com nossos instrutores especializados.
             </p>
 
-            <div className="flex items-center gap-4 mb-8">
+            <div className="flex flex-wrap items-center gap-3 md:gap-4 mb-6 md:mb-8">
               <div className="flex items-center gap-2 bg-primary-foreground/10 px-4 py-2 rounded-lg">
                 <Clock className="w-5 h-5 text-accent" />
                 <span className="text-primary-foreground font-semibold">8 horas</span>

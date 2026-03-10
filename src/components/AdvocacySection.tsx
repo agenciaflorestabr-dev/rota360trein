@@ -71,7 +71,7 @@ export const AdvocacySection = () => {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5 mb-8 md:mb-12">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
@@ -83,28 +83,28 @@ export const AdvocacySection = () => {
               {/* Top accent bar */}
               <div className="h-1.5 bg-gradient-to-r from-primary to-primary-light group-hover:from-secondary group-hover:to-primary transition-all duration-500" />
               
-              <div className="p-6">
+              <div className="p-4 md:p-6">
                 {/* Icon with refined style */}
-                <div className="w-14 h-14 rounded-2xl bg-primary/8 border border-primary/15 flex items-center justify-center mb-5 group-hover:bg-primary group-hover:border-primary group-hover:scale-110 transition-all duration-400">
-                  <service.icon className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
+                <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-primary/8 border border-primary/15 flex items-center justify-center mb-3 md:mb-5 group-hover:bg-primary group-hover:border-primary group-hover:scale-110 transition-all duration-400">
+                  <service.icon className="w-5 h-5 md:w-6 md:h-6 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
                 </div>
 
-                <h3 className="font-heading font-bold text-lg text-foreground mb-2.5 group-hover:text-primary transition-colors duration-300">
+                <h3 className="font-heading font-bold text-sm md:text-lg text-foreground mb-1.5 md:mb-2.5 group-hover:text-primary transition-colors duration-300">
                   {service.title}
                 </h3>
 
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                <p className="text-xs md:text-sm text-muted-foreground leading-relaxed mb-2 md:mb-4 hidden sm:block">
                   {service.description}
                 </p>
 
                 {/* Highlight badge */}
-                <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-secondary bg-secondary/10 px-3 py-1.5 rounded-full">
+                <div className="inline-flex items-center gap-1 md:gap-1.5 text-[10px] md:text-xs font-semibold text-secondary bg-secondary/10 px-2 md:px-3 py-1 md:py-1.5 rounded-full">
                   <span className="w-1.5 h-1.5 rounded-full bg-secondary" />
                   {service.highlight}
                 </div>
 
                 {/* Hover arrow */}
-                <div className="mt-4 flex items-center gap-1 text-sm font-medium text-primary opacity-0 group-hover:opacity-100 translate-x-[-8px] group-hover:translate-x-0 transition-all duration-300">
+                <div className="mt-2 md:mt-4 flex items-center gap-1 text-xs md:text-sm font-medium text-primary opacity-0 group-hover:opacity-100 translate-x-[-8px] group-hover:translate-x-0 transition-all duration-300 hidden sm:flex">
                   Saiba mais <ChevronRight className="w-4 h-4" />
                 </div>
               </div>

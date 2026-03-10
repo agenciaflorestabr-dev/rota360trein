@@ -43,7 +43,7 @@ export const HeroSlider = () => {
   }, [isAutoPlaying, nextSlide]);
 
   return (
-    <section className="relative h-screen min-h-[600px] max-h-[900px] overflow-hidden">
+    <section className="relative h-[85vh] min-h-[500px] max-h-[900px] overflow-hidden">
       {/* Slides */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -89,17 +89,17 @@ export const HeroSlider = () => {
               </div>
 
               {/* Title */}
-              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl text-primary-foreground font-bold leading-tight mb-6">
+              <h1 className="font-heading text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-primary-foreground font-bold leading-tight mb-4 md:mb-6">
                 {slides[currentSlide].title}
               </h1>
 
               {/* Subtitle */}
-              <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 max-w-xl">
+              <p className="text-base md:text-xl text-primary-foreground/90 mb-6 md:mb-8 max-w-xl">
                 {slides[currentSlide].subtitle}
               </p>
 
               {/* CTAs */}
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <Button
                   variant="accent"
                   size="xl"

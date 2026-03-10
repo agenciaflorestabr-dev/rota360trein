@@ -76,7 +76,7 @@ export const CoursesSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
           {courses.map((course, index) => (
             <motion.div
               key={course.title}
@@ -86,7 +86,7 @@ export const CoursesSection = () => {
               className="group bg-background rounded-xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-2"
             >
               {/* Image */}
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-32 md:h-48 overflow-hidden">
                 <img
                   src={course.image}
                   alt={course.title}
@@ -102,11 +102,11 @@ export const CoursesSection = () => {
               </div>
 
               {/* Content */}
-              <div className="p-5">
-                <h3 className="font-heading font-semibold text-lg text-foreground mb-2 group-hover:text-primary transition-colors">
+              <div className="p-3 md:p-5">
+                <h3 className="font-heading font-semibold text-sm md:text-lg text-foreground mb-1 md:mb-2 group-hover:text-primary transition-colors">
                   {course.title}
                 </h3>
-                <p className="text-sm text-muted-foreground mb-4">
+                <p className="text-xs md:text-sm text-muted-foreground mb-2 md:mb-4 hidden sm:block">
                   {course.description}
                 </p>
                 <Button
