@@ -99,7 +99,7 @@ export const ContactChannelsSection = () => {
                 }`} />
               </div>
 
-              <h3 className={`font-heading font-semibold text-lg mb-2 ${
+              <h3 className={`font-heading font-semibold text-sm md:text-lg mb-1 md:mb-2 ${
                 channel.highlight ? 'text-white' : 'text-foreground'
               }`}>
                 {channel.title}
