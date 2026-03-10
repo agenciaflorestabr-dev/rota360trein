@@ -19,12 +19,12 @@ export const DefensiveDrivingHighlight = () => {
     <section className="relative overflow-hidden bg-primary">
       {/* Background image with overlay */}
       <div className="absolute inset-0">
-        <img
-          src={courseDirecaoDefensiva}
-          alt="Direção Defensiva"
-          className="w-full h-full object-cover opacity-20"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/80" />
+         <img
+           src={courseDirecaoDefensiva}
+           alt="Direção Defensiva"
+           className="w-full h-full object-cover"
+         />
+         <div className="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/60 to-primary/40" />
       </div>
 
       {/* Decorative elements */}
