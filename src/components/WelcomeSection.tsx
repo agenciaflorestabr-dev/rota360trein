@@ -36,7 +36,7 @@ export const WelcomeSection = () => {
               </span>
             </div>
 
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-foreground font-bold mb-6">
+            <h2 className="font-heading text-2xl md:text-4xl lg:text-5xl text-foreground font-bold mb-4 md:mb-6">
               Você chegou à{' '}
               <span className="text-primary">Rota 360 Treinamentos </span>
             </h2>
