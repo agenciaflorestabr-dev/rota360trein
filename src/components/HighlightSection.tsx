@@ -50,7 +50,7 @@ export const HighlightSection = () => {
               </span>
             </div>
 
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-secondary-foreground font-bold mb-6">
+            <h2 className="font-heading text-2xl md:text-4xl lg:text-5xl text-secondary-foreground font-bold mb-4 md:mb-6">
               Nova CNH Brasil: você está preparado?
             </h2>
 
