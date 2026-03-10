@@ -75,7 +75,7 @@ export const HighlightSection = () => {
                 transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                 className="flex flex-col items-center gap-2"
               >
-                <div className="w-14 h-14 rounded-xl bg-secondary-foreground/10 flex items-center justify-center">
+                <div className="w-11 h-11 md:w-14 md:h-14 rounded-xl bg-secondary-foreground/10 flex items-center justify-center">
                   <feature.icon className="w-6 h-6 text-secondary-foreground" />
                 </div>
                 <span className="text-sm text-secondary-foreground/80 font-medium">
