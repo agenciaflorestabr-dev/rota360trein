@@ -61,6 +61,38 @@ interface Module {
 
 const modules: Module[] = [
   {
+    id: 'direcao-defensiva',
+    title: 'Direção Defensiva',
+    icon: <ShieldCheck className="w-5 h-5" />,
+    description: 'Nosso carro-chefe! Curso completo de direção defensiva com 3 modalidades para atender diferentes necessidades.',
+    courses: [
+      {
+        title: 'Direção Defensiva - In Company',
+        description: 'Treinamento de direção defensiva realizado diretamente na sua empresa, adaptado à realidade da sua frota.',
+        image: courseDirecaoDefensiva,
+        duration: '8 horas',
+        students: '500+',
+        features: ['Treinamento na empresa', 'Conteúdo personalizado', 'Certificado incluso'],
+      },
+      {
+        title: 'Direção Defensiva - Off Road',
+        description: 'Técnicas avançadas de condução segura em terrenos irregulares e condições adversas.',
+        image: courseDirecaoDefensiva,
+        duration: '8 horas',
+        students: '300+',
+        features: ['Prática em terreno irregular', 'Técnicas de controle', 'Certificado incluso'],
+      },
+      {
+        title: 'Direção Defensiva - On Road',
+        description: 'Direção defensiva em vias públicas com foco em prevenção de acidentes e condução segura.',
+        image: courseDirecaoDefensiva,
+        duration: '8 horas',
+        students: '400+',
+        features: ['Prática em vias públicas', 'Prevenção de acidentes', 'Certificado incluso'],
+      },
+    ],
+  },
+  {
     id: 'maquinas-pesadas',
     title: 'Máquinas Pesadas',
     icon: <Cog className="w-5 h-5" />,
