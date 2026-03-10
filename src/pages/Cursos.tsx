@@ -33,6 +33,7 @@ import courseGruas from '@/assets/course-gruas.jpg';
 import courseSupervisorRigging from '@/assets/course-supervisor-rigging.jpg';
 import courseMovimentacaoCarga from '@/assets/course-movimentacao-carga.jpg';
 import courseGestaoFrotas from '@/assets/course-gestao-frotas.jpg';
+import courseDirecaoDefensiva from '@/assets/course-direcao-defensiva.jpg';
 
 interface Course {
   title: string;
