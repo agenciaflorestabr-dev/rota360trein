@@ -25,6 +25,7 @@ const Index = () => {
         <WelcomeSection />
         <ProfileSection />
         <CoursesSection />
+        <DefensiveDrivingHighlight />
         <HighlightSection />
         <AdvocacySection />
         <TrainingSection />
