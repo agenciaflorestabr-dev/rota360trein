@@ -31,7 +31,7 @@ export const DefensiveDrivingHighlight = () => {
       <div className="absolute top-10 right-10 w-40 h-40 border-2 border-primary-foreground/10 rotate-12 rounded-3xl" />
       <div className="absolute bottom-10 left-10 w-24 h-24 bg-accent/20 rounded-full blur-2xl" />
 
-      <div ref={ref} className="container-custom mx-auto relative z-10 py-20 md:py-28">
+      <div ref={ref} className="container-custom mx-auto px-4 relative z-10 py-12 md:py-28">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left - Content */}
           <motion.div
