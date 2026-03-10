@@ -34,6 +34,9 @@ import courseSupervisorRigging from '@/assets/course-supervisor-rigging.jpg';
 import courseMovimentacaoCarga from '@/assets/course-movimentacao-carga.jpg';
 import courseGestaoFrotas from '@/assets/course-gestao-frotas.jpg';
 import courseDirecaoDefensiva from '@/assets/course-direcao-defensiva.jpg';
+import courseDirecaoIncompany from '@/assets/course-direcao-incompany.jpg';
+import courseDirecaoOffroad from '@/assets/course-direcao-offroad.jpg';
+import courseDirecaoOnroad from '@/assets/course-direcao-onroad.jpg';
 
 interface Course {
   title: string;
