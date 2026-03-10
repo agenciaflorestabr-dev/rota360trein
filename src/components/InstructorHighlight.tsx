@@ -13,7 +13,7 @@ export const InstructorHighlight = () => {
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent via-secondary to-primary" />
 
       <div ref={ref} className="container-custom mx-auto px-4">
-        <div className="max-w-5xl mx-auto grid md:grid-cols-[280px_1fr] gap-10 items-center">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-[280px_1fr] gap-6 md:gap-10 items-center">
           {/* Photo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
