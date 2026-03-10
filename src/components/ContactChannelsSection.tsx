@@ -94,7 +94,7 @@ export const ContactChannelsSection = () => {
                   ? 'bg-white/20'
                   : 'bg-primary/10'
               }`}>
-                <channel.icon className={`w-7 h-7 ${
+                <channel.icon className={`w-5 h-5 md:w-7 md:h-7 ${
                   channel.highlight ? 'text-white' : 'text-primary'
                 }`} />
               </div>
