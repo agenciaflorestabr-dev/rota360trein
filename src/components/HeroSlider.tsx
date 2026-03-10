@@ -43,7 +43,7 @@ export const HeroSlider = () => {
   }, [isAutoPlaying, nextSlide]);
 
   return (
-    <section className="relative h-screen min-h-[600px] max-h-[900px] overflow-hidden">
+    <section className="relative h-[85vh] min-h-[500px] max-h-[900px] overflow-hidden">
       {/* Slides */}
       <AnimatePresence mode="wait">
         <motion.div
