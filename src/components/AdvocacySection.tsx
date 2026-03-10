@@ -93,7 +93,7 @@ export const AdvocacySection = () => {
                   {service.title}
                 </h3>
 
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                <p className="text-xs md:text-sm text-muted-foreground leading-relaxed mb-2 md:mb-4 hidden sm:block">
                   {service.description}
                 </p>
 
