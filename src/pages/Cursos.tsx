@@ -88,7 +88,7 @@ const modules: Module[] = [
       {
         title: 'Direção Defensiva - On Road',
         description: 'Direção defensiva em vias públicas com foco em prevenção de acidentes e condução segura.',
-        image: courseDirecaoDefensiva,
+        image: courseDirecaoOnroad,
         duration: '8 horas',
         students: '400+',
         features: ['Prática em vias públicas', 'Prevenção de acidentes', 'Certificado incluso'],
