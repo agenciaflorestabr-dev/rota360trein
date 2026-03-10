@@ -46,7 +46,7 @@ export const DefensiveDrivingHighlight = () => {
               </span>
             </div>
 
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl text-primary-foreground font-bold mb-6 leading-tight">
+            <h2 className="font-heading text-3xl md:text-5xl lg:text-6xl text-primary-foreground font-bold mb-4 md:mb-6 leading-tight">
               Direção<br />
               <span className="text-accent">Defensiva</span>
             </h2>
