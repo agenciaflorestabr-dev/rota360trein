@@ -172,9 +172,16 @@ const Empresa = () => {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="bg-background rounded-2xl p-8 shadow-card text-center group hover:shadow-card-hover transition-all duration-300"
                 >
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                  <motion.div
+                    className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-primary transition-all duration-300"
+                    whileHover={{ scale: 1.15, rotate: 360 }}
+                    transition={{ type: 'spring', stiffness: 200, damping: 12 }}
+                    animate={{ y: [0, -6, 0] }}
+                    // @ts-ignore
+                    transition={{ y: { duration: 2, repeat: Infinity, ease: 'easeInOut', delay: index * 0.3 } }}
+                  >
                     <value.icon className="w-8 h-8 text-primary group-hover:text-primary-foreground transition-colors" />
-                  </div>
+                  </motion.div>
                   
                   <h3 className="font-heading font-bold text-xl text-foreground mb-3">
                     {value.title}
