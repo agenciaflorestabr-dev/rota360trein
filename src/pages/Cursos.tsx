@@ -370,7 +370,7 @@ const modules: Module[] = [
   {
     id: 'emergencia',
     title: 'Emergência',
-    icon: <Siren className="w-5 h-5" />,
+    icon: <Ambulance className="w-5 h-5" />,
     description: 'Habilitação para condução de veículos de emergência',
     courses: [
       {
