@@ -175,10 +175,8 @@ const Empresa = () => {
                   <motion.div
                     className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-primary transition-all duration-300"
                     whileHover={{ scale: 1.15, rotate: 360 }}
-                    transition={{ type: 'spring', stiffness: 200, damping: 12 }}
                     animate={{ y: [0, -6, 0] }}
-                    // @ts-ignore
-                    transition={{ y: { duration: 2, repeat: Infinity, ease: 'easeInOut', delay: index * 0.3 } }}
+                    transition={{ y: { duration: 2, repeat: Infinity, ease: 'easeInOut', delay: index * 0.3 }, type: 'spring', stiffness: 200, damping: 12 }}
                   >
                     <value.icon className="w-8 h-8 text-primary group-hover:text-primary-foreground transition-colors" />
                   </motion.div>
