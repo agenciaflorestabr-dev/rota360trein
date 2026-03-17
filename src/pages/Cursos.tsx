@@ -4,7 +4,7 @@ import { WhatsAppFloat } from '@/components/WhatsAppFloat';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Phone, ArrowRight, Clock, Users, CheckCircle, Award, Cog, RefreshCw, Recycle, Flame, Bus, Siren, Smartphone, ShieldCheck } from 'lucide-react';
+import { Phone, ArrowRight, Clock, Users, CheckCircle, Award, Cog, RefreshCw, Recycle, Flame, Bus, Ambulance, Siren, Smartphone, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -370,7 +370,7 @@ const modules: Module[] = [
   {
     id: 'emergencia',
     title: 'Emergência',
-    icon: <Siren className="w-5 h-5" />,
+    icon: <Ambulance className="w-5 h-5" />,
     description: 'Habilitação para condução de veículos de emergência',
     courses: [
       {
@@ -383,12 +383,12 @@ const modules: Module[] = [
         slug: 'emergencia-formacao',
       },
       {
-        title: 'Condutor de Veículos de Emergência',
-        description: 'Capacitação completa para condução de veículos de emergência.',
+        title: 'Condutor de Ambulância - Atualização',
+        description: 'Atualização para condutores de ambulância conforme legislação vigente.',
         image: courseEmergencia,
-        duration: '50 horas',
+        duration: '16 horas',
         students: '40+',
-        features: ['Técnicas especiais', 'Legislação de trânsito', 'Aulas práticas'],
+        features: ['Atualização obrigatória', 'Legislação de trânsito', '100% EAD'],
         slug: 'emergencia-formacao',
       },
     ],
