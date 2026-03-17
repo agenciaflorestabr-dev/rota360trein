@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate, Outlet, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { 
-  LayoutDashboard, Users, UserCheck, MessageSquare, Image, Settings, LogOut, ChevronLeft 
+  LayoutDashboard, Users, UserCheck, MessageSquare, Settings, LogOut, ChevronLeft 
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -11,7 +11,7 @@ const navItems = [
   { label: 'Leads', icon: Users, path: '/admin/leads' },
   { label: 'Cadastros', icon: UserCheck, path: '/admin/cadastros' },
   { label: 'Mensagens', icon: MessageSquare, path: '/admin/mensagens' },
-  { label: 'Conteúdo', icon: Image, path: '/admin/conteudo' },
+  
   { label: 'Configurações', icon: Settings, path: '/admin/config' },
 ];
 

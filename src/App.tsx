@@ -17,7 +17,7 @@ import Dashboard from "./pages/admin/Dashboard";
 import Cadastros from "./pages/admin/Cadastros";
 import Leads from "./pages/admin/Leads";
 import Mensagens from "./pages/admin/Mensagens";
-import Conteudo from "./pages/admin/Conteudo";
+
 import Configuracoes from "./pages/admin/Configuracoes";
 import NotFound from "./pages/NotFound";
 
@@ -46,7 +46,7 @@ const App = () => (
               <Route path="leads" element={<Leads />} />
               <Route path="cadastros" element={<Cadastros />} />
               <Route path="mensagens" element={<Mensagens />} />
-              <Route path="conteudo" element={<Conteudo />} />
+              
               <Route path="config" element={<Configuracoes />} />
             </Route>
 
