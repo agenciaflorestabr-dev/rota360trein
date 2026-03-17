@@ -140,7 +140,6 @@ export const EnrollmentForm = ({ courseTitle }: EnrollmentFormProps) => {
     </>
   );
 };
-  const [agreed, setAgreed] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', whatsapp: '', city: '', state: '' });
 
