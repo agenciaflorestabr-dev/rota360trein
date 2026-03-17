@@ -46,7 +46,7 @@ const App = () => (
               <Route path="leads" element={<Leads />} />
               <Route path="cadastros" element={<Cadastros />} />
               <Route path="mensagens" element={<Mensagens />} />
-              <Route path="conteudo" element={<Conteudo />} />
+              
               <Route path="config" element={<Configuracoes />} />
             </Route>
 
