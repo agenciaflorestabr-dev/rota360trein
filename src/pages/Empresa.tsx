@@ -284,7 +284,15 @@ const Empresa = () => {
                   transition={{ duration: 0.3, delay: index * 0.05 }}
                   className="flex items-center gap-3 bg-primary-foreground/10 rounded-lg p-4"
                 >
-                  <CheckCircle2 className="w-5 h-5 text-secondary flex-shrink-0" />
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 15, delay: index * 0.06 + 0.2 }}
+                    whileHover={{ rotate: 360, scale: 1.3 }}
+                  >
+                    <CheckCircle2 className="w-5 h-5 text-secondary flex-shrink-0" />
+                  </motion.div>
                   <span className="text-sm">{differential}</span>
                 </motion.div>
               ))}
