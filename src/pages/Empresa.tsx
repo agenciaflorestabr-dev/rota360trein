@@ -127,7 +127,15 @@ const Empresa = () => {
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   className="bg-background rounded-xl p-6 shadow-card text-center"
                 >
-                  <stat.icon className="w-10 h-10 mx-auto mb-3 text-primary" />
+                  <motion.div
+                    initial={{ scale: 0, rotate: -180 }}
+                    whileInView={{ scale: 1, rotate: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ type: 'spring', stiffness: 200, damping: 15, delay: index * 0.15 + 0.2 }}
+                    whileHover={{ scale: 1.2, rotate: 10 }}
+                  >
+                    <stat.icon className="w-10 h-10 mx-auto mb-3 text-primary" />
+                  </motion.div>
                   <div className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-1">
                     {stat.value}
                   </div>
@@ -164,9 +172,14 @@ const Empresa = () => {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="bg-background rounded-2xl p-8 shadow-card text-center group hover:shadow-card-hover transition-all duration-300"
                 >
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                  <motion.div
+                    className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-primary transition-all duration-300"
+                    whileHover={{ scale: 1.15, rotate: 360 }}
+                    animate={{ y: [0, -6, 0] }}
+                    transition={{ y: { duration: 2, repeat: Infinity, ease: 'easeInOut', delay: index * 0.3 }, type: 'spring', stiffness: 200, damping: 12 }}
+                  >
                     <value.icon className="w-8 h-8 text-primary group-hover:text-primary-foreground transition-colors" />
-                  </div>
+                  </motion.div>
                   
                   <h3 className="font-heading font-bold text-xl text-foreground mb-3">
                     {value.title}
@@ -269,7 +282,15 @@ const Empresa = () => {
                   transition={{ duration: 0.3, delay: index * 0.05 }}
                   className="flex items-center gap-3 bg-primary-foreground/10 rounded-lg p-4"
                 >
-                  <CheckCircle2 className="w-5 h-5 text-secondary flex-shrink-0" />
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 15, delay: index * 0.06 + 0.2 }}
+                    whileHover={{ rotate: 360, scale: 1.3 }}
+                  >
+                    <CheckCircle2 className="w-5 h-5 text-secondary flex-shrink-0" />
+                  </motion.div>
                   <span className="text-sm">{differential}</span>
                 </motion.div>
               ))}
@@ -289,7 +310,13 @@ const Empresa = () => {
               transition={{ duration: 0.5 }}
               className="bg-background rounded-2xl p-8 md:p-12 shadow-card text-center"
             >
-              <MapPin className="w-16 h-16 mx-auto mb-6 text-primary" />
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+                whileHover={{ scale: 1.2 }}
+              >
+                <MapPin className="w-16 h-16 mx-auto mb-6 text-primary" />
+              </motion.div>
               <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4">
                 Venha nos conhecer
               </h2>
