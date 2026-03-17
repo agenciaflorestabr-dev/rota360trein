@@ -304,7 +304,13 @@ const Empresa = () => {
               transition={{ duration: 0.5 }}
               className="bg-background rounded-2xl p-8 md:p-12 shadow-card text-center"
             >
-              <MapPin className="w-16 h-16 mx-auto mb-6 text-primary" />
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+                whileHover={{ scale: 1.2 }}
+              >
+                <MapPin className="w-16 h-16 mx-auto mb-6 text-primary" />
+              </motion.div>
               <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4">
                 Venha nos conhecer
               </h2>
