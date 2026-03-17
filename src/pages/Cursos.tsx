@@ -4,7 +4,7 @@ import { WhatsAppFloat } from '@/components/WhatsAppFloat';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Phone, ArrowRight, Clock, Users, CheckCircle, Award, Cog, RefreshCw, Recycle, Flame, Bus, Siren, Smartphone, ShieldCheck } from 'lucide-react';
+import { Phone, ArrowRight, Clock, Users, CheckCircle, Award, Cog, RefreshCw, Recycle, Flame, Bus, Ambulance, Siren, Smartphone, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
