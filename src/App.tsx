@@ -17,7 +17,7 @@ import Dashboard from "./pages/admin/Dashboard";
 import Cadastros from "./pages/admin/Cadastros";
 import Leads from "./pages/admin/Leads";
 import Mensagens from "./pages/admin/Mensagens";
-import Conteudo from "./pages/admin/Conteudo";
+
 import Configuracoes from "./pages/admin/Configuracoes";
 import NotFound from "./pages/NotFound";
 
