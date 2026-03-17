@@ -357,15 +357,6 @@ const modules: Module[] = [
         features: ['Certificação MOPP', 'Validade de 5 anos', 'Aulas teóricas e práticas'],
         slug: 'mopp-formacao',
       },
-      {
-        title: 'MOPP - Atualização',
-        description: 'Renovação da certificação MOPP para condutores.',
-        image: courseMopp,
-        duration: '16 horas',
-        students: '200+',
-        features: ['Renovação rápida', 'Legislação atualizada', 'Certificado válido'],
-        slug: 'mopp-atualizacao',
-      },
     ],
   },
   {
