@@ -127,7 +127,15 @@ const Empresa = () => {
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   className="bg-background rounded-xl p-6 shadow-card text-center"
                 >
-                  <stat.icon className="w-10 h-10 mx-auto mb-3 text-primary" />
+                  <motion.div
+                    initial={{ scale: 0, rotate: -180 }}
+                    whileInView={{ scale: 1, rotate: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ type: 'spring', stiffness: 200, damping: 15, delay: index * 0.15 + 0.2 }}
+                    whileHover={{ scale: 1.2, rotate: 10 }}
+                  >
+                    <stat.icon className="w-10 h-10 mx-auto mb-3 text-primary" />
+                  </motion.div>
                   <div className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-1">
                     {stat.value}
                   </div>
