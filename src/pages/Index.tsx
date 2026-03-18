@@ -34,6 +34,7 @@ const Index = () => {
         <PartnersSection />
         <HowItWorksSection />
         <ContactChannelsSection />
+        <ContactFormSection />
       </main>
       <Footer />
       <WhatsAppFloat />
