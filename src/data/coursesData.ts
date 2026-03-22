@@ -1,4 +1,7 @@
 import courseDirecaoDefensiva from '@/assets/course-direcao-defensiva.jpg';
+import courseDirecaoIncompany from '@/assets/course-direcao-incompany.jpg';
+import courseDirecaoOffroad from '@/assets/course-direcao-offroad.jpg';
+import courseDirecaoOnroad from '@/assets/course-direcao-onroad.jpg';
 import courseMotoniveladora from '@/assets/course-motoniveladora.jpg';
 import courseTratorAgricola from '@/assets/course-trator-agricola.jpg';
 import courseTratorEsteiras from '@/assets/course-trator-esteiras.jpg';
@@ -1176,7 +1179,7 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     slug: 'direcao-defensiva-in-company',
     title: 'Direção Defensiva - In Company',
     subtitle: 'Treinamento de direção defensiva realizado diretamente na sua empresa, adaptado à realidade da sua frota e dos seus colaboradores.',
-    image: courseDirecaoDefensiva,
+    image: courseDirecaoIncompany,
     badges: ['Carro-chefe', 'In Company'],
     duration: '8 horas',
     modality: 'In Company (Presencial)',
@@ -1214,7 +1217,7 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     slug: 'direcao-defensiva-off-road',
     title: 'Direção Defensiva - Off Road',
     subtitle: 'Técnicas avançadas de condução segura em terrenos irregulares, estradas de terra e condições adversas.',
-    image: courseDirecaoDefensiva,
+    image: courseDirecaoOffroad,
     badges: ['Carro-chefe', 'Off Road'],
     duration: '8 horas',
     modality: 'Presencial',
@@ -1252,7 +1255,7 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     slug: 'direcao-defensiva-on-road',
     title: 'Direção Defensiva - On Road',
     subtitle: 'Direção defensiva em vias públicas com foco em prevenção de acidentes e condução segura no dia a dia.',
-    image: courseDirecaoDefensiva,
+    image: courseDirecaoOnroad,
     badges: ['Carro-chefe', 'On Road'],
     duration: '8 horas',
     modality: 'Presencial',
