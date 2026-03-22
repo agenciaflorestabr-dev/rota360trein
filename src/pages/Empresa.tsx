@@ -337,7 +337,7 @@ const Empresa = () => {
                     src={photo.src}
                     alt={photo.alt}
                     className="w-full h-full object-cover"
-                    loading="lazy"
+                    loading="eager"
                   />
                 </motion.div>
               ))}
