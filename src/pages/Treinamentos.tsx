@@ -341,6 +341,60 @@ const Treinamentos = () => {
           ]}
         />
 
+        {/* Vídeos de Treinamentos */}
+        <section className="section-padding bg-muted/30">
+          <div className="container-custom mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-center mb-12"
+            >
+              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect width="15" height="14" x="1" y="5" rx="2" ry="2"/></svg>
+                Vídeos
+              </div>
+              <h2 className="font-heading text-3xl md:text-4xl text-foreground font-bold mb-4">
+                Vídeos de Treinamentos Realizados
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Acompanhe registros em vídeo dos treinamentos e capacitações realizados pela Rota 360 em campo.
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              {[
+                { src: '/videos/treinamento-1.mp4', title: 'Treinamento em Campo 1' },
+                { src: '/videos/treinamento-2.mp4', title: 'Treinamento em Campo 2' },
+                { src: '/videos/treinamento-3.mp4', title: 'Treinamento em Campo 3' },
+              ].map((video, index) => (
+                <motion.div
+                  key={video.src}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.15 }}
+                  className="rounded-2xl overflow-hidden shadow-card bg-background border border-border"
+                >
+                  <div className="aspect-video">
+                    <video
+                      src={video.src}
+                      controls
+                      preload="metadata"
+                      className="w-full h-full object-cover"
+                      playsInline
+                    />
+                  </div>
+                  <div className="p-4">
+                    <p className="text-foreground font-semibold text-center">{video.title}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
 
         {/* CTA Section */}
         <section className="section-padding bg-gradient-to-r from-primary to-secondary text-primary-foreground">
