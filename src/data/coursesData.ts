@@ -1,3 +1,4 @@
+import courseDirecaoDefensiva from '@/assets/course-direcao-defensiva.jpg';
 import courseMotoniveladora from '@/assets/course-motoniveladora.jpg';
 import courseTratorAgricola from '@/assets/course-trator-agricola.jpg';
 import courseTratorEsteiras from '@/assets/course-trator-esteiras.jpg';
