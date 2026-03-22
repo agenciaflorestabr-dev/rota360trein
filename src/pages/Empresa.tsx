@@ -298,7 +298,52 @@ const Empresa = () => {
           </div>
         </section>
 
+        {/* Galeria de Fotos */}
+        <section className="section-padding bg-background">
+          <div className="container-custom mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-center mb-12"
+            >
+              <h2 className="font-heading text-3xl md:text-4xl text-foreground font-bold mb-4">
+                Nossa Equipe em Ação
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Momentos que mostram nosso compromisso com a excelência e dedicação.
+              </p>
+            </motion.div>
 
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              {[
+                { src: '/images/empresa-1.jpeg', alt: 'Equipe Rota 360' },
+                { src: '/images/empresa-2.jpeg', alt: 'Certificação e reconhecimento' },
+                { src: '/images/empresa-3.jpeg', alt: 'Prêmio SBT Cursos e Treinamentos' },
+                { src: '/images/empresa-4.jpeg', alt: 'Treinamento em campo' },
+                { src: '/images/empresa-5.jpeg', alt: 'Treinamento prático com veículos' },
+              ].map((photo, index) => (
+                <motion.div
+                  key={photo.src}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.05 }}
+                  className="rounded-xl overflow-hidden shadow-card aspect-[3/4]"
+                >
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* Location CTA */}
         <section className="section-padding bg-section-light">
