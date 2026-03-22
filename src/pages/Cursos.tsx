@@ -76,6 +76,7 @@ const modules: Module[] = [
         duration: '8 horas',
         students: '500+',
         features: ['Treinamento na empresa', 'Conteúdo personalizado', 'Certificado incluso'],
+        slug: 'direcao-defensiva-in-company',
       },
       {
         title: 'Direção Defensiva - Off Road',
@@ -84,6 +85,7 @@ const modules: Module[] = [
         duration: '8 horas',
         students: '300+',
         features: ['Prática em terreno irregular', 'Técnicas de controle', 'Certificado incluso'],
+        slug: 'direcao-defensiva-off-road',
       },
       {
         title: 'Direção Defensiva - On Road',
@@ -92,6 +94,7 @@ const modules: Module[] = [
         duration: '8 horas',
         students: '400+',
         features: ['Prática em vias públicas', 'Prevenção de acidentes', 'Certificado incluso'],
+        slug: 'direcao-defensiva-on-road',
       },
     ],
   },
