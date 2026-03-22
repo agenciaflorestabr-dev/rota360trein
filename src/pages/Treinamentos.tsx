@@ -363,7 +363,7 @@ const Treinamentos = () => {
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {[
                 { src: '/videos/treinamento-1.mp4', title: 'Treinamento em Campo 1' },
                 { src: '/videos/treinamento-2.mp4', title: 'Treinamento em Campo 2' },
@@ -377,12 +377,12 @@ const Treinamentos = () => {
                   transition={{ duration: 0.5, delay: index * 0.15 }}
                   className="rounded-2xl overflow-hidden shadow-card bg-background border border-border"
                 >
-                  <div className="aspect-video">
+                  <div className="aspect-[9/16]">
                     <video
                       src={video.src}
                       controls
                       preload="metadata"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain bg-black"
                       playsInline
                     />
                   </div>
