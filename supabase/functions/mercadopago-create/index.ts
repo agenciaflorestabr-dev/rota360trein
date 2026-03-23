@@ -31,13 +31,32 @@ serve(async (req) => {
       });
     }
 
-    const { title, price, quantity, studentName, studentEmail, studentWhatsapp, formSubmissionId } = await req.json();
+    const { title, price, slug, quantity, studentName, studentEmail, studentWhatsapp, formSubmissionId } = await req.json();
 
     if (!title || !price || !studentName || !studentEmail) {
       return new Response(JSON.stringify({ error: 'Dados obrigatórios não informados' }), {
         status: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
+    }
+
+    // Check if there's a custom price in the database
+    let finalPrice = Number(price);
+    if (slug) {
+      const { data: pricesData } = await supabase
+        .from('site_content')
+        .select('value')
+        .eq('section_key', 'course_prices')
+        .maybeSingle();
+
+      if (pricesData?.value) {
+        try {
+          const savedPrices = JSON.parse(pricesData.value);
+          if (savedPrices[slug]) {
+            finalPrice = parseFloat(savedPrices[slug]);
+          }
+        } catch {}
+      }
     }
 
     // Create payment record
@@ -48,7 +67,12 @@ serve(async (req) => {
         student_email: studentEmail,
         student_whatsapp: studentWhatsapp || null,
         course_title: title,
-        amount: price,
+        amount: finalPrice,
+        form_submission_id: formSubmissionId || null,
+        mp_status: 'pending',
+      })
+      .select('id')
+      .single();
         form_submission_id: formSubmissionId || null,
         mp_status: 'pending',
       })
