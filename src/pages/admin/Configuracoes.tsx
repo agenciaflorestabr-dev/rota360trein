@@ -174,26 +174,42 @@ const Configuracoes = () => {
   };
 
   // Mercado Pago
-  const saveMpToken = async () => {
-    if (!mpToken.trim()) { toast({ title: 'Digite o Access Token', variant: 'destructive' }); return; }
+  const saveMpCredentials = async () => {
+    if (!mpToken.trim() || !mpPublicKey.trim()) {
+      toast({ title: 'Preencha ambos os campos', description: 'Access Token e Public Key são obrigatórios.', variant: 'destructive' });
+      return;
+    }
     setMpSaving(true);
     try {
-      const { data: existing } = await supabase.from('site_content').select('id').eq('section_key', MP_TOKEN_KEY).maybeSingle();
-      if (existing) {
+      // Save Access Token
+      const { data: existingToken } = await supabase.from('site_content').select('id').eq('section_key', MP_TOKEN_KEY).maybeSingle();
+      if (existingToken) {
         await supabase.from('site_content').update({ value: mpToken }).eq('section_key', MP_TOKEN_KEY);
       } else {
         await supabase.from('site_content').insert({ section_key: MP_TOKEN_KEY, content_type: 'text', value: mpToken });
       }
+      // Save Public Key
+      const { data: existingPk } = await supabase.from('site_content').select('id').eq('section_key', MP_PUBLIC_KEY).maybeSingle();
+      if (existingPk) {
+        await supabase.from('site_content').update({ value: mpPublicKey }).eq('section_key', MP_PUBLIC_KEY);
+      } else {
+        await supabase.from('site_content').insert({ section_key: MP_PUBLIC_KEY, content_type: 'text', value: mpPublicKey });
+      }
       setMpSavedToken(mpToken);
+      setMpSavedPublicKey(mpPublicKey);
       toast({ title: '✅ Mercado Pago configurado com sucesso!' });
     } catch (error: any) {
       toast({ title: 'Erro ao salvar', description: error.message, variant: 'destructive' });
     } finally { setMpSaving(false); }
   };
 
-  const removeMpToken = async () => {
-    await supabase.from('site_content').delete().eq('section_key', MP_TOKEN_KEY);
+  const removeMpCredentials = async () => {
+    await Promise.all([
+      supabase.from('site_content').delete().eq('section_key', MP_TOKEN_KEY),
+      supabase.from('site_content').delete().eq('section_key', MP_PUBLIC_KEY),
+    ]);
     setMpToken(''); setMpSavedToken('');
+    setMpPublicKey(''); setMpSavedPublicKey('');
     toast({ title: 'Mercado Pago desconectado' });
   };
 
