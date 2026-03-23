@@ -57,6 +57,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: 'Presencial',
     certification: 'Atestado de participação + Carteirinha válida por 1 ano',
     validity: '1 ano',
+    price: 359.9,
+    installments: 12,
     targetAudience: 'Operadores de motoniveladoras e profissionais envolvidos na operação, manutenção, transporte e movimentação desses equipamentos.',
     learningTopics: [
       'Legislação aplicável e regulamentos de referência',
@@ -107,6 +109,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: 'Presencial',
     certification: 'Certificado de conclusão',
     validity: '2 anos',
+    price: 359.9,
+    installments: 12,
     targetAudience: 'Operadores de tratores agrícolas e profissionais do setor agrícola.',
     learningTopics: [
       'Legislação de segurança e saúde no trabalho (NR 11, NR 12, NR 31)',
@@ -158,6 +162,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: 'Presencial',
     certification: 'Certificado de Supervisor de Rigging',
     validity: '2 anos',
+    price: 359.9,
+    installments: 12,
     targetAudience: 'Supervisores de rigging, técnicos de segurança do trabalho (TST), engenheiros e técnicos envolvidos em operações de içamento.',
     learningTopics: [
       'Conceitos básicos e avançados de Rigging',
@@ -196,6 +202,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: 'Presencial',
     certification: 'Atestado de participação + Carteirinha válida por 1 ano',
     validity: '1 ano',
+    price: 359.9,
+    installments: 12,
     targetAudience: 'Operadores de retroescavadeiras e profissionais envolvidos na operação, manutenção, transporte e armazenagem desses equipamentos.',
     learningTopics: [
       'Legislação aplicável e regulamentos de referência',
@@ -234,6 +242,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: 'Presencial',
     certification: 'Atestado de participação + Carteirinha válida por 1 ano',
     validity: '1 ano',
+    price: 359.9,
+    installments: 12,
     targetAudience: 'Operadores de escavadeiras hidráulicas e profissionais envolvidos na operação, manutenção, transporte e movimentação desses equipamentos.',
     learningTopics: [
       'Legislação aplicável e regulamentos de referência',
@@ -272,6 +282,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: 'Presencial',
     certification: 'Atestado de participação + Carteirinha válida por 1 ano',
     validity: '1 ano',
+    price: 359.9,
+    installments: 12,
     targetAudience: 'Operadores de pás-carregadeiras e profissionais envolvidos na manutenção, transporte e movimentação das máquinas.',
     learningTopics: [
       'Legislação aplicável e regulamentos de referência',
@@ -309,6 +321,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: 'Presencial',
     certification: 'Atestado de participação comprovando a conclusão do curso e a qualificação adquirida',
     validity: '2 anos',
+    price: 359.9,
+    installments: 12,
     targetAudience: 'Operadores, supervisores e técnicos de equipamentos pesados. Engenheiros de segurança do trabalho. Profissionais envolvidos em operação, treinamento, vendas e manutenção de maquinários.',
     learningTopics: [
       'Segurança individual e proteção contra incêndios',
@@ -353,6 +367,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: 'Presencial',
     certification: 'Atestado de participação',
     validity: '2 anos',
+    price: 359.9,
+    installments: 12,
     targetAudience: 'Engenheiros e técnicos de segurança do trabalho. Engenheiros civis, gestores de obras, supervisores e gerentes. Compradores e profissionais envolvidos em obras e manutenção civis e industriais.',
     learningTopics: [
       'Definição e vantagens no uso de PEMTs',
@@ -395,6 +411,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: 'Presencial',
     certification: 'Atestado de participação + Carteirinha válida por 2 anos',
     validity: '2 anos',
+    price: 359.9,
+    installments: 12,
     targetAudience: 'Engenheiros e técnicos de segurança do trabalho. Engenheiros civis, gestores de obras, supervisores e gerentes. Compradores e profissionais envolvidos em obras e manutenção civis e industriais.',
     learningTopics: [
       'Operação de uma PEMT: manuais, modelos e limites de operação',
@@ -437,6 +455,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: 'Presencial',
     certification: 'Atestado de participação + Carteirinha de Rigger válida por 2 anos',
     validity: '2 anos',
+    price: 359.9,
+    installments: 12,
     targetAudience: 'Riggers Projetistas, Engenheiros e supervisores de rigging, Profissionais envolvidos em operações de içamento de cargas.',
     learningTopics: [
       'Fundamentos de Rigging e Segurança - Responsabilidade do Rigger Projetista',
@@ -477,6 +497,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: 'Presencial',
     certification: 'Atestado de participação',
     validity: '2 anos',
+    price: 359.9,
+    installments: 12,
     targetAudience: 'Supervisores e operadores de guindastes, gruas, pontes rolantes e pórticos. Profissionais envolvidos na movimentação e amarração de cargas.',
     learningTopics: [
       'Máquinas de Içamento – Definição, tipos, componentes e terminologia',
@@ -516,6 +538,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: 'In Company',
     certification: 'Atestado de operador de guindaste + Certificação OPC',
     validity: '2 anos',
+    price: 359.9,
+    installments: 12,
     targetAudience: 'Operadores de gruas e profissionais que desejam se capacitar como operadores de gruas.',
     learningTopics: [
       'Responsabilidade do operador de gruas e análise de causas de acidentes',
@@ -557,6 +581,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: 'Presencial',
     certification: 'Atestado de Supervisor de Rigging + Certificação OPC NBR 17089',
     validity: '2 anos',
+    price: 359.9,
+    installments: 12,
     targetAudience: 'Supervisores de rigging e profissionais envolvidos em operações de içamento de cargas.',
     learningTopics: [
       'Responsabilidade do Supervisor de rigging',
@@ -596,6 +622,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: 'Presencial',
     certification: 'Atestado de Supervisor de Rigging + Certificação OPC NBR 17089',
     validity: '2 anos',
+    price: 359.9,
+    installments: 12,
     targetAudience: 'Técnicos e Engenheiros de Segurança do Trabalho envolvidos em operações de içamento de cargas.',
     learningTopics: [
       'Responsabilidade do Supervisor de rigging',
@@ -635,6 +663,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: 'Presencial',
     certification: 'Certificado de participação emitido pelo Instituto Opus',
     validity: '2 anos',
+    price: 359.9,
+    installments: 12,
     targetAudience: 'Profissionais envolvidos no controle e manutenção de frotas. Técnicos e gestores que buscam aprimorar suas habilidades em gerenciamento de equipamentos móveis.',
     learningTopics: [
       'Gestão de Equipamentos - Atribuições e gestão do parque de máquinas',
@@ -673,7 +703,7 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: '100% EAD',
     certification: 'Certificado digital',
     validity: '5 anos',
-    price: 297,
+    price: 359.9,
     installments: 12,
     targetAudience: 'Motoristas com CNH nas categorias B, C, D ou E que desejam atuar no transporte de produtos perigosos.',
     learningTopics: [
@@ -711,8 +741,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: '100% EAD',
     certification: 'Certificado digital',
     validity: '5 anos',
-    price: 147,
-    installments: 6,
+    price: 259.9,
+    installments: 12,
     targetAudience: 'Motoristas com MOPP vencido ou próximo do vencimento que precisam renovar a certificação.',
     learningTopics: [
       'Legislação de trânsito atualizada',
@@ -746,7 +776,7 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: '100% EAD',
     certification: 'Certificado digital',
     validity: '5 anos',
-    price: 267,
+    price: 359.9,
     installments: 12,
     targetAudience: 'Motoristas com CNH categoria D ou E interessados em trabalhar com transporte coletivo.',
     learningTopics: [
@@ -784,8 +814,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: '100% EAD',
     certification: 'Certificado digital',
     validity: '5 anos',
-    price: 97,
-    installments: 6,
+    price: 259.9,
+    installments: 12,
     targetAudience: 'Motoristas de transporte coletivo que precisam renovar a certificação.',
     learningTopics: [
       'Legislação de trânsito atualizada',
@@ -819,7 +849,7 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: '100% EAD',
     certification: 'Certificado digital',
     validity: '5 anos',
-    price: 267,
+    price: 359.9,
     installments: 12,
     targetAudience: 'Motoristas com CNH categoria A, B, C, D ou E que desejam atuar com veículos de emergência.',
     learningTopics: [
@@ -857,7 +887,7 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: '100% EAD',
     certification: 'Certificado digital',
     validity: '5 anos',
-    price: 247,
+    price: 359.9,
     installments: 12,
     targetAudience: 'Motoristas que desejam trabalhar com transporte escolar.',
     learningTopics: [
@@ -895,8 +925,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: '100% EAD',
     certification: 'Certificado digital',
     validity: '5 anos',
-    price: 97,
-    installments: 6,
+    price: 259.9,
+    installments: 12,
     targetAudience: 'Motoristas de transporte escolar que precisam renovar a certificação.',
     learningTopics: [
       'Legislação atualizada de transporte escolar',
@@ -930,7 +960,7 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: '100% EAD',
     certification: 'Certificado digital',
     validity: '5 anos',
-    price: 267,
+    price: 359.9,
     installments: 12,
     targetAudience: 'Motoristas com CNH categoria C, D ou E que desejam transportar cargas indivisíveis.',
     learningTopics: [
@@ -968,8 +998,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: '100% EAD',
     certification: 'Certificado digital',
     validity: '5 anos',
-    price: 97,
-    installments: 6,
+    price: 259.9,
+    installments: 12,
     targetAudience: 'Motoristas de transporte de cargas que precisam renovar a certificação.',
     learningTopics: [
       'Legislação de trânsito atualizada',
@@ -1003,8 +1033,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: '100% EAD',
     certification: 'Certificado digital',
     validity: 'Conforme determinação',
-    price: 197,
-    installments: 6,
+    price: 259.9,
+    installments: 12,
     targetAudience: 'Motoristas suspensos, envolvidos em acidente grave ou condenados por delito de trânsito.',
     learningTopics: [
       'Legislação de trânsito atualizada',
@@ -1040,8 +1070,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: '100% EAD',
     certification: 'Certificado digital',
     validity: 'Conforme determinação',
-    price: 197,
-    installments: 6,
+    price: 259.9,
+    installments: 12,
     targetAudience: 'Motoristas com pontuação entre 30 e 39 pontos na CNH.',
     learningTopics: [
       'Legislação de trânsito atualizada',
@@ -1076,8 +1106,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: '100% EAD',
     certification: 'Certificado digital',
     validity: 'Para renovação',
-    price: 97,
-    installments: 6,
+    price: 249.9,
+    installments: 12,
     targetAudience: 'Motoristas com CNH vencida há mais de 5 anos ou obtida antes de 22/01/1998.',
     learningTopics: [
       'Direção defensiva atualizada',
@@ -1110,8 +1140,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: '100% EAD',
     certification: 'Certificado digital',
     validity: 'Permanente',
-    price: 147,
-    installments: 6,
+    price: 359.9,
+    installments: 12,
     targetAudience: 'Motoristas que desejam atuar como motoristas de aplicativos de transporte.',
     learningTopics: [
       'Relações humanas e atendimento ao passageiro',
@@ -1147,8 +1177,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: '100% EAD',
     certification: 'Certificado digital',
     validity: 'Permanente',
-    price: 147,
-    installments: 6,
+    price: 359.9,
+    installments: 12,
     targetAudience: 'Motoristas que desejam atuar como taxistas profissionais.',
     learningTopics: [
       'Relações humanas e atendimento ao passageiro',
@@ -1185,6 +1215,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: 'In Company (Presencial)',
     certification: 'Certificado de conclusão',
     validity: '1 ano',
+    price: 359.9,
+    installments: 12,
     targetAudience: 'Motoristas profissionais, colaboradores de frotas corporativas e empresas que desejam capacitar seus condutores em direção defensiva.',
     learningTopics: [
       'Conceitos fundamentais de direção defensiva',
@@ -1223,6 +1255,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: 'Presencial',
     certification: 'Certificado de conclusão',
     validity: '1 ano',
+    price: 359.9,
+    installments: 12,
     targetAudience: 'Motoristas que operam em estradas rurais, mineração, agronegócio e terrenos não pavimentados.',
     learningTopics: [
       'Direção defensiva em terrenos irregulares',
@@ -1261,6 +1295,8 @@ export const coursesDetailData: Record<string, CourseDetail> = {
     modality: 'Presencial',
     certification: 'Certificado de conclusão',
     validity: '1 ano',
+    price: 359.9,
+    installments: 12,
     targetAudience: 'Motoristas profissionais e particulares que desejam aprimorar suas técnicas de condução segura em vias urbanas e rodovias.',
     learningTopics: [
       'Princípios da direção defensiva',
