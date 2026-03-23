@@ -20,6 +20,7 @@ import Leads from "./pages/admin/Leads";
 import Mensagens from "./pages/admin/Mensagens";
 import Pagamentos from "./pages/admin/Pagamentos";
 import Configuracoes from "./pages/admin/Configuracoes";
+import Precos from "./pages/admin/Precos";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -51,6 +52,7 @@ const App = () => (
               <Route path="cadastros" element={<Cadastros />} />
               <Route path="pagamentos" element={<Pagamentos />} />
               <Route path="mensagens" element={<Mensagens />} />
+              <Route path="precos" element={<Precos />} />
               <Route path="config" element={<Configuracoes />} />
             </Route>
 

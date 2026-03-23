@@ -11,9 +11,10 @@ import { CheckCircle2, Loader2 } from 'lucide-react';
 interface EnrollmentFormProps {
   courseTitle: string;
   coursePrice?: number;
+  courseSlug?: string;
 }
 
-export const EnrollmentForm = ({ courseTitle, coursePrice }: EnrollmentFormProps) => {
+export const EnrollmentForm = ({ courseTitle, coursePrice, courseSlug }: EnrollmentFormProps) => {
   const [agreed, setAgreed] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -74,6 +75,7 @@ export const EnrollmentForm = ({ courseTitle, coursePrice }: EnrollmentFormProps
           body: {
             title: courseTitle,
             price: coursePrice,
+            slug: courseSlug,
             quantity: 1,
             studentName: formData.name,
             studentEmail: formData.email,
