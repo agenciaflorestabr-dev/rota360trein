@@ -85,6 +85,10 @@ const Configuracoes = () => {
         setMpSavedToken(mpResult.data.value);
         setMpToken(mpResult.data.value);
       }
+      if (mpPkResult.data?.value) {
+        setMpSavedPublicKey(mpPkResult.data.value);
+        setMpPublicKey(mpPkResult.data.value);
+      }
     };
     loadSaved();
     return () => { if (statusInterval.current) clearInterval(statusInterval.current); };
