@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate, Outlet, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { 
-  LayoutDashboard, Users, UserCheck, MessageSquare, Settings, LogOut, ChevronLeft 
+  LayoutDashboard, Users, UserCheck, MessageSquare, Settings, LogOut, ChevronLeft, CreditCard 
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -10,8 +10,8 @@ const navItems = [
   { label: 'Dashboard', icon: LayoutDashboard, path: '/admin' },
   { label: 'Leads', icon: Users, path: '/admin/leads' },
   { label: 'Cadastros', icon: UserCheck, path: '/admin/cadastros' },
+  { label: 'Pagamentos', icon: CreditCard, path: '/admin/pagamentos' },
   { label: 'Mensagens', icon: MessageSquare, path: '/admin/mensagens' },
-  
   { label: 'Configurações', icon: Settings, path: '/admin/config' },
 ];
 
@@ -46,7 +46,6 @@ const AdminLayout = () => {
 
   return (
     <div className="min-h-screen flex bg-muted">
-      {/* Sidebar */}
       <aside className="w-64 bg-card border-r border-border flex flex-col">
         <div className="p-4 border-b border-border">
           <Link to="/" className="flex items-center gap-2 text-muted-foreground hover:text-foreground text-sm">
@@ -82,7 +81,6 @@ const AdminLayout = () => {
         </div>
       </aside>
 
-      {/* Main content */}
       <main className="flex-1 overflow-auto">
         <Outlet />
       </main>

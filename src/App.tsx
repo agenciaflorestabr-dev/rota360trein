@@ -11,13 +11,14 @@ import Treinamentos from "./pages/Treinamentos";
 import Empresa from "./pages/Empresa";
 import Cadastro from "./pages/Cadastro";
 import CursoDetalhe from "./pages/CursoDetalhe";
+import PagamentoStatus from "./pages/PagamentoStatus";
 import AdminLogin from "./pages/AdminLogin";
 import AdminLayout from "./components/AdminLayout";
 import Dashboard from "./pages/admin/Dashboard";
 import Cadastros from "./pages/admin/Cadastros";
 import Leads from "./pages/admin/Leads";
 import Mensagens from "./pages/admin/Mensagens";
-
+import Pagamentos from "./pages/admin/Pagamentos";
 import Configuracoes from "./pages/admin/Configuracoes";
 import NotFound from "./pages/NotFound";
 
@@ -38,6 +39,9 @@ const App = () => (
             <Route path="/empresa" element={<Empresa />} />
             <Route path="/curso/:slug" element={<CursoDetalhe />} />
             <Route path="/cadastro" element={<Cadastro />} />
+            <Route path="/pagamento/sucesso" element={<PagamentoStatus />} />
+            <Route path="/pagamento/erro" element={<PagamentoStatus />} />
+            <Route path="/pagamento/pendente" element={<PagamentoStatus />} />
             
             {/* Admin routes */}
             <Route path="/admin/login" element={<AdminLogin />} />
@@ -45,12 +49,11 @@ const App = () => (
               <Route index element={<Dashboard />} />
               <Route path="leads" element={<Leads />} />
               <Route path="cadastros" element={<Cadastros />} />
+              <Route path="pagamentos" element={<Pagamentos />} />
               <Route path="mensagens" element={<Mensagens />} />
-              
               <Route path="config" element={<Configuracoes />} />
             </Route>
 
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
