@@ -192,7 +192,7 @@ const CursoDetalhe = () => {
           </div>
           
           <div className="container-custom mx-auto max-w-xl">
-            <EnrollmentForm courseTitle={course.title} coursePrice={dynamicPrice} />
+            <EnrollmentForm courseTitle={course.title} coursePrice={dynamicPrice} courseSlug={slug} />
           </div>
         </section>
       </main>
