@@ -110,6 +110,68 @@ export type Database = {
         }
         Relationships: []
       }
+      payments: {
+        Row: {
+          amount: number
+          course_title: string
+          created_at: string
+          form_submission_id: string | null
+          id: string
+          mp_payment_id: string | null
+          mp_preference_id: string | null
+          mp_status: string
+          mp_status_detail: string | null
+          paid_at: string | null
+          payment_method: string | null
+          student_email: string
+          student_name: string
+          student_whatsapp: string | null
+          updated_at: string
+        }
+        Insert: {
+          amount: number
+          course_title: string
+          created_at?: string
+          form_submission_id?: string | null
+          id?: string
+          mp_payment_id?: string | null
+          mp_preference_id?: string | null
+          mp_status?: string
+          mp_status_detail?: string | null
+          paid_at?: string | null
+          payment_method?: string | null
+          student_email: string
+          student_name: string
+          student_whatsapp?: string | null
+          updated_at?: string
+        }
+        Update: {
+          amount?: number
+          course_title?: string
+          created_at?: string
+          form_submission_id?: string | null
+          id?: string
+          mp_payment_id?: string | null
+          mp_preference_id?: string | null
+          mp_status?: string
+          mp_status_detail?: string | null
+          paid_at?: string | null
+          payment_method?: string | null
+          student_email?: string
+          student_name?: string
+          student_whatsapp?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_form_submission_id_fkey"
+            columns: ["form_submission_id"]
+            isOneToOne: false
+            referencedRelation: "form_submissions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
