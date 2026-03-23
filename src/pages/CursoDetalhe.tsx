@@ -9,10 +9,13 @@ import { Clock, Monitor, Award, CalendarCheck, CheckCircle, ChevronRight, BookOp
 import { coursesDetailData } from '@/data/coursesData';
 import { EnrollmentForm } from '@/components/EnrollmentForm';
 import { CourseSidebar } from '@/components/CourseSidebar';
+import { useCoursePrices } from '@/hooks/useCoursePrices';
 
 const CursoDetalhe = () => {
   const { slug } = useParams<{ slug: string }>();
   const course = slug ? coursesDetailData[slug] : undefined;
+  const { getPrice } = useCoursePrices();
+  const dynamicPrice = slug && course ? getPrice(slug, course.price) : course?.price;
 
   if (!course) {
     return (
