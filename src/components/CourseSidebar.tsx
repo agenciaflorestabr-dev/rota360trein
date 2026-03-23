@@ -1,4 +1,4 @@
-import { CheckCircle, Phone } from 'lucide-react';
+import { CheckCircle, Phone, CreditCard, QrCode } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { CourseDetail } from '@/data/coursesData';
 
@@ -35,6 +35,27 @@ export const CourseSidebar = ({ course }: CourseSidebarProps) => {
           </div>
         )}
 
+        {/* Formas de pagamento */}
+        <div className="border-t border-border pt-4">
+          <p className="text-xs font-semibold text-foreground mb-3">Formas de pagamento</p>
+          <div className="grid grid-cols-2 gap-2">
+            <div className="flex items-center gap-2 bg-muted/50 rounded-lg p-2.5">
+              <QrCode className="w-5 h-5 text-primary flex-shrink-0" />
+              <div>
+                <p className="text-xs font-semibold text-foreground">PIX</p>
+                <p className="text-[10px] text-muted-foreground">À vista</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 bg-muted/50 rounded-lg p-2.5">
+              <CreditCard className="w-5 h-5 text-primary flex-shrink-0" />
+              <div>
+                <p className="text-xs font-semibold text-foreground">Cartão</p>
+                <p className="text-[10px] text-muted-foreground">Até 10x</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="space-y-2 text-sm">
           <div className="flex items-center gap-2 text-secondary">
             <CheckCircle className="w-4 h-4" />
@@ -62,7 +83,7 @@ export const CourseSidebar = ({ course }: CourseSidebarProps) => {
 
         {course.price && (
           <p className="text-xs text-center text-muted-foreground">
-            🔒 Pagamento seguro via Stripe
+            🔒 Pagamento seguro
           </p>
         )}
       </div>
