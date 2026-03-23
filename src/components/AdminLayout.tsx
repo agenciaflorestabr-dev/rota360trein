@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate, Outlet, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { 
-  LayoutDashboard, Users, UserCheck, MessageSquare, Settings, LogOut, ChevronLeft, CreditCard 
+  LayoutDashboard, Users, UserCheck, MessageSquare, Settings, LogOut, ChevronLeft, CreditCard, Tag 
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -11,6 +11,7 @@ const navItems = [
   { label: 'Leads', icon: Users, path: '/admin/leads' },
   { label: 'Cadastros', icon: UserCheck, path: '/admin/cadastros' },
   { label: 'Pagamentos', icon: CreditCard, path: '/admin/pagamentos' },
+  { label: 'Preços', icon: Tag, path: '/admin/precos' },
   { label: 'Mensagens', icon: MessageSquare, path: '/admin/mensagens' },
   { label: 'Configurações', icon: Settings, path: '/admin/config' },
 ];
