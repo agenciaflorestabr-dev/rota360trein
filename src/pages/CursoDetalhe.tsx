@@ -171,7 +171,7 @@ const CursoDetalhe = () => {
               </div>
 
               {/* Sidebar */}
-              <CourseSidebar course={course} />
+              <CourseSidebar course={{ ...course, price: dynamicPrice }} />
             </div>
           </div>
         </section>
@@ -192,7 +192,7 @@ const CursoDetalhe = () => {
           </div>
           
           <div className="container-custom mx-auto max-w-xl">
-            <EnrollmentForm courseTitle={course.title} coursePrice={course.price} />
+            <EnrollmentForm courseTitle={course.title} coursePrice={dynamicPrice} />
           </div>
         </section>
       </main>
