@@ -11,6 +11,7 @@ import { supabase } from '@/integrations/supabase/client';
 
 const INSTANCE_KEY = 'evolution_instance_name';
 const MP_TOKEN_KEY = 'mercadopago_access_token';
+const MP_PUBLIC_KEY = 'mercadopago_public_key';
 
 const Configuracoes = () => {
   // Evolution API state
