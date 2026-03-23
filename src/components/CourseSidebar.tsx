@@ -1,12 +1,17 @@
+import { useState } from 'react';
 import { CheckCircle, Phone, CreditCard, QrCode } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { EnrollmentDialog } from '@/components/EnrollmentDialog';
 import type { CourseDetail } from '@/data/coursesData';
 
 interface CourseSidebarProps {
   course: CourseDetail;
+  courseSlug?: string;
 }
 
-export const CourseSidebar = ({ course }: CourseSidebarProps) => {
+export const CourseSidebar = ({ course, courseSlug }: CourseSidebarProps) => {
+  const [enrollOpen, setEnrollOpen] = useState(false);
+
   const installmentValue = course.price && course.installments 
     ? (course.price / course.installments).toFixed(2).replace('.', ',')
     : null;
@@ -35,7 +40,6 @@ export const CourseSidebar = ({ course }: CourseSidebarProps) => {
           </div>
         )}
 
-        {/* Formas de pagamento */}
         <div className="border-t border-border pt-4">
           <p className="text-xs font-semibold text-foreground mb-3">Formas de pagamento</p>
           <div className="grid grid-cols-2 gap-2">
@@ -71,14 +75,9 @@ export const CourseSidebar = ({ course }: CourseSidebarProps) => {
           </div>
         </div>
 
-        <Button variant="whatsapp" size="xl" className="w-full gap-2" asChild>
-          <a href="#matricula" onClick={(e) => {
-            e.preventDefault();
-            document.querySelector('.enrollment-form')?.scrollIntoView({ behavior: 'smooth' });
-          }}>
-            <Phone className="w-5 h-5" />
-            Preencher dados para matrícula
-          </a>
+        <Button variant="whatsapp" size="xl" className="w-full gap-2" onClick={() => setEnrollOpen(true)}>
+          <Phone className="w-5 h-5" />
+          Preencher dados para matrícula
         </Button>
 
         {course.price && (
@@ -87,6 +86,14 @@ export const CourseSidebar = ({ course }: CourseSidebarProps) => {
           </p>
         )}
       </div>
+
+      <EnrollmentDialog
+        open={enrollOpen}
+        onOpenChange={setEnrollOpen}
+        courseTitle={course.title}
+        coursePrice={course.price}
+        courseSlug={courseSlug}
+      />
     </div>
   );
 };

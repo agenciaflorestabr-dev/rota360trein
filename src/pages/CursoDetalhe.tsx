@@ -7,7 +7,6 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { motion } from 'framer-motion';
 import { Clock, Monitor, Award, CalendarCheck, CheckCircle, ChevronRight, BookOpen, Phone } from 'lucide-react';
 import { coursesDetailData } from '@/data/coursesData';
-import { EnrollmentForm } from '@/components/EnrollmentForm';
 import { CourseSidebar } from '@/components/CourseSidebar';
 import { useCoursePrices } from '@/hooks/useCoursePrices';
 
@@ -171,30 +170,12 @@ const CursoDetalhe = () => {
               </div>
 
               {/* Sidebar */}
-              <CourseSidebar course={{ ...course, price: dynamicPrice }} />
+              <CourseSidebar course={{ ...course, price: dynamicPrice }} courseSlug={slug} />
             </div>
           </div>
         </section>
 
-        {/* Enrollment CTA */}
-        <section className="section-padding bg-primary text-primary-foreground">
-          <div className="container-custom mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Matricule-se agora</h2>
-              <p className="text-lg opacity-90 mb-8 max-w-2xl mx-auto">
-                Preencha seus dados para prosseguir com a matrícula
-              </p>
-            </motion.div>
-          </div>
-          
-          <div className="container-custom mx-auto max-w-xl">
-            <EnrollmentForm courseTitle={course.title} coursePrice={dynamicPrice} courseSlug={slug} />
-          </div>
-        </section>
+        {/* Removed inline enrollment form — now handled via popup in sidebar */}
       </main>
       <Footer />
       <WhatsAppFloat />
