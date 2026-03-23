@@ -73,11 +73,6 @@ serve(async (req) => {
       })
       .select('id')
       .single();
-        form_submission_id: formSubmissionId || null,
-        mp_status: 'pending',
-      })
-      .select('id')
-      .single();
 
     if (paymentError) {
       console.error('Error creating payment:', paymentError);
