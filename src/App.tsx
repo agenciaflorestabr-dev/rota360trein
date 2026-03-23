@@ -20,6 +20,7 @@ import Leads from "./pages/admin/Leads";
 import Mensagens from "./pages/admin/Mensagens";
 import Pagamentos from "./pages/admin/Pagamentos";
 import Configuracoes from "./pages/admin/Configuracoes";
+import Precos from "./pages/admin/Precos";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
