@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { DollarSign, Search, Eye, Download, CheckCircle2, Clock, XCircle } from 'lucide-react';
@@ -32,15 +33,16 @@ const statusMap: Record<string, { label: string; variant: 'default' | 'secondary
   refunded: { label: 'Reembolsado', variant: 'outline', icon: XCircle },
 };
 
+type FilterTab = 'all' | 'approved' | 'pending';
+
 const Pagamentos = () => {
   const [payments, setPayments] = useState<Payment[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [selectedPayment, setSelectedPayment] = useState<Payment | null>(null);
+  const [activeTab, setActiveTab] = useState<FilterTab>('all');
 
-  useEffect(() => {
-    fetchPayments();
-  }, []);
+  useEffect(() => { fetchPayments(); }, []);
 
   const fetchPayments = async () => {
     setLoading(true);
@@ -48,18 +50,21 @@ const Pagamentos = () => {
       .from('payments')
       .select('*')
       .order('created_at', { ascending: false });
-
-    if (!error && data) {
-      setPayments(data as Payment[]);
-    }
+    if (!error && data) setPayments(data as Payment[]);
     setLoading(false);
   };
 
-  const filtered = payments.filter(p =>
-    p.student_name.toLowerCase().includes(search.toLowerCase()) ||
-    p.student_email.toLowerCase().includes(search.toLowerCase()) ||
-    p.course_title.toLowerCase().includes(search.toLowerCase())
-  );
+  const filtered = payments
+    .filter(p => {
+      if (activeTab === 'approved') return p.mp_status === 'approved';
+      if (activeTab === 'pending') return p.mp_status === 'pending' || p.mp_status === 'in_process';
+      return true;
+    })
+    .filter(p =>
+      p.student_name.toLowerCase().includes(search.toLowerCase()) ||
+      p.student_email.toLowerCase().includes(search.toLowerCase()) ||
+      p.course_title.toLowerCase().includes(search.toLowerCase())
+    );
 
   const approvedCount = payments.filter(p => p.mp_status === 'approved').length;
   const pendingCount = payments.filter(p => p.mp_status === 'pending' || p.mp_status === 'in_process').length;
@@ -91,6 +96,7 @@ const Pagamentos = () => {
         <p className="text-muted-foreground text-sm">Matrículas pagas via Mercado Pago</p>
       </div>
 
+      {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <Card>
           <CardContent className="p-4 flex items-center gap-3">
@@ -103,7 +109,7 @@ const Pagamentos = () => {
             </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="cursor-pointer hover:ring-2 ring-primary/30 transition-all" onClick={() => setActiveTab('approved')}>
           <CardContent className="p-4 flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
               <CheckCircle2 className="w-5 h-5 text-primary" />
@@ -114,7 +120,7 @@ const Pagamentos = () => {
             </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="cursor-pointer hover:ring-2 ring-yellow-500/30 transition-all" onClick={() => setActiveTab('pending')}>
           <CardContent className="p-4 flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-yellow-500/10 flex items-center justify-center">
               <Clock className="w-5 h-5 text-yellow-600" />
@@ -127,18 +133,28 @@ const Pagamentos = () => {
         </Card>
       </div>
 
+      {/* Table */}
       <Card>
-        <CardHeader className="flex flex-row items-center justify-between pb-4">
-          <CardTitle className="text-lg">Lista de Pagamentos</CardTitle>
-          <div className="flex items-center gap-2">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input placeholder="Buscar..." value={search} onChange={e => setSearch(e.target.value)} className="pl-9 w-64" />
+        <CardHeader className="pb-4 space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <CardTitle className="text-lg">Lista de Pagamentos</CardTitle>
+            <div className="flex items-center gap-2">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input placeholder="Buscar..." value={search} onChange={e => setSearch(e.target.value)} className="pl-9 w-64" />
+              </div>
+              <Button variant="outline" size="sm" onClick={exportCSV} className="gap-2">
+                <Download className="w-4 h-4" /> CSV
+              </Button>
             </div>
-            <Button variant="outline" size="sm" onClick={exportCSV} className="gap-2">
-              <Download className="w-4 h-4" /> CSV
-            </Button>
           </div>
+          <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as FilterTab)}>
+            <TabsList>
+              <TabsTrigger value="all">Todos ({payments.length})</TabsTrigger>
+              <TabsTrigger value="approved">Aprovados ({approvedCount})</TabsTrigger>
+              <TabsTrigger value="pending">Pendentes ({pendingCount})</TabsTrigger>
+            </TabsList>
+          </Tabs>
         </CardHeader>
         <CardContent>
           {loading ? (
@@ -193,6 +209,7 @@ const Pagamentos = () => {
         </CardContent>
       </Card>
 
+      {/* Detail Dialog */}
       <Dialog open={!!selectedPayment} onOpenChange={() => setSelectedPayment(null)}>
         <DialogContent className="sm:max-w-lg">
           <DialogHeader>
@@ -207,7 +224,7 @@ const Pagamentos = () => {
                 <div><p className="text-xs text-muted-foreground">Curso</p><p className="font-medium">{selectedPayment.course_title}</p></div>
                 <div><p className="text-xs text-muted-foreground">Valor</p><p className="font-medium">R$ {Number(selectedPayment.amount).toFixed(2).replace('.', ',')}</p></div>
                 <div><p className="text-xs text-muted-foreground">Método</p><p className="font-medium">{selectedPayment.payment_method || '—'}</p></div>
-                <div><p className="text-xs text-muted-foreground">Status MP</p><p className="font-medium">{selectedPayment.mp_status}</p></div>
+                <div><p className="text-xs text-muted-foreground">Status</p><p className="font-medium">{statusMap[selectedPayment.mp_status]?.label || selectedPayment.mp_status}</p></div>
                 <div><p className="text-xs text-muted-foreground">Detalhe</p><p className="font-medium">{selectedPayment.mp_status_detail || '—'}</p></div>
                 <div><p className="text-xs text-muted-foreground">ID Pagamento MP</p><p className="font-medium text-xs">{selectedPayment.mp_payment_id || '—'}</p></div>
                 <div><p className="text-xs text-muted-foreground">Data Pagamento</p><p className="font-medium">{selectedPayment.paid_at ? formatDate(selectedPayment.paid_at) : '—'}</p></div>
