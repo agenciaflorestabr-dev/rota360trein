@@ -229,7 +229,7 @@ const Configuracoes = () => {
 
         {/* Mercado Pago Tab */}
         <TabsContent value="mercadopago" className="space-y-4">
-          {mpSavedToken ? (
+          {mpSavedToken && mpSavedPublicKey ? (
             <Card className="border-green-500/30 bg-green-500/5">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-green-600">
@@ -239,22 +239,32 @@ const Configuracoes = () => {
                 <CardDescription>Sua conta do Mercado Pago está configurada para receber pagamentos</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="bg-background rounded-lg p-4 border">
-                  <p className="text-xs text-muted-foreground mb-1">Access Token</p>
-                  <div className="flex items-center gap-2">
-                    <p className="font-mono text-sm text-foreground flex-1">
-                      {mpShowToken ? mpSavedToken : `${'•'.repeat(20)}...${mpSavedToken.slice(-8)}`}
-                    </p>
-                    <Button variant="ghost" size="icon" onClick={() => setMpShowToken(!mpShowToken)}>
-                      {mpShowToken ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                    </Button>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="bg-background rounded-lg p-4 border">
+                    <p className="text-xs text-muted-foreground mb-1">Access Token</p>
+                    <div className="flex items-center gap-2">
+                      <p className="font-mono text-sm text-foreground flex-1">
+                        {mpShowToken ? mpSavedToken : `${'•'.repeat(12)}...${mpSavedToken.slice(-8)}`}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="bg-background rounded-lg p-4 border">
+                    <p className="text-xs text-muted-foreground mb-1">Public Key</p>
+                    <div className="flex items-center gap-2">
+                      <p className="font-mono text-sm text-foreground flex-1">
+                        {mpShowToken ? mpSavedPublicKey : `${'•'.repeat(12)}...${mpSavedPublicKey.slice(-8)}`}
+                      </p>
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
                   <Badge className="bg-green-500 text-white"><CheckCircle2 className="w-3 h-3 mr-1" /> Ativo</Badge>
+                  <Button variant="ghost" size="icon" onClick={() => setMpShowToken(!mpShowToken)}>
+                    {mpShowToken ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </Button>
                 </div>
                 <div className="flex gap-2 pt-2">
-                  <Button variant="destructive" size="sm" onClick={removeMpToken} className="gap-2">
+                  <Button variant="destructive" size="sm" onClick={removeMpCredentials} className="gap-2">
                     <XCircle className="w-4 h-4" /> Desconectar
                   </Button>
                 </div>
@@ -268,7 +278,7 @@ const Configuracoes = () => {
                   Configurar Mercado Pago
                 </CardTitle>
                 <CardDescription>
-                  Insira seu Access Token de produção do Mercado Pago para habilitar pagamentos online.
+                  Insira suas credenciais de produção do Mercado Pago para habilitar pagamentos online.
                   Encontre em: <a href="https://www.mercadopago.com.br/developers/panel/app" target="_blank" rel="noopener" className="underline text-primary">Painel do Desenvolvedor</a> → Suas integrações → Credenciais de produção.
                 </CardDescription>
               </CardHeader>
@@ -284,8 +294,19 @@ const Configuracoes = () => {
                   />
                   <p className="text-xs text-muted-foreground mt-1">O token começa com APP_USR-</p>
                 </div>
+                <div>
+                  <Label>Public Key (Produção)</Label>
+                  <Input
+                    value={mpPublicKey}
+                    onChange={e => setMpPublicKey(e.target.value)}
+                    placeholder="APP_USR-XXXX..."
+                    type={mpShowToken ? 'text' : 'password'}
+                    disabled={mpSaving}
+                  />
+                  <p className="text-xs text-muted-foreground mt-1">A chave pública começa com APP_USR-</p>
+                </div>
                 <div className="flex gap-2">
-                  <Button onClick={saveMpToken} disabled={mpSaving} className="gap-2">
+                  <Button onClick={saveMpCredentials} disabled={mpSaving} className="gap-2">
                     {mpSaving ? <RefreshCw className="w-4 h-4 animate-spin" /> : <CreditCard className="w-4 h-4" />}
                     {mpSaving ? 'Salvando...' : 'Salvar e Ativar'}
                   </Button>
