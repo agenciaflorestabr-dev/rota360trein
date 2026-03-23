@@ -58,9 +58,10 @@ const Configuracoes = () => {
   // Load saved data
   useEffect(() => {
     const loadSaved = async () => {
-      const [instanceResult, mpResult] = await Promise.all([
+      const [instanceResult, mpResult, mpPkResult] = await Promise.all([
         supabase.from('site_content').select('value').eq('section_key', INSTANCE_KEY).maybeSingle(),
         supabase.from('site_content').select('value').eq('section_key', MP_TOKEN_KEY).maybeSingle(),
+        supabase.from('site_content').select('value').eq('section_key', MP_PUBLIC_KEY).maybeSingle(),
       ]);
 
       if (instanceResult.data?.value) {
