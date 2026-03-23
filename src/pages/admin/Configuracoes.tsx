@@ -26,7 +26,9 @@ const Configuracoes = () => {
 
   // Mercado Pago state
   const [mpToken, setMpToken] = useState('');
+  const [mpPublicKey, setMpPublicKey] = useState('');
   const [mpSavedToken, setMpSavedToken] = useState('');
+  const [mpSavedPublicKey, setMpSavedPublicKey] = useState('');
   const [mpSaving, setMpSaving] = useState(false);
   const [mpShowToken, setMpShowToken] = useState(false);
 
