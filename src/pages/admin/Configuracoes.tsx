@@ -11,6 +11,7 @@ import { supabase } from '@/integrations/supabase/client';
 
 const INSTANCE_KEY = 'evolution_instance_name';
 const MP_TOKEN_KEY = 'mercadopago_access_token';
+const MP_PUBLIC_KEY = 'mercadopago_public_key';
 
 const Configuracoes = () => {
   // Evolution API state
@@ -25,7 +26,9 @@ const Configuracoes = () => {
 
   // Mercado Pago state
   const [mpToken, setMpToken] = useState('');
+  const [mpPublicKey, setMpPublicKey] = useState('');
   const [mpSavedToken, setMpSavedToken] = useState('');
+  const [mpSavedPublicKey, setMpSavedPublicKey] = useState('');
   const [mpSaving, setMpSaving] = useState(false);
   const [mpShowToken, setMpShowToken] = useState(false);
 
@@ -55,9 +58,10 @@ const Configuracoes = () => {
   // Load saved data
   useEffect(() => {
     const loadSaved = async () => {
-      const [instanceResult, mpResult] = await Promise.all([
+      const [instanceResult, mpResult, mpPkResult] = await Promise.all([
         supabase.from('site_content').select('value').eq('section_key', INSTANCE_KEY).maybeSingle(),
         supabase.from('site_content').select('value').eq('section_key', MP_TOKEN_KEY).maybeSingle(),
+        supabase.from('site_content').select('value').eq('section_key', MP_PUBLIC_KEY).maybeSingle(),
       ]);
 
       if (instanceResult.data?.value) {
@@ -80,6 +84,10 @@ const Configuracoes = () => {
       if (mpResult.data?.value) {
         setMpSavedToken(mpResult.data.value);
         setMpToken(mpResult.data.value);
+      }
+      if (mpPkResult.data?.value) {
+        setMpSavedPublicKey(mpPkResult.data.value);
+        setMpPublicKey(mpPkResult.data.value);
       }
     };
     loadSaved();
@@ -166,26 +174,42 @@ const Configuracoes = () => {
   };
 
   // Mercado Pago
-  const saveMpToken = async () => {
-    if (!mpToken.trim()) { toast({ title: 'Digite o Access Token', variant: 'destructive' }); return; }
+  const saveMpCredentials = async () => {
+    if (!mpToken.trim() || !mpPublicKey.trim()) {
+      toast({ title: 'Preencha ambos os campos', description: 'Access Token e Public Key são obrigatórios.', variant: 'destructive' });
+      return;
+    }
     setMpSaving(true);
     try {
-      const { data: existing } = await supabase.from('site_content').select('id').eq('section_key', MP_TOKEN_KEY).maybeSingle();
-      if (existing) {
+      // Save Access Token
+      const { data: existingToken } = await supabase.from('site_content').select('id').eq('section_key', MP_TOKEN_KEY).maybeSingle();
+      if (existingToken) {
         await supabase.from('site_content').update({ value: mpToken }).eq('section_key', MP_TOKEN_KEY);
       } else {
         await supabase.from('site_content').insert({ section_key: MP_TOKEN_KEY, content_type: 'text', value: mpToken });
       }
+      // Save Public Key
+      const { data: existingPk } = await supabase.from('site_content').select('id').eq('section_key', MP_PUBLIC_KEY).maybeSingle();
+      if (existingPk) {
+        await supabase.from('site_content').update({ value: mpPublicKey }).eq('section_key', MP_PUBLIC_KEY);
+      } else {
+        await supabase.from('site_content').insert({ section_key: MP_PUBLIC_KEY, content_type: 'text', value: mpPublicKey });
+      }
       setMpSavedToken(mpToken);
+      setMpSavedPublicKey(mpPublicKey);
       toast({ title: '✅ Mercado Pago configurado com sucesso!' });
     } catch (error: any) {
       toast({ title: 'Erro ao salvar', description: error.message, variant: 'destructive' });
     } finally { setMpSaving(false); }
   };
 
-  const removeMpToken = async () => {
-    await supabase.from('site_content').delete().eq('section_key', MP_TOKEN_KEY);
+  const removeMpCredentials = async () => {
+    await Promise.all([
+      supabase.from('site_content').delete().eq('section_key', MP_TOKEN_KEY),
+      supabase.from('site_content').delete().eq('section_key', MP_PUBLIC_KEY),
+    ]);
     setMpToken(''); setMpSavedToken('');
+    setMpPublicKey(''); setMpSavedPublicKey('');
     toast({ title: 'Mercado Pago desconectado' });
   };
 
@@ -205,7 +229,7 @@ const Configuracoes = () => {
 
         {/* Mercado Pago Tab */}
         <TabsContent value="mercadopago" className="space-y-4">
-          {mpSavedToken ? (
+          {mpSavedToken && mpSavedPublicKey ? (
             <Card className="border-green-500/30 bg-green-500/5">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-green-600">
@@ -215,22 +239,32 @@ const Configuracoes = () => {
                 <CardDescription>Sua conta do Mercado Pago está configurada para receber pagamentos</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="bg-background rounded-lg p-4 border">
-                  <p className="text-xs text-muted-foreground mb-1">Access Token</p>
-                  <div className="flex items-center gap-2">
-                    <p className="font-mono text-sm text-foreground flex-1">
-                      {mpShowToken ? mpSavedToken : `${'•'.repeat(20)}...${mpSavedToken.slice(-8)}`}
-                    </p>
-                    <Button variant="ghost" size="icon" onClick={() => setMpShowToken(!mpShowToken)}>
-                      {mpShowToken ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                    </Button>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="bg-background rounded-lg p-4 border">
+                    <p className="text-xs text-muted-foreground mb-1">Access Token</p>
+                    <div className="flex items-center gap-2">
+                      <p className="font-mono text-sm text-foreground flex-1">
+                        {mpShowToken ? mpSavedToken : `${'•'.repeat(12)}...${mpSavedToken.slice(-8)}`}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="bg-background rounded-lg p-4 border">
+                    <p className="text-xs text-muted-foreground mb-1">Public Key</p>
+                    <div className="flex items-center gap-2">
+                      <p className="font-mono text-sm text-foreground flex-1">
+                        {mpShowToken ? mpSavedPublicKey : `${'•'.repeat(12)}...${mpSavedPublicKey.slice(-8)}`}
+                      </p>
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
                   <Badge className="bg-green-500 text-white"><CheckCircle2 className="w-3 h-3 mr-1" /> Ativo</Badge>
+                  <Button variant="ghost" size="icon" onClick={() => setMpShowToken(!mpShowToken)}>
+                    {mpShowToken ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </Button>
                 </div>
                 <div className="flex gap-2 pt-2">
-                  <Button variant="destructive" size="sm" onClick={removeMpToken} className="gap-2">
+                  <Button variant="destructive" size="sm" onClick={removeMpCredentials} className="gap-2">
                     <XCircle className="w-4 h-4" /> Desconectar
                   </Button>
                 </div>
@@ -244,7 +278,7 @@ const Configuracoes = () => {
                   Configurar Mercado Pago
                 </CardTitle>
                 <CardDescription>
-                  Insira seu Access Token de produção do Mercado Pago para habilitar pagamentos online.
+                  Insira suas credenciais de produção do Mercado Pago para habilitar pagamentos online.
                   Encontre em: <a href="https://www.mercadopago.com.br/developers/panel/app" target="_blank" rel="noopener" className="underline text-primary">Painel do Desenvolvedor</a> → Suas integrações → Credenciais de produção.
                 </CardDescription>
               </CardHeader>
@@ -260,8 +294,19 @@ const Configuracoes = () => {
                   />
                   <p className="text-xs text-muted-foreground mt-1">O token começa com APP_USR-</p>
                 </div>
+                <div>
+                  <Label>Public Key (Produção)</Label>
+                  <Input
+                    value={mpPublicKey}
+                    onChange={e => setMpPublicKey(e.target.value)}
+                    placeholder="APP_USR-XXXX..."
+                    type={mpShowToken ? 'text' : 'password'}
+                    disabled={mpSaving}
+                  />
+                  <p className="text-xs text-muted-foreground mt-1">A chave pública começa com APP_USR-</p>
+                </div>
                 <div className="flex gap-2">
-                  <Button onClick={saveMpToken} disabled={mpSaving} className="gap-2">
+                  <Button onClick={saveMpCredentials} disabled={mpSaving} className="gap-2">
                     {mpSaving ? <RefreshCw className="w-4 h-4 animate-spin" /> : <CreditCard className="w-4 h-4" />}
                     {mpSaving ? 'Salvando...' : 'Salvar e Ativar'}
                   </Button>
