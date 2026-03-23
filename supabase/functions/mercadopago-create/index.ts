@@ -102,7 +102,7 @@ serve(async (req) => {
           {
             title,
             quantity: quantity || 1,
-            unit_price: Number(price),
+            unit_price: finalPrice,
             currency_id: 'BRL',
           },
         ],
