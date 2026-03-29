@@ -114,7 +114,7 @@ serve(async (req) => {
         external_reference: payment.id,
         notification_url: `${supabaseUrl}/functions/v1/mercadopago-webhook`,
         payment_methods: {
-          installments: 12,
+          installments: 6,
           excluded_payment_types: [
             { id: "ticket" },
           ],
