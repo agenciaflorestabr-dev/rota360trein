@@ -1,0 +1,1 @@
+CREATE POLICY "Submitters can read own insert" ON public.form_submissions FOR SELECT TO anon USING (true);
