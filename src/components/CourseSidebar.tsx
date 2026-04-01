@@ -54,7 +54,7 @@ export const CourseSidebar = ({ course, courseSlug }: CourseSidebarProps) => {
               <CreditCard className="w-5 h-5 text-primary flex-shrink-0" />
               <div>
                 <p className="text-xs font-semibold text-foreground">Cartão</p>
-                <p className="text-[10px] text-muted-foreground">Até 10x</p>
+                <p className="text-[10px] text-muted-foreground">Até 6x</p>
               </div>
             </div>
           </div>
