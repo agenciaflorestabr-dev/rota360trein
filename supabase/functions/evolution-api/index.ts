@@ -25,7 +25,21 @@ serve(async (req) => {
   const baseUrl = EVOLUTION_API_URL.replace(/\/+$/, '');
 
   try {
-    const { action, instanceName, number, text, recipientName } = await req.json();
+    const { action, instanceName: providedInstanceName, number, text, recipientName } = await req.json();
+
+    // Auto-resolve instance name from DB if not provided (for 'send' action)
+    let instanceName = providedInstanceName;
+    if (!instanceName && action === 'send') {
+      const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+      const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+      const supabase = createClient(supabaseUrl, serviceRoleKey);
+      const { data } = await supabase
+        .from('site_content')
+        .select('value')
+        .eq('section_key', 'evolution_instance_name')
+        .maybeSingle();
+      instanceName = data?.value || null;
+    }
 
     if (!instanceName) {
       return new Response(JSON.stringify({ error: 'Nome da instância é obrigatório' }), {
