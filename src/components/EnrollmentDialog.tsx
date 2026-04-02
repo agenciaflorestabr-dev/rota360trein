@@ -86,25 +86,16 @@ export const EnrollmentDialog = ({ open, onOpenChange, courseTitle, coursePrice,
       return;
     }
 
-    // Send WhatsApp confirmation
-    let instanceName = localStorage.getItem('evolution_instance');
-    if (!instanceName) {
-      const { data: dbInstance } = await supabase
-        .from('site_content').select('value')
-        .eq('section_key', 'evolution_instance_name').maybeSingle();
-      instanceName = dbInstance?.value || null;
-    }
-    if (instanceName) {
+    // Send WhatsApp confirmation (instance name resolved server-side)
+    try {
       const rawPhone = formData.phone.replace(/\D/g, '');
       const phone = rawPhone.startsWith('55') ? rawPhone : `55${rawPhone}`;
       const message = `✅ *Cadastro Efetuado com Sucesso!*\n\nOlá, ${formData.name}! Seu cadastro para o curso "${courseTitle}" na Rota 360 Treinamentos foi realizado.\n\nEm breve nossa equipe entrará em contato. Obrigado pela confiança! 🚀`;
-      try {
-        await supabase.functions.invoke('evolution-api', {
-          body: { action: 'send', instanceName, number: phone, text: message, recipientName: formData.name },
-        });
-      } catch (err) {
-        console.error('Erro ao enviar WhatsApp:', err);
-      }
+      await supabase.functions.invoke('evolution-api', {
+        body: { action: 'send', number: phone, text: message, recipientName: formData.name },
+      });
+    } catch (err) {
+      console.error('Erro ao enviar WhatsApp:', err);
     }
 
     // If course has price, redirect to MP checkout
