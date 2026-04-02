@@ -9,7 +9,6 @@ import { Button } from '@/components/ui/button';
 const navItems = [
   { label: 'Dashboard', icon: LayoutDashboard, path: '/admin' },
   { label: 'Cadastros', icon: UserCheck, path: '/admin/cadastros' },
-  { label: 'Cadastros', icon: UserCheck, path: '/admin/cadastros' },
   { label: 'Pagamentos', icon: CreditCard, path: '/admin/pagamentos' },
   { label: 'Preços', icon: Tag, path: '/admin/precos' },
   { label: 'Mensagens', icon: MessageSquare, path: '/admin/mensagens' },
