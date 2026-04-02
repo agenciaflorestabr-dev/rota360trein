@@ -47,27 +47,16 @@ export const EnrollmentForm = ({ courseTitle, coursePrice, courseSlug }: Enrollm
       return;
     }
 
-    // Send WhatsApp message via Evolution API
-    let instanceName = localStorage.getItem('evolution_instance');
-    if (!instanceName) {
-      const { data: dbInstance } = await supabase
-        .from('site_content')
-        .select('value')
-        .eq('section_key', 'evolution_instance_name')
-        .maybeSingle();
-      instanceName = dbInstance?.value || null;
-    }
-    if (instanceName) {
+    // Send WhatsApp message via Evolution API (instance name resolved server-side)
+    try {
       const rawPhone = formData.whatsapp.replace(/\D/g, '');
       const phone = rawPhone.startsWith('55') ? rawPhone : `55${rawPhone}`;
       const message = `Olá, ${formData.name}, vimos que você tem interesse no curso ${courseTitle}. Seja muito bem-vindo à Rota 360 Treinamentos! Em breve, entraremos em contato para mais informações.`;
-      try {
-        await supabase.functions.invoke('evolution-api', {
-          body: { action: 'send', instanceName, number: phone, text: message, recipientName: formData.name },
-        });
-      } catch (err) {
-        console.error('Erro ao enviar WhatsApp:', err);
-      }
+      await supabase.functions.invoke('evolution-api', {
+        body: { action: 'send', number: phone, text: message, recipientName: formData.name },
+      });
+    } catch (err) {
+      console.error('Erro ao enviar WhatsApp:', err);
     }
 
     // If course has a price, try to create MP checkout

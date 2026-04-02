@@ -80,32 +80,19 @@ const Cadastro = () => {
       return;
     }
 
-    // 2. Send WhatsApp confirmation to the person
-    let instanceName = localStorage.getItem('evolution_instance');
-    if (!instanceName) {
-      const { data: dbInstance } = await supabase
-        .from('site_content')
-        .select('value')
-        .eq('section_key', 'evolution_instance_name')
-        .maybeSingle();
-      instanceName = dbInstance?.value || null;
-    }
-
-    if (instanceName) {
+    // Send WhatsApp confirmation (instance name resolved server-side)
+    try {
       const rawPhone = formData.phone.replace(/\D/g, '');
       const phone = rawPhone.startsWith('55') ? rawPhone : `55${rawPhone}`;
       const message = `✅ *Cadastro Efetuado com Sucesso!*\n\n` +
         `Olá, ${formData.name}! Seu cadastro na Rota 360 Treinamentos foi realizado com sucesso.\n\n` +
         `Em breve nossa equipe entrará em contato com as próximas orientações sobre o seu curso.\n\n` +
         `Obrigado pela confiança! 🚀`;
-
-      try {
-        await supabase.functions.invoke('evolution-api', {
-          body: { action: 'send', instanceName, number: phone, text: message, recipientName: formData.name },
-        });
-      } catch (err) {
-        console.error('Erro ao enviar WhatsApp:', err);
-      }
+      await supabase.functions.invoke('evolution-api', {
+        body: { action: 'send', number: phone, text: message, recipientName: formData.name },
+      });
+    } catch (err) {
+      console.error('Erro ao enviar WhatsApp:', err);
     }
 
     toast({ title: 'Cadastro efetuado!', description: 'Você receberá uma confirmação no WhatsApp.' });
