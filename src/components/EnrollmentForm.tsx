@@ -29,7 +29,9 @@ export const EnrollmentForm = ({ courseTitle, coursePrice, courseSlug }: Enrollm
     setIsSubmitting(true);
 
     // Save form submission
-    const { data: submission, error } = await supabase.from('form_submissions').insert({
+    const submissionId = crypto.randomUUID();
+    const { error } = await supabase.from('form_submissions').insert({
+      id: submissionId,
       name: formData.name,
       email: formData.email,
       whatsapp: formData.whatsapp,
@@ -37,7 +39,7 @@ export const EnrollmentForm = ({ courseTitle, coursePrice, courseSlug }: Enrollm
       state: formData.state || null,
       cnh_category: null,
       course_title: courseTitle,
-    }).select('id').single();
+    });
 
     if (error) {
       setIsSubmitting(false);
