@@ -82,7 +82,7 @@ export const EnrollmentForm = ({ courseTitle, coursePrice, courseSlug }: Enrollm
             studentName: formData.name,
             studentEmail: formData.email,
             studentWhatsapp: formData.whatsapp,
-            formSubmissionId: submission?.id,
+            formSubmissionId: submissionId,
           },
         });
 

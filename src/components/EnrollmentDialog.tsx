@@ -119,7 +119,7 @@ export const EnrollmentDialog = ({ open, onOpenChange, courseTitle, coursePrice,
             studentName: formData.name,
             studentEmail: formData.email,
             studentWhatsapp: formData.phone,
-            formSubmissionId: submission?.id,
+            formSubmissionId: submissionId,
           },
         });
         if (mpError) throw new Error(mpError.message);
