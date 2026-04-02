@@ -59,7 +59,9 @@ export const EnrollmentDialog = ({ open, onOpenChange, courseTitle, coursePrice,
     }
     setIsSubmitting(true);
 
-    const { data: submission, error } = await supabase.from('form_submissions').insert({
+    const submissionId = crypto.randomUUID();
+    const { error } = await supabase.from('form_submissions').insert({
+      id: submissionId,
       name: formData.name,
       email: formData.email,
       whatsapp: formData.phone,
@@ -76,7 +78,7 @@ export const EnrollmentDialog = ({ open, onOpenChange, courseTitle, coursePrice,
       birth_date: formData.birth_date || null,
       course_title: courseTitle,
       status: 'pending',
-    }).select('id').single();
+    });
 
     if (error) {
       toast({ title: 'Erro ao salvar', description: error.message, variant: 'destructive' });
