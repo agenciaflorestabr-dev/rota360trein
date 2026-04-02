@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate, Outlet, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { 
-  LayoutDashboard, Users, UserCheck, MessageSquare, Settings, LogOut, ChevronLeft, CreditCard, Tag 
+  LayoutDashboard, UserCheck, MessageSquare, Settings, LogOut, ChevronLeft, CreditCard, Tag 
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
