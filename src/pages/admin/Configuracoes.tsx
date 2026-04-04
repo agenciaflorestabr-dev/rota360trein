@@ -222,11 +222,54 @@ const Configuracoes = () => {
     toast({ title: 'Mercado Pago desconectado' });
   };
 
+  const mpConnected = !!(mpSavedToken && mpSavedPublicKey);
+  const whatsappConnected = instanceStatus === 'connected';
+  const whatsappConnecting = instanceStatus === 'connecting';
+
   return (
     <div className="p-6 space-y-4">
       <div>
         <h1 className="text-2xl font-heading font-bold text-foreground">Configurações</h1>
         <p className="text-muted-foreground text-sm">Integrações e configurações do sistema</p>
+      </div>
+
+      {/* Status Overview */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <Card className={`border ${whatsappConnected ? 'border-green-500/30 bg-green-500/5' : whatsappConnecting ? 'border-yellow-500/30 bg-yellow-500/5' : 'border-destructive/30 bg-destructive/5'}`}>
+          <CardContent className="p-4 flex items-center gap-3">
+            <div className={`w-10 h-10 rounded-full flex items-center justify-center ${whatsappConnected ? 'bg-green-500/20 text-green-600' : whatsappConnecting ? 'bg-yellow-500/20 text-yellow-600' : 'bg-destructive/20 text-destructive'}`}>
+              <Wifi className="w-5 h-5" />
+            </div>
+            <div className="flex-1">
+              <p className="font-medium text-sm text-foreground">WhatsApp</p>
+              {isCheckingStatus ? (
+                <p className="text-xs text-muted-foreground flex items-center gap-1"><RefreshCw className="w-3 h-3 animate-spin" /> Verificando...</p>
+              ) : whatsappConnected ? (
+                <p className="text-xs text-green-600 flex items-center gap-1"><CheckCircle2 className="w-3 h-3" /> Conectado{connectedPhone ? ` • ${connectedPhone}` : ''}</p>
+              ) : whatsappConnecting ? (
+                <p className="text-xs text-yellow-600 flex items-center gap-1"><RefreshCw className="w-3 h-3" /> Aguardando conexão</p>
+              ) : (
+                <p className="text-xs text-destructive flex items-center gap-1"><XCircle className="w-3 h-3" /> Desconectado</p>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className={`border ${mpConnected ? 'border-green-500/30 bg-green-500/5' : 'border-destructive/30 bg-destructive/5'}`}>
+          <CardContent className="p-4 flex items-center gap-3">
+            <div className={`w-10 h-10 rounded-full flex items-center justify-center ${mpConnected ? 'bg-green-500/20 text-green-600' : 'bg-destructive/20 text-destructive'}`}>
+              <CreditCard className="w-5 h-5" />
+            </div>
+            <div className="flex-1">
+              <p className="font-medium text-sm text-foreground">Mercado Pago</p>
+              {mpConnected ? (
+                <p className="text-xs text-green-600 flex items-center gap-1"><CheckCircle2 className="w-3 h-3" /> Conectado e ativo</p>
+              ) : (
+                <p className="text-xs text-destructive flex items-center gap-1"><XCircle className="w-3 h-3" /> Não configurado</p>
+              )}
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
       <Tabs defaultValue="mercadopago">
