@@ -54,29 +54,44 @@ serve(async (req) => {
     };
 
     if (action === 'create') {
-      // Create instance
-      const createRes = await fetch(`${baseUrl}/instance/create`, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
-          instanceName,
-          integration: 'WHATSAPP-BAILEYS',
-          qrcode: true,
-        }),
-      });
+      // Create instance - if it already exists, that's OK, we'll connect next
+      try {
+        const createRes = await fetch(`${baseUrl}/instance/create`, {
+          method: 'POST',
+          headers,
+          body: JSON.stringify({
+            instanceName,
+            integration: 'WHATSAPP-BAILEYS',
+            qrcode: true,
+          }),
+        });
 
-      const createData = await createRes.json();
+        const createData = await createRes.json();
 
-      if (!createRes.ok) {
-        return new Response(JSON.stringify({ error: 'Erro ao criar instância', details: createData }), {
-          status: createRes.status,
+        // If instance already exists, treat as success
+        if (!createRes.ok) {
+          const errMsg = JSON.stringify(createData);
+          if (errMsg.includes('already') || errMsg.includes('exists') || errMsg.includes('já existe')) {
+            return new Response(JSON.stringify({ ok: true, alreadyExists: true }), {
+              headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+            });
+          }
+          return new Response(JSON.stringify({ error: 'Erro ao criar instância', details: createData }), {
+            status: 400,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          });
+        }
+
+        return new Response(JSON.stringify(createData), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      } catch (createErr) {
+        console.error('Create instance error:', createErr);
+        return new Response(JSON.stringify({ error: `Erro ao criar instância: ${createErr.message}` }), {
+          status: 500,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         });
       }
-
-      return new Response(JSON.stringify(createData), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
     }
 
     if (action === 'connect') {
