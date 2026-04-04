@@ -36,6 +36,7 @@ interface Submission {
 }
 
 const Cadastros = () => {
+  const { user, loading: authLoading } = useAuth();
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
