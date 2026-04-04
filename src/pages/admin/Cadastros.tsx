@@ -75,7 +75,7 @@ const Cadastros = () => {
     setLoading(false);
   };
 
-  useEffect(() => { fetchSubmissions(); }, []);
+  useEffect(() => { if (!authLoading && user) fetchSubmissions(); }, [authLoading, user]);
 
   const updateStatus = async (id: string, status: string) => {
     await supabase.from('form_submissions').update({ status }).eq('id', id);
