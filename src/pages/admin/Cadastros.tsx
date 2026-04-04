@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/hooks/useAuth';
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
@@ -35,6 +36,7 @@ interface Submission {
 }
 
 const Cadastros = () => {
+  const { user, loading: authLoading } = useAuth();
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
@@ -73,7 +75,7 @@ const Cadastros = () => {
     setLoading(false);
   };
 
-  useEffect(() => { fetchSubmissions(); }, []);
+  useEffect(() => { if (!authLoading && user) fetchSubmissions(); }, [authLoading, user]);
 
   const updateStatus = async (id: string, status: string) => {
     await supabase.from('form_submissions').update({ status }).eq('id', id);
