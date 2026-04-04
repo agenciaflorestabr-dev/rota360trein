@@ -1,10 +1,14 @@
 import { motion } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 export const WhatsAppFloat = () => {
+  const { pathname } = useLocation();
+  const phone = pathname === '/advocacia' ? '5518996067947' : '556696067881';
+
   return (
     <motion.a
-      href="https://wa.me/556696067881"
+      href={`https://wa.me/${phone}`}
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 z-50"
@@ -15,15 +19,10 @@ export const WhatsAppFloat = () => {
       whileTap={{ scale: 0.95 }}
     >
       <div className="relative">
-        {/* Pulse animation */}
         <div className="absolute inset-0 rounded-full bg-whatsapp animate-ping opacity-25" />
-        
-        {/* Button */}
         <div className="relative w-14 h-14 md:w-16 md:h-16 rounded-full bg-whatsapp flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow">
           <MessageCircle className="w-7 h-7 md:w-8 md:h-8 text-whatsapp-foreground" />
         </div>
-
-        {/* Tooltip */}
         <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-3 py-2 bg-foreground text-background text-sm font-medium rounded-lg whitespace-nowrap opacity-0 hover:opacity-100 pointer-events-none transition-opacity">
           Fale conosco!
           <div className="absolute left-full top-1/2 -translate-y-1/2 border-8 border-transparent border-l-foreground" />
