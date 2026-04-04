@@ -36,7 +36,16 @@ const Configuracoes = () => {
     const { data, error } = await supabase.functions.invoke('evolution-api', {
       body: { action, instanceName: instName },
     });
-    if (error) throw new Error(error.message);
+    if (error) {
+      // Try to extract details from the response
+      const details = data?.details || data?.error || error.message;
+      const detailMsg = typeof details === 'object' ? JSON.stringify(details) : details;
+      throw new Error(detailMsg || 'Erro na comunicação com Evolution API');
+    }
+    if (data?.error) {
+      const detailMsg = data.details ? JSON.stringify(data.details) : data.error;
+      throw new Error(detailMsg);
+    }
     return data;
   };
 
