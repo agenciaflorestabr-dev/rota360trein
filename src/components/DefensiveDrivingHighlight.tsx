@@ -75,7 +75,7 @@ export const DefensiveDrivingHighlight = () => {
                 </Link>
               </Button>
               <Button variant="heroOutline" size="xl" className="gap-2" asChild>
-                <a href="https://wa.me/5518996067947?text=Olá! Tenho interesse no curso de Direção Defensiva" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/556696067881?text=Olá! Tenho interesse no curso de Direção Defensiva" target="_blank" rel="noopener noreferrer">
                   Falar com consultor
                 </a>
               </Button>

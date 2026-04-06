@@ -50,7 +50,7 @@ const PagamentoStatus = () => {
               <Link to="/cursos">Ver outros cursos</Link>
             </Button>
             <Button variant="outline" asChild>
-              <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/556696067881" target="_blank" rel="noopener noreferrer">
                 Falar no WhatsApp
               </a>
             </Button>
