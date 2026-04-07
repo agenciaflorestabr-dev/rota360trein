@@ -26,6 +26,41 @@ import { ScrollToTop } from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
+const AppRoutes = () => {
+  const location = useLocation();
+  return (
+    <>
+      <ScrollToTop />
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Index />} />
+        <Route path="/cursos" element={<Cursos />} />
+        <Route path="/advocacia" element={<Advocacia />} />
+        <Route path="/treinamentos" element={<Treinamentos />} />
+        <Route path="/empresa" element={<Empresa />} />
+        <Route path="/curso/:slug" element={<CursoDetalhe />} />
+        <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/pagamento/sucesso" element={<PagamentoStatus />} />
+        <Route path="/pagamento/erro" element={<PagamentoStatus />} />
+        <Route path="/pagamento/pendente" element={<PagamentoStatus />} />
+        
+        {/* Admin routes */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Dashboard />} />
+          
+          <Route path="cadastros" element={<Cadastros />} />
+          <Route path="pagamentos" element={<Pagamentos />} />
+          <Route path="mensagens" element={<Mensagens />} />
+          <Route path="precos" element={<Precos />} />
+          <Route path="config" element={<Configuracoes />} />
+        </Route>
+
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
+  );
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -33,33 +68,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/cursos" element={<Cursos />} />
-            <Route path="/advocacia" element={<Advocacia />} />
-            <Route path="/treinamentos" element={<Treinamentos />} />
-            <Route path="/empresa" element={<Empresa />} />
-            <Route path="/curso/:slug" element={<CursoDetalhe />} />
-            <Route path="/cadastro" element={<Cadastro />} />
-            <Route path="/pagamento/sucesso" element={<PagamentoStatus />} />
-            <Route path="/pagamento/erro" element={<PagamentoStatus />} />
-            <Route path="/pagamento/pendente" element={<PagamentoStatus />} />
-            
-            {/* Admin routes */}
-            <Route path="/admin/login" element={<AdminLogin />} />
-            <Route path="/admin" element={<AdminLayout />}>
-              <Route index element={<Dashboard />} />
-              
-              <Route path="cadastros" element={<Cadastros />} />
-              <Route path="pagamentos" element={<Pagamentos />} />
-              <Route path="mensagens" element={<Mensagens />} />
-              <Route path="precos" element={<Precos />} />
-              <Route path="config" element={<Configuracoes />} />
-            </Route>
-
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <AppRoutes />
         </BrowserRouter>
       </AuthProvider>
     </TooltipProvider>
