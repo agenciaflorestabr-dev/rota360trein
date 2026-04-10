@@ -118,7 +118,7 @@ serve(async (req) => {
       const connectData = await connectRes.json();
 
       if (!connectRes.ok) {
-        return jsonResponse({ error: 'Erro ao conectar instância', details: connectData }, connectRes.status);
+        return jsonResponse({ error: 'Erro ao conectar instância', details: connectData });
       }
 
       // Extract QR code base64
