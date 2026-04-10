@@ -73,10 +73,9 @@ serve(async (req) => {
         return jsonResponse({ ok: true, qrcode: qrBase64, data: createData });
       }
 
-      // If instance already exists, try connect first, if that fails, delete and recreate
+      // If instance already exists, try connect to get QR
       const errMsg = JSON.stringify(createData).toLowerCase();
       if (errMsg.includes('already') || errMsg.includes('exists') || errMsg.includes('já existe')) {
-        // Try connect to get QR
         try {
           const connectRes = await fetch(`${baseUrl}/instance/connect/${instanceName}`, {
             method: 'GET',
@@ -91,24 +90,23 @@ serve(async (req) => {
           }
         } catch {}
 
-        // Connect failed - delete instance and recreate
+        // Connect also failed - try to delete and recreate
         try {
           await fetch(`${baseUrl}/instance/delete/${instanceName}`, { method: 'DELETE', headers });
+          // Wait a bit then recreate
+          const retryRes = await fetch(`${baseUrl}/instance/create`, {
+            method: 'POST',
+            headers,
+            body: JSON.stringify({ instanceName, qrcode: true, integration: 'WHATSAPP-BAILEYS' }),
+          });
+          if (retryRes.ok) {
+            const retryData = await retryRes.json();
+            const qrBase64 = retryData?.qrcode?.base64 || null;
+            return jsonResponse({ ok: true, recreated: true, qrcode: qrBase64, data: retryData });
+          }
         } catch {}
 
-        // Recreate
-        const retryRes = await fetch(`${baseUrl}/instance/create`, {
-          method: 'POST',
-          headers,
-          body: JSON.stringify({ instanceName, qrcode: true, integration: 'WHATSAPP-BAILEYS' }),
-        });
-        if (retryRes.ok) {
-          const retryData = await retryRes.json();
-          const qrBase64 = retryData?.qrcode?.base64 || null;
-          return jsonResponse({ ok: true, recreated: true, qrcode: qrBase64, data: retryData });
-        }
-        const retryErr = await retryRes.json();
-        return jsonResponse({ error: 'Erro ao recriar instância', details: retryErr }, 400);
+        return jsonResponse({ ok: true, alreadyExists: true, qrcode: null, message: 'Instância já existe mas não foi possível conectar. Tente outro nome.' });
       }
 
       return jsonResponse({ error: 'Erro ao criar instância', details: createData }, 400);
