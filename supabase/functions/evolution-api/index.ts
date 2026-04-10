@@ -178,7 +178,7 @@ serve(async (req) => {
       }
 
       if (!sendOk) {
-        return jsonResponse({ error: 'Erro ao enviar mensagem', details: sendData }, sendRes.status);
+        return jsonResponse({ error: 'Erro ao enviar mensagem', details: sendData });
       }
       return jsonResponse(sendData);
     }
