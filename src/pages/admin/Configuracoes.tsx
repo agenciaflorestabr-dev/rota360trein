@@ -128,15 +128,28 @@ const Configuracoes = () => {
     if (!instanceName.trim()) { toast({ title: 'Digite o nome da instância', variant: 'destructive' }); return; }
     setIsCreating(true); setQrCodeBase64(null); setInstanceStatus('connecting');
     try {
-      await callEvolutionApi('create', instanceName);
-      const connectData = await callEvolutionApi('connect', instanceName);
-      const qr = connectData?.base64 || connectData?.qrcode?.base64 || connectData?.code;
+      // The edge function now returns QR directly from create (or via connect if instance already exists)
+      const createData = await callEvolutionApi('create', instanceName);
+      const qr = createData?.qrcode || createData?.data?.qrcode?.base64;
       if (qr) {
         setQrCodeBase64(qr.startsWith('data:') ? qr : `data:image/png;base64,${qr}`);
         toast({ title: 'QR Code gerado!', description: 'Escaneie com seu WhatsApp para conectar.' });
+        await saveInstanceToDb(instanceName);
+        setConnectedInstance(instanceName);
         startStatusPolling(instanceName);
       } else {
-        toast({ title: 'Instância criada', description: 'Mas não foi possível gerar o QR Code. Tente reconectar.' });
+        // Fallback: try connect endpoint
+        const connectData = await callEvolutionApi('connect', instanceName);
+        const qr2 = connectData?.qrcode || connectData?.base64;
+        if (qr2) {
+          setQrCodeBase64(qr2.startsWith('data:') ? qr2 : `data:image/png;base64,${qr2}`);
+          toast({ title: 'QR Code gerado!', description: 'Escaneie com seu WhatsApp para conectar.' });
+          await saveInstanceToDb(instanceName);
+          setConnectedInstance(instanceName);
+          startStatusPolling(instanceName);
+        } else {
+          toast({ title: 'Instância criada', description: 'Mas não foi possível gerar o QR Code. Tente reconectar.' });
+        }
       }
     } catch (error: any) {
       toast({ title: 'Erro', description: error.message || 'Falha ao conectar', variant: 'destructive' });
