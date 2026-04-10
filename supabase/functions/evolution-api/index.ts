@@ -6,6 +6,13 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+function jsonResponse(data: unknown, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+  });
+}
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -15,14 +22,15 @@ serve(async (req) => {
   const EVOLUTION_API_URL = Deno.env.get('EVOLUTION_API_URL');
 
   if (!EVOLUTION_API_KEY || !EVOLUTION_API_URL) {
-    return new Response(JSON.stringify({ error: 'Evolution API não configurada no backend' }), {
-      status: 500,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-    });
+    return jsonResponse({ error: 'Evolution API não configurada no backend' }, 500);
   }
 
-  // Remove trailing slash from base URL
   const baseUrl = EVOLUTION_API_URL.replace(/\/+$/, '');
+
+  const headers = {
+    'Content-Type': 'application/json',
+    'apikey': EVOLUTION_API_KEY,
+  };
 
   try {
     const { action, instanceName: providedInstanceName, number, text, recipientName } = await req.json();
@@ -42,77 +50,89 @@ serve(async (req) => {
     }
 
     if (!instanceName) {
-      return new Response(JSON.stringify({ error: 'Nome da instância é obrigatório' }), {
-        status: 400,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
+      return jsonResponse({ error: 'Nome da instância é obrigatório' }, 400);
     }
 
-    const headers = {
-      'Content-Type': 'application/json',
-      'apikey': EVOLUTION_API_KEY,
-    };
-
     if (action === 'create') {
-      // Create instance - if it already exists, that's OK, we'll connect next
-      try {
-        const createRes = await fetch(`${baseUrl}/instance/create`, {
-          method: 'POST',
-          headers,
-          body: JSON.stringify({
-            instanceName,
-            integration: 'WHATSAPP-BAILEYS',
-            qrcode: true,
-          }),
-        });
+      const createUrl = `${baseUrl}/instance/create`;
+      console.log('Calling create URL:', createUrl, 'with apikey:', EVOLUTION_API_KEY?.substring(0, 8) + '...');
+      const createRes = await fetch(createUrl, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+          instanceName,
+          qrcode: true,
+          integration: 'WHATSAPP-BAILEYS',
+        }),
+      });
 
-        const createData = await createRes.json();
+      const createData = await createRes.json();
+      console.log('Create response status:', createRes.status, 'ok:', createRes.ok);
+      console.log('Create data keys:', Object.keys(createData));
 
-        // If instance already exists, treat as success
-        if (!createRes.ok) {
-          const errMsg = JSON.stringify(createData);
-          if (errMsg.includes('already') || errMsg.includes('exists') || errMsg.includes('já existe')) {
-            return new Response(JSON.stringify({ ok: true, alreadyExists: true }), {
-              headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-            });
-          }
-          return new Response(JSON.stringify({ error: 'Erro ao criar instância', details: createData }), {
-            status: 400,
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-          });
-        }
-
-        return new Response(JSON.stringify(createData), {
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        });
-      } catch (createErr) {
-        console.error('Create instance error:', createErr);
-        return new Response(JSON.stringify({ error: `Erro ao criar instância: ${createErr.message}` }), {
-          status: 500,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        });
+      if (createRes.ok) {
+        // Instance created successfully - extract QR from response
+        const qrBase64 = createData?.qrcode?.base64 || null;
+        console.log('QR base64 found:', !!qrBase64, qrBase64?.substring(0, 30));
+        return jsonResponse({ ok: true, qrcode: qrBase64, data: createData });
       }
+
+      // If instance already exists, try connect to get QR
+      const errMsg = JSON.stringify(createData).toLowerCase();
+      if (errMsg.includes('already') || errMsg.includes('exists') || errMsg.includes('já existe')) {
+        try {
+          const connectRes = await fetch(`${baseUrl}/instance/connect/${instanceName}`, {
+            method: 'GET',
+            headers,
+          });
+          if (connectRes.ok) {
+            const connectData = await connectRes.json();
+            const qrBase64 = connectData?.base64
+              ? (connectData.base64.startsWith('data:') ? connectData.base64 : `data:image/png;base64,${connectData.base64}`)
+              : null;
+            return jsonResponse({ ok: true, alreadyExists: true, qrcode: qrBase64, data: connectData });
+          }
+        } catch {}
+
+        // Connect also failed - try to delete and recreate
+        try {
+          await fetch(`${baseUrl}/instance/delete/${instanceName}`, { method: 'DELETE', headers });
+          // Wait a bit then recreate
+          const retryRes = await fetch(`${baseUrl}/instance/create`, {
+            method: 'POST',
+            headers,
+            body: JSON.stringify({ instanceName, qrcode: true, integration: 'WHATSAPP-BAILEYS' }),
+          });
+          if (retryRes.ok) {
+            const retryData = await retryRes.json();
+            const qrBase64 = retryData?.qrcode?.base64 || null;
+            return jsonResponse({ ok: true, recreated: true, qrcode: qrBase64, data: retryData });
+          }
+        } catch {}
+
+        return jsonResponse({ ok: true, alreadyExists: true, qrcode: null, message: 'Instância já existe mas não foi possível conectar. Tente outro nome.' });
+      }
+
+      return jsonResponse({ error: 'Erro ao criar instância', details: createData }, 400);
     }
 
     if (action === 'connect') {
-      // Get QR code / connect
       const connectRes = await fetch(`${baseUrl}/instance/connect/${instanceName}`, {
         method: 'GET',
         headers,
       });
-
       const connectData = await connectRes.json();
 
       if (!connectRes.ok) {
-        return new Response(JSON.stringify({ error: 'Erro ao conectar instância', details: connectData }), {
-          status: connectRes.status,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        });
+        return jsonResponse({ error: 'Erro ao conectar instância', details: connectData }, connectRes.status);
       }
 
-      return new Response(JSON.stringify(connectData), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
+      // Extract QR code base64
+      const qrBase64 = connectData?.base64
+        ? (connectData.base64.startsWith('data:') ? connectData.base64 : `data:image/png;base64,${connectData.base64}`)
+        : null;
+
+      return jsonResponse({ ...connectData, qrcode: qrBase64 });
     }
 
     if (action === 'status') {
@@ -120,19 +140,13 @@ serve(async (req) => {
         method: 'GET',
         headers,
       });
-
       const statusData = await statusRes.json();
 
       if (!statusRes.ok) {
-        return new Response(JSON.stringify({ error: 'Erro ao verificar status', details: statusData }), {
-          status: statusRes.status,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        });
+        return jsonResponse({ error: 'Erro ao verificar status', details: statusData }, statusRes.status);
       }
 
-      return new Response(JSON.stringify(statusData), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
+      return jsonResponse(statusData);
     }
 
     if (action === 'disconnect') {
@@ -141,9 +155,7 @@ serve(async (req) => {
         headers,
       });
       const disconnectData = await disconnectRes.json();
-      return new Response(JSON.stringify(disconnectData), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
+      return jsonResponse(disconnectData);
     }
 
     if (action === 'send') {
@@ -155,7 +167,7 @@ serve(async (req) => {
       const sendData = await sendRes.json();
       const sendOk = sendRes.ok;
 
-      // Log message in the messages table
+      // Log message
       try {
         const sbUrl = Deno.env.get('SUPABASE_URL')!;
         const sbKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
@@ -172,26 +184,15 @@ serve(async (req) => {
       }
 
       if (!sendOk) {
-        return new Response(JSON.stringify({ error: 'Erro ao enviar mensagem', details: sendData }), {
-          status: sendRes.status,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        });
+        return jsonResponse({ error: 'Erro ao enviar mensagem', details: sendData }, sendRes.status);
       }
-      return new Response(JSON.stringify(sendData), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
+      return jsonResponse(sendData);
     }
 
-    return new Response(JSON.stringify({ error: 'Ação inválida. Use: create, connect, status, disconnect, send' }), {
-      status: 400,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-    });
+    return jsonResponse({ error: 'Ação inválida. Use: create, connect, status, disconnect, send' }, 400);
 
   } catch (error) {
     console.error('Evolution API error:', error);
-    return new Response(JSON.stringify({ error: error.message }), {
-      status: 500,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-    });
+    return jsonResponse({ error: error.message }, 500);
   }
 });
