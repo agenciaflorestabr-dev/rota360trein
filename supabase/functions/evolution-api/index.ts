@@ -118,7 +118,7 @@ serve(async (req) => {
       const connectData = await connectRes.json();
 
       if (!connectRes.ok) {
-        return jsonResponse({ error: 'Erro ao conectar instância', details: connectData }, connectRes.status);
+        return jsonResponse({ error: 'Erro ao conectar instância', details: connectData });
       }
 
       // Extract QR code base64
@@ -137,7 +137,7 @@ serve(async (req) => {
       const statusData = await statusRes.json();
 
       if (!statusRes.ok) {
-        return jsonResponse({ error: 'Erro ao verificar status', details: statusData }, statusRes.status);
+        return jsonResponse({ error: 'Erro ao verificar status', details: statusData, notFound: statusRes.status === 404 });
       }
 
       return jsonResponse(statusData);
@@ -178,7 +178,7 @@ serve(async (req) => {
       }
 
       if (!sendOk) {
-        return jsonResponse({ error: 'Erro ao enviar mensagem', details: sendData }, sendRes.status);
+        return jsonResponse({ error: 'Erro ao enviar mensagem', details: sendData });
       }
       return jsonResponse(sendData);
     }
