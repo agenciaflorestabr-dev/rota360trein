@@ -73,18 +73,42 @@ serve(async (req) => {
         return jsonResponse({ ok: true, qrcode: qrBase64, data: createData });
       }
 
-      // If instance already exists, get QR via connect endpoint
+      // If instance already exists, try connect first, if that fails, delete and recreate
       const errMsg = JSON.stringify(createData).toLowerCase();
       if (errMsg.includes('already') || errMsg.includes('exists') || errMsg.includes('já existe')) {
-        const connectRes = await fetch(`${baseUrl}/instance/connect/${instanceName}`, {
-          method: 'GET',
+        // Try connect to get QR
+        try {
+          const connectRes = await fetch(`${baseUrl}/instance/connect/${instanceName}`, {
+            method: 'GET',
+            headers,
+          });
+          if (connectRes.ok) {
+            const connectData = await connectRes.json();
+            const qrBase64 = connectData?.base64
+              ? (connectData.base64.startsWith('data:') ? connectData.base64 : `data:image/png;base64,${connectData.base64}`)
+              : null;
+            return jsonResponse({ ok: true, alreadyExists: true, qrcode: qrBase64, data: connectData });
+          }
+        } catch {}
+
+        // Connect failed - delete instance and recreate
+        try {
+          await fetch(`${baseUrl}/instance/delete/${instanceName}`, { method: 'DELETE', headers });
+        } catch {}
+
+        // Recreate
+        const retryRes = await fetch(`${baseUrl}/instance/create`, {
+          method: 'POST',
           headers,
+          body: JSON.stringify({ instanceName, qrcode: true, integration: 'WHATSAPP-BAILEYS' }),
         });
-        const connectData = await connectRes.json();
-        const qrBase64 = connectData?.base64
-          ? `data:image/png;base64,${connectData.base64}`
-          : connectData?.base64 || null;
-        return jsonResponse({ ok: true, alreadyExists: true, qrcode: qrBase64, data: connectData });
+        if (retryRes.ok) {
+          const retryData = await retryRes.json();
+          const qrBase64 = retryData?.qrcode?.base64 || null;
+          return jsonResponse({ ok: true, recreated: true, qrcode: qrBase64, data: retryData });
+        }
+        const retryErr = await retryRes.json();
+        return jsonResponse({ error: 'Erro ao recriar instância', details: retryErr }, 400);
       }
 
       return jsonResponse({ error: 'Erro ao criar instância', details: createData }, 400);
