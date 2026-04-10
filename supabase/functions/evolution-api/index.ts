@@ -54,9 +54,7 @@ serve(async (req) => {
     }
 
     if (action === 'create') {
-      const createUrl = `${baseUrl}/instance/create`;
-      console.log('Calling create URL:', createUrl, 'with apikey:', EVOLUTION_API_KEY?.substring(0, 8) + '...');
-      const createRes = await fetch(createUrl, {
+      const createRes = await fetch(`${baseUrl}/instance/create`, {
         method: 'POST',
         headers,
         body: JSON.stringify({
