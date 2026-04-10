@@ -65,13 +65,9 @@ serve(async (req) => {
       });
 
       const createData = await createRes.json();
-      console.log('Create response status:', createRes.status, 'ok:', createRes.ok);
-      console.log('Create data keys:', Object.keys(createData));
 
       if (createRes.ok) {
-        // Instance created successfully - extract QR from response
         const qrBase64 = createData?.qrcode?.base64 || null;
-        console.log('QR base64 found:', !!qrBase64, qrBase64?.substring(0, 30));
         return jsonResponse({ ok: true, qrcode: qrBase64, data: createData });
       }
 
