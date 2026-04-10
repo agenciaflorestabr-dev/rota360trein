@@ -137,7 +137,7 @@ serve(async (req) => {
       const statusData = await statusRes.json();
 
       if (!statusRes.ok) {
-        return jsonResponse({ error: 'Erro ao verificar status', details: statusData }, statusRes.status);
+        return jsonResponse({ error: 'Erro ao verificar status', details: statusData, notFound: statusRes.status === 404 });
       }
 
       return jsonResponse(statusData);
