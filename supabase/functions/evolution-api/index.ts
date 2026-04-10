@@ -54,8 +54,9 @@ serve(async (req) => {
     }
 
     if (action === 'create') {
-      // Step 1: Try to create instance (returns QR code on success)
-      const createRes = await fetch(`${baseUrl}/instance/create`, {
+      const createUrl = `${baseUrl}/instance/create`;
+      console.log('Calling create URL:', createUrl, 'with apikey:', EVOLUTION_API_KEY?.substring(0, 8) + '...');
+      const createRes = await fetch(createUrl, {
         method: 'POST',
         headers,
         body: JSON.stringify({
