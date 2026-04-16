@@ -132,6 +132,67 @@ const Analytics = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card className="lg:col-span-2">
+          <CardHeader>
+            <CardTitle>Visitas e Visitantes Únicos por dia</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ChartContainer config={{ visitas: { label: 'Visitas', color: 'hsl(var(--primary))' }, visitantes: { label: 'Visitantes', color: 'hsl(var(--accent-orange))' } }} className="h-[300px] w-full">
+              <LineChart data={dailyData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="date" tick={{ fontSize: 11 }} interval={3} />
+                <YAxis tick={{ fontSize: 11 }} allowDecimals={false} />
+                <ChartTooltip content={<ChartTooltipContent />} />
+                <Legend />
+                <Line type="monotone" dataKey="visitas" stroke="hsl(var(--primary))" strokeWidth={2} />
+                <Line type="monotone" dataKey="visitantes" stroke="hsl(var(--accent-orange))" strokeWidth={2} />
+              </LineChart>
+            </ChartContainer>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Páginas mais visitadas</CardTitle>
+          </CardHeader>
+          <CardContent>
+            {topPages.length === 0 ? (
+              <p className="text-muted-foreground text-sm">Sem dados ainda. Aguarde os primeiros acessos.</p>
+            ) : (
+              <ChartContainer config={{ value: { label: 'Visitas', color: 'hsl(var(--primary))' } }} className="h-[300px] w-full">
+                <BarChart data={topPages} layout="vertical" margin={{ left: 10 }}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis type="number" tick={{ fontSize: 11 }} allowDecimals={false} />
+                  <YAxis type="category" dataKey="name" tick={{ fontSize: 11 }} width={140} />
+                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <Bar dataKey="value" fill="hsl(var(--primary))" radius={[0, 4, 4, 0]} />
+                </BarChart>
+              </ChartContainer>
+            )}
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Dispositivos</CardTitle>
+          </CardHeader>
+          <CardContent>
+            {deviceData.length === 0 ? (
+              <p className="text-muted-foreground text-sm">Sem dados</p>
+            ) : (
+              <ChartContainer config={{}} className="h-[300px] w-full">
+                <PieChart>
+                  <Pie data={deviceData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100} label>
+                    {deviceData.map((_, i) => <Cell key={i} fill={COLORS[i % COLORS.length]} />)}
+                  </Pie>
+                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <Legend />
+                </PieChart>
+              </ChartContainer>
+            )}
+          </CardContent>
+        </Card>
+
         <Card>
           <CardHeader>
             <CardTitle>Cadastros e Pagamentos por dia</CardTitle>
