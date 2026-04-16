@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
-import { Users, FileText, CreditCard, TrendingUp, DollarSign, BookOpen } from 'lucide-react';
+import { Users, FileText, CreditCard, TrendingUp, DollarSign, BookOpen, Eye } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Legend } from 'recharts';
 import { format, subDays, startOfDay } from 'date-fns';
@@ -9,6 +9,7 @@ import { ptBR } from 'date-fns/locale';
 
 type Submission = { created_at: string; status: string; course_title: string };
 type Payment = { created_at: string; mp_status: string; amount: number; course_title: string };
+type PageView = { created_at: string; path: string; session_id: string; device: string | null; referrer: string | null };
 
 const COLORS = ['hsl(var(--primary))', 'hsl(var(--accent-orange))', 'hsl(var(--secondary))', 'hsl(var(--whatsapp))', 'hsl(var(--muted-foreground))'];
 
@@ -17,30 +18,36 @@ const Analytics = () => {
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [payments, setPayments] = useState<Payment[]>([]);
   const [messagesCount, setMessagesCount] = useState(0);
+  const [pageViews, setPageViews] = useState<PageView[]>([]);
 
   useEffect(() => {
     const load = async () => {
       const since = subDays(new Date(), 29).toISOString();
-      const [subRes, payRes, msgRes] = await Promise.all([
+      const [subRes, payRes, msgRes, pvRes] = await Promise.all([
         supabase.from('form_submissions').select('created_at, status, course_title').gte('created_at', since),
         supabase.from('payments').select('created_at, mp_status, amount, course_title').gte('created_at', since),
         supabase.from('messages').select('*', { count: 'exact', head: true }),
+        supabase.from('page_views').select('created_at, path, session_id, device, referrer').gte('created_at', since).limit(10000),
       ]);
       setSubmissions((subRes.data as Submission[]) || []);
       setPayments((payRes.data as Payment[]) || []);
       setMessagesCount(msgRes.count || 0);
+      setPageViews((pvRes.data as PageView[]) || []);
       setLoading(false);
     };
     load();
   }, []);
 
-  // Daily submissions over last 30 days
+  // Daily series over last 30 days
   const dailyData = Array.from({ length: 30 }).map((_, i) => {
     const day = startOfDay(subDays(new Date(), 29 - i));
     const dayStr = format(day, 'yyyy-MM-dd');
     const cadastros = submissions.filter(s => s.created_at.startsWith(dayStr)).length;
     const pagamentos = payments.filter(p => p.created_at.startsWith(dayStr) && p.mp_status === 'approved').length;
-    return { date: format(day, 'dd/MM', { locale: ptBR }), cadastros, pagamentos };
+    const dayViews = pageViews.filter(v => v.created_at.startsWith(dayStr));
+    const visitas = dayViews.length;
+    const visitantes = new Set(dayViews.map(v => v.session_id)).size;
+    return { date: format(day, 'dd/MM', { locale: ptBR }), cadastros, pagamentos, visitas, visitantes };
   });
 
   // Status breakdown
@@ -60,18 +67,42 @@ const Analytics = () => {
     .sort((a, b) => b.value - a.value)
     .slice(0, 6);
 
+  // Top pages
+  const pageCounts = pageViews.reduce((acc, v) => {
+    acc[v.path] = (acc[v.path] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+  const topPages = Object.entries(pageCounts)
+    .map(([name, value]) => ({ name, value }))
+    .sort((a, b) => b.value - a.value)
+    .slice(0, 6);
+
+  // Device breakdown
+  const deviceCounts = pageViews.reduce((acc, v) => {
+    const d = v.device || 'unknown';
+    acc[d] = (acc[d] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+  const deviceData = Object.entries(deviceCounts).map(([name, value]) => ({ name, value }));
+
   // KPIs
   const totalSubs = submissions.length;
   const approvedPayments = payments.filter(p => p.mp_status === 'approved');
   const revenue = approvedPayments.reduce((sum, p) => sum + Number(p.amount || 0), 0);
   const conversionRate = totalSubs > 0 ? Math.round((approvedPayments.length / totalSubs) * 100) : 0;
+  const totalViews = pageViews.length;
+  const uniqueVisitors = new Set(pageViews.map(v => v.session_id)).size;
+  const visitorConversion = uniqueVisitors > 0 ? Math.round((totalSubs / uniqueVisitors) * 100) : 0;
 
   const kpis = [
-    { title: 'Cadastros (30d)', value: totalSubs, icon: Users, color: 'text-primary' },
+    { title: 'Visitas (30d)', value: totalViews, icon: Eye, color: 'text-primary' },
+    { title: 'Visitantes Únicos', value: uniqueVisitors, icon: Users, color: 'text-secondary' },
+    { title: 'Cadastros (30d)', value: totalSubs, icon: FileText, color: 'text-primary' },
     { title: 'Pagamentos Aprovados', value: approvedPayments.length, icon: CreditCard, color: 'text-whatsapp' },
     { title: 'Receita (30d)', value: `R$ ${revenue.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`, icon: DollarSign, color: 'text-accent-orange' },
-    { title: 'Taxa de Conversão', value: `${conversionRate}%`, icon: TrendingUp, color: 'text-secondary' },
-    { title: 'Mensagens Enviadas', value: messagesCount, icon: FileText, color: 'text-primary' },
+    { title: 'Conv. Visitante→Cadastro', value: `${visitorConversion}%`, icon: TrendingUp, color: 'text-secondary' },
+    { title: 'Taxa de Conversão (Pgto)', value: `${conversionRate}%`, icon: TrendingUp, color: 'text-primary' },
+    { title: 'Mensagens Enviadas', value: messagesCount, icon: FileText, color: 'text-muted-foreground' },
     { title: 'Cursos Distintos', value: Object.keys(courseCounts).length, icon: BookOpen, color: 'text-secondary' },
   ];
 
