@@ -24,11 +24,13 @@ import Precos from "./pages/admin/Precos";
 import Analytics from "./pages/admin/Analytics";
 import NotFound from "./pages/NotFound";
 import { ScrollToTop } from "./components/ScrollToTop";
+import { usePageTracking } from "./hooks/usePageTracking";
 
 const queryClient = new QueryClient();
 
 const AppRoutes = () => {
   const location = useLocation();
+  usePageTracking();
   return (
     <>
       <ScrollToTop />
