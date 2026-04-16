@@ -21,6 +21,7 @@ import Mensagens from "./pages/admin/Mensagens";
 import Pagamentos from "./pages/admin/Pagamentos";
 import Configuracoes from "./pages/admin/Configuracoes";
 import Precos from "./pages/admin/Precos";
+import Analytics from "./pages/admin/Analytics";
 import NotFound from "./pages/NotFound";
 import { ScrollToTop } from "./components/ScrollToTop";
 
@@ -52,6 +53,7 @@ const AppRoutes = () => {
           <Route path="pagamentos" element={<Pagamentos />} />
           <Route path="mensagens" element={<Mensagens />} />
           <Route path="precos" element={<Precos />} />
+          <Route path="analytics" element={<Analytics />} />
           <Route path="config" element={<Configuracoes />} />
         </Route>
 
